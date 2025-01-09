@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type MediaItem = {
   type: 'image' | 'video';
@@ -11,33 +12,33 @@ type MediaItem = {
 
 const mediaItems: MediaItem[] = [
   {
-    type: 'image',
-    src: '/images/publications/kv.png'
-  },
-  {
     type: 'video',
-    src: 'https://example.com/video.mp4',
-    poster: '/images/publications/kv.png'
+    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    poster: 'https://picsum.photos/id/237/1920/1080'
   },
   {
     type: 'image',
-    src: '/images/publications/kv.png'
+    src: 'https://picsum.photos/id/1018/1920/1080',
+  },
+  {
+    type: 'image',
+    src: 'https://picsum.photos/id/1015/1920/1080',
   }
 ];
 
 export const AboutSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   const nextSlide = () => {
+    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
   };
-
-  const getPrevIndex = () => (currentSlide - 1 + mediaItems.length) % mediaItems.length;
-  const getNextIndex = () => (currentSlide + 1) % mediaItems.length;
 
   const renderMedia = (item: MediaItem, className: string) => {
     if (item.type === 'video') {
@@ -63,58 +64,80 @@ export const AboutSection = () => {
     );
   };
 
+  const slideVariants = {
+    prev: {
+      x: '-85%',
+      scale: 0.6,
+      opacity: 0.7,
+      zIndex: 0,
+    },
+    current: {
+      x: 0,
+      scale: 0.7,
+      opacity: 1,
+      zIndex: 1,
+    },
+    next: {
+      x: '85%',
+      scale: 0.6,
+      opacity: 0.7,
+      zIndex: 0,
+    }
+  };
+
   return (
     <section className="py-32">
-      <div className="relative max-w-[1312px] mx-auto px-9 mb-32">
-        <div className="flex items-center justify-center gap-4">
-          {/* 左のスライド */}
-          <div 
-            className="relative w-[30%] aspect-[16/9] rounded-[20px] overflow-hidden cursor-pointer opacity-50 hover:opacity-70 transition-opacity"
-            onClick={prevSlide}
-          >
-            <div className="absolute inset-0">
-              {renderMedia(mediaItems[getPrevIndex()], 'w-full h-full object-cover')}
-            </div>
-          </div>
+      <div className="relative max-w-[1312px] mx-auto px-9 mb-[120px]">
+        <div className="flex items-center justify-center h-[540px]">
+          <AnimatePresence initial={false} custom={direction}>
+            {[-1, 0, 1].map((offset) => {
+              const index = (currentSlide + offset + mediaItems.length) % mediaItems.length;
+              const position = offset === -1 ? 'prev' : offset === 0 ? 'current' : 'next';
+              
+              return (
+                <motion.div
+                  key={index}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial={direction > 0 ? 'next' : 'prev'}
+                  animate={position}
+                  exit={direction > 0 ? 'prev' : 'next'}
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    scale: { duration: 0.4 },
+                    opacity: { duration: 0.3 }
+                  }}
+                  className={`absolute w-[55%] aspect-[16/9] rounded-[20px] overflow-hidden
+                    ${position === 'current' ? 'cursor-default' : 'cursor-pointer hover:opacity-90'}
+                  `}
+                  onClick={() => position === 'prev' ? prevSlide() : position === 'next' ? nextSlide() : null}
+                >
+                  {renderMedia(mediaItems[index], 'w-full h-full object-cover')}
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
 
-          {/* 左矢印 */}
           <button
             onClick={prevSlide}
-            className="p-4 hover:opacity-70 transition-opacity z-10"
-            className="p-4 hover:opacity-70 transition-opacity"
+            className="absolute left-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
             aria-label="前の画像へ"
           >
             <Image src="/images/publications/prev.svg" alt="" width={24} height={24} />
           </button>
-
-          {/* メインスライド */}
-          <div className="relative w-[50%] aspect-[16/9] rounded-[20px] overflow-hidden">
-            {renderMedia(mediaItems[currentSlide], 'object-cover')}
-          </div>
-
-          {/* 右矢印 */}
           <button
             onClick={nextSlide}
-            className="p-4 hover:opacity-70 transition-opacity"
+            className="absolute right-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
             aria-label="次の画像へ"
           >
             <Image src="/images/publications/next.svg" alt="" width={24} height={24} />
           </button>
-
-          {/* 右のスライド */}
-          <div 
-            className="relative w-[30%] aspect-[16/9] rounded-[20px] overflow-hidden cursor-pointer opacity-50 hover:opacity-70 transition-opacity"
-            onClick={nextSlide}
-          >
-            {renderMedia(mediaItems[getNextIndex()], 'object-cover')}
-          </div>
         </div>
       </div>
 
-      {/* テキストコンテンツ */}
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl mb-12">群馬の山地を産地に。</h2>
-        <div className="space-y-8 text-sm leading-relaxed">
+        <div className="space-y-8 text-sm leading-[48px]">
           <p>
             私たちは、前橋の豊かな山々を舞台に、<br />
             リジェネラティブ（再生型）の農業と<br />

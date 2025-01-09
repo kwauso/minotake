@@ -85,53 +85,55 @@ export const StoryModal: React.FC<StoryModalProps> = ({
       >
         <div className="flex h-full">
           <div className="w-1/2 relative">
-            <div className="absolute inset-0">
-              <Image
-                src={currentStory.image}
-                alt={currentStory.alt}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 to-transparent">
-                <p className="text-white/70 font-genei-gothic text-xs mb-2">
-                  {currentStory.category}
-                </p>
-                <h2 className="text-white font-genei-gothic text-[32px] leading-[48px]">
-                  {currentStory.title}
-                </h2>
-              </div>
-            </div>
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${currentStory.image}) center/cover no-repeat`
+              }}
+            >
+              <div className="flex flex-col justify-between h-full p-9">
+                <div className="space-y-5">
+                  <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
+                    {currentStory.category}
+                  </p>
+                  <div className="space-y-2">
+                    <h2 className="text-white font-genei-gothic text-[32px] leading-[40px] font-light">
+                      {currentStory.title}
+                    </h2>
+                    <p className="text-white/80 font-genei-gothic text-[15px] leading-8">
+                      {currentStory.content || ''}
+                    </p>
+                  </div>
+                </div>
 
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-8 flex justify-between items-center">
-              {prevStory ? (
-                <button
-                  onClick={onPrev}
-                  className="group flex items-center gap-4 p-4 rounded-lg backdrop-blur-md bg-black/20 hover:bg-black/30 transition-colors"
-                >
-                  <Image src="/images/publications/prev.svg" alt="" width={24} height={24} />
-                  <div>
-                    <p className="text-white/70 text-xs mb-1">PREV</p>
-                    <p className="text-white text-sm">{prevStory.title}</p>
-                  </div>
-                </button>
-              ) : (
-                <div className="w-[200px]" />
-              )}
-              
-              {nextStory ? (
-                <button
-                  onClick={onNext}
-                  className="group flex items-center gap-4 p-4 rounded-lg backdrop-blur-md bg-black/20 hover:bg-black/30 transition-colors"
-                >
-                  <div className="text-right">
-                    <p className="text-white/70 text-xs mb-1">NEXT</p>
-                    <p className="text-white text-sm">{nextStory.title}</p>
-                  </div>
-                  <Image src="/images/publications/next.svg" alt="" width={24} height={24} />
-                </button>
-              ) : (
-                <div className="w-[200px]" />
-              )}
+                <div className="flex gap-4">
+                  {prevStory && (
+                    <button
+                      onClick={onPrev}
+                      className="flex-1 flex items-center gap-4 p-4 rounded-[20px] backdrop-blur-[10px] bg-black/30"
+                    >
+                      <span className="text-white transform scale-x-[-1]">→</span>
+                      <div className="flex-1">
+                        <p className="text-white/50 font-light text-[13px] leading-[17px]">PREV</p>
+                        <p className="text-white font-genei-gothic text-[14px] leading-[18px]">{prevStory.title}</p>
+                      </div>
+                    </button>
+                  )}
+                  
+                  {nextStory && (
+                    <button
+                      onClick={onNext}
+                      className="flex-1 flex items-center gap-4 p-4 rounded-[20px] backdrop-blur-[10px] bg-black/30"
+                    >
+                      <div className="flex-1">
+                        <p className="text-white/50 font-light text-[13px] leading-[17px]">NEXT</p>
+                        <p className="text-white font-genei-gothic text-[14px] leading-[18px]">{nextStory.title}</p>
+                      </div>
+                      <span className="text-white">→</span>
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 

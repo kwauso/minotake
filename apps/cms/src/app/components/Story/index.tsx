@@ -19,68 +19,68 @@ export const Story = () => {
 
   const stories = [
     {
-      category: '03 - ワインについて',
+      category: '01 - ワインについて',
       title: '今回創るぶどう品種',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景',
       content: '文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章。'
     },
     {
-      category: '04 - ワインについて',
+      category: '02 - ワインについて',
       title: '終わりなき探求家',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '05 - ワインについて',
+      category: '03 - ワインについて',
       title: '大岡という醸造家',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '06 - ワインについて',
+      category: '04 - ワインについて',
       title: '日本食と自然派ワインの相性',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '07 - ワインについて',
+      category: '05 - ワインについて',
       title: '日本文化と自然派ワイン',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '08 - ワインについて',
+      category: '06 - ワインについて',
       title: 'ゆかりあるシェフたちとの共創',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '09 - ワインについて',
+      category: '07 - ワインについて',
       title: '馬車史の生産',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '10 - ワインについて',
+      category: '08 - ワイナリー',
       title: '自然と調和するワイナリー',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '11 - ワインについて',
+      category: '09 - チャレンジ',
       title: '世界への挑戦',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '12 - ワインについて',
+      category: '10 - チャレンジ',
       title: '山を育むことで日本の過疎化を防ぐ',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
     {
-      category: '13 - ワインについて',
+      category: '11 - チャレンジ',
       title: '群馬の風景を価値あるものに変えていく',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
