@@ -31,13 +31,18 @@ export const Header = () => {
             { href: '/about', label: '私たちについて' },
             { href: '/guide', label: 'サイトの使い方' },
             { href: '/about-dao', label: 'DAOについて' },
-            { href: '/login', label: 'ログイン' }
-          ].map(({ href, label }) => (
+            { 
+              href: '/login', 
+              label: 'ログイン',
+              icon: '/images/common/user_icon.svg'
+            }
+          ].map(({ href, label, icon }) => (
             <Link 
               key={href} 
               href={href} 
-              className="text-xs text-black/50 hover:text-black transition-colors"
+              className="text-xs text-black/50 hover:text-black transition-colors flex items-center gap-2"
             >
+              {icon && <Image src={icon} alt="" width={16} height={16} />}
               {label}
             </Link>
           ))}

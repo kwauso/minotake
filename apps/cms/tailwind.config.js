@@ -13,6 +13,17 @@ module.exports = {
       },
       fontFamily: {
         'genei-gothic': ['var(--font-genei-gothic)'],
+        'en': [
+          '"Helvetica Neue"',
+          '"Neue Haas Grotesk"',
+          'Helvetica',
+          'Arial',
+          'sans-serif'
+        ],
+        'jp': [
+          '"GenEi Gothic M"',
+          'sans-serif'
+        ],
       },
     },
   },

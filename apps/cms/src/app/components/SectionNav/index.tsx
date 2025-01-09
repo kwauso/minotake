@@ -48,6 +48,21 @@ export const SectionNav = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 112; // ヘッダー(64px) + ナビ自体の高さ(48px)
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <nav className="sticky top-[64px] z-40 bg-white border-b border-gray-200">
       <div className="max-w-[1312px] mx-auto px-9">
@@ -56,6 +71,7 @@ export const SectionNav = () => {
             <Link
               key={id}
               href={`#${id}`}
+              onClick={(e) => handleClick(e, id)}
               className={`
                 px-4 py-2 rounded-full text-xs whitespace-nowrap
                 transition-all duration-300 ease-in-out
