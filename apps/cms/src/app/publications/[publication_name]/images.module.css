@@ -1,0 +1,75 @@
+.dao [class*="element-"] {
+  background-position: 50% 50%;
+  background-size: cover;
+  border-radius: var(--collection-1-round-20);
+  position: relative;
+}
+
+.dao .kv {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+.dao .element {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-2 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-3 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-6 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-7 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-8 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-9 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-10 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-11 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-12 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-13 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-14 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-15 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-16 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+}
+
+.dao .element-21 {
+  background-image: url('/images/publications/gunma_wine2025/kv.png');
+} 
