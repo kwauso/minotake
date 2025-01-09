@@ -1,14 +1,29 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { Header } from '@/app/components/Header';
+import { KeyVisual } from '@/app/components/KeyVisual';
+import { SectionNav } from '@/app/components/SectionNav';
+import { Section } from '@/app/components/Section';
+import { ProjectFooter } from '@/app/components/ProjectFooter';
+import { AboutSection } from '@/app/components/AboutSection';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 
   if (params.publication_name === 'gunma_wine2025') {
     return (
-      <div>
-        {/* ここにコンポーネントを配置していきます */}
+      <div className="min-h-screen bg-white">
+        <Header />
+        <KeyVisual />
+        <SectionNav />
+        <div>
+          <Section id="about">
+            <AboutSection />
+          </Section>
+          {/* 他のセクションも同様に追加 */}
+        </div>
+        <ProjectFooter />
       </div>
     );
   }

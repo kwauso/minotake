@@ -1,4 +1,5 @@
 import "./styles.css";
+import "./styles/styleguide.css";
 
 export default function RootLayout({
   children,
@@ -6,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>{children}</body>
     </html>
   );
