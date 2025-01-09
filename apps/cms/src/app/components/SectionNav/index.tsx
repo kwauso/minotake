@@ -51,7 +51,7 @@ export const SectionNav = () => {
   return (
     <nav className="sticky top-[64px] z-40 bg-white border-b border-gray-200">
       <div className="max-w-[1312px] mx-auto px-9">
-        <div className="flex gap-2 overflow-x-auto py-2 scrollbar-hide">
+        <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {sections.map(({ id, title }) => (
             <Link
               key={id}

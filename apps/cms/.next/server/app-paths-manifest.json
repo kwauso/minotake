@@ -1,4 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/publications/[publication_name]/page": "app/publications/[publication_name]/page.js"
 }

@@ -11,6 +11,9 @@ module.exports = {
       borderRadius: {
         'max': '999px',
       },
+      fontFamily: {
+        'genei-gothic': ['var(--font-genei-gothic)'],
+      },
     },
   },
   plugins: [

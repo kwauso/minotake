@@ -6,7 +6,7 @@ import Image from 'next/image';
 type MediaItem = {
   type: 'image' | 'video';
   src: string;
-  poster?: string; // 動画のサムネイル画像
+  poster?: string;
 };
 
 const mediaItems: MediaItem[] = [
@@ -16,7 +16,7 @@ const mediaItems: MediaItem[] = [
   },
   {
     type: 'video',
-    src: 'https://storage.googleapis.com/web-dev-assets/video-and-source-tags/chrome.mp4', // 仮の動画URL
+    src: 'https://example.com/video.mp4',
     poster: '/images/publications/kv.png'
   },
   {
@@ -26,7 +26,7 @@ const mediaItems: MediaItem[] = [
 ];
 
 export const AboutSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % mediaItems.length);
@@ -36,81 +36,78 @@ export const AboutSection = () => {
     setCurrentSlide((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
   };
 
-  const renderMediaItem = (item: MediaItem, index: number) => {
+  const getPrevIndex = () => (currentSlide - 1 + mediaItems.length) % mediaItems.length;
+  const getNextIndex = () => (currentSlide + 1) % mediaItems.length;
+
+  const renderMedia = (item: MediaItem, className: string) => {
     if (item.type === 'video') {
       return (
-        <div key={index} className="w-full flex-shrink-0 relative aspect-[16/9]">
-          <video
-            className="w-full h-full object-cover"
-            poster={item.poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={item.src} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+        <video
+          src={item.src}
+          poster={item.poster}
+          className={className}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
       );
     }
-
     return (
-      <div key={index} className="w-full flex-shrink-0 relative aspect-[16/9]">
-        <Image
-          src={item.src}
-          alt={`Slide ${index + 1}`}
-          fill
-          className="object-cover"
-          priority={index === 0}
-        />
-      </div>
+      <Image
+        src={item.src}
+        alt="ワイン畑の風景"
+        fill
+        className={className}
+      />
     );
   };
 
   return (
-    <div className="py-24 max-w-[1312px] mx-auto px-9">
-      {/* スライダー */}
-      <div className="relative mb-20 aspect-[16/9] overflow-hidden rounded-2xl">
-        <div 
-          className="flex transition-transform duration-500 h-full" 
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {mediaItems.map((item, index) => renderMediaItem(item, index))}
-        </div>
-        
-        {/* ナビゲーションボタン */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-black/70 transition-colors"
-          aria-label="Previous slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 backdrop-blur-sm rounded-full text-white hover:bg-black/70 transition-colors"
-          aria-label="Next slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+    <section className="py-32">
+      <div className="relative max-w-[1312px] mx-auto px-9 mb-32">
+        <div className="flex items-center justify-center gap-4">
+          {/* 左のスライド */}
+          <div 
+            className="relative w-[30%] aspect-[16/9] rounded-[20px] overflow-hidden cursor-pointer opacity-50 hover:opacity-70 transition-opacity"
+            onClick={prevSlide}
+          >
+            <div className="absolute inset-0">
+              {renderMedia(mediaItems[getPrevIndex()], 'w-full h-full object-cover')}
+            </div>
+          </div>
 
-        {/* スライドインジケーター */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {mediaItems.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                currentSlide === index ? 'bg-white' : 'bg-white/50'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+          {/* 左矢印 */}
+          <button
+            onClick={prevSlide}
+            className="p-4 hover:opacity-70 transition-opacity z-10"
+            className="p-4 hover:opacity-70 transition-opacity"
+            aria-label="前の画像へ"
+          >
+            <Image src="/images/publications/prev.svg" alt="" width={24} height={24} />
+          </button>
+
+          {/* メインスライド */}
+          <div className="relative w-[50%] aspect-[16/9] rounded-[20px] overflow-hidden">
+            {renderMedia(mediaItems[currentSlide], 'object-cover')}
+          </div>
+
+          {/* 右矢印 */}
+          <button
+            onClick={nextSlide}
+            className="p-4 hover:opacity-70 transition-opacity"
+            aria-label="次の画像へ"
+          >
+            <Image src="/images/publications/next.svg" alt="" width={24} height={24} />
+          </button>
+
+          {/* 右のスライド */}
+          <div 
+            className="relative w-[30%] aspect-[16/9] rounded-[20px] overflow-hidden cursor-pointer opacity-50 hover:opacity-70 transition-opacity"
+            onClick={nextSlide}
+          >
+            {renderMedia(mediaItems[getNextIndex()], 'object-cover')}
+          </div>
         </div>
       </div>
 
@@ -138,6 +135,6 @@ export const AboutSection = () => {
           <p className="text-xs mt-12">群馬ピークスプロジェクト 一同</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }; 

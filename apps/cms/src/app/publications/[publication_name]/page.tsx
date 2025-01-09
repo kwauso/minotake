@@ -7,6 +7,8 @@ import { SectionNav } from '@/app/components/SectionNav';
 import { Section } from '@/app/components/Section';
 import { ProjectFooter } from '@/app/components/ProjectFooter';
 import { AboutSection } from '@/app/components/AboutSection';
+import { Overview } from '@/app/components/Overview';
+import { Story } from '@/app/components/Story';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
@@ -20,6 +22,12 @@ export default function PublicationPage() {
         <div>
           <Section id="about">
             <AboutSection />
+          </Section>
+          <Section id="summary">
+            <Overview />
+          </Section>
+          <Section id="story">
+            <Story />
           </Section>
           {/* 他のセクションも同様に追加 */}
         </div>

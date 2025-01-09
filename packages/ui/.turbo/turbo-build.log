@@ -8,11 +8,11 @@
 [34mCLI[39m Target: es6
 [34mCJS[39m Build start
 [34mESM[39m Build start
-[32mESM[39m [1mdist/counter-button/index.mjs [22m[32m1.50 KB[39m
-[32mESM[39m [1mdist/link/index.mjs           [22m[32m553.00 B[39m
-[32mESM[39m [1mdist/chunk-4SF65RZN.mjs       [22m[32m1.32 KB[39m
-[32mESM[39m ⚡️ Build success in 13ms
 [32mCJS[39m [1mdist/counter-button/index.js [22m[32m2.63 KB[39m
 [32mCJS[39m [1mdist/link/index.js           [22m[32m2.62 KB[39m
-[32mCJS[39m ⚡️ Build success in 13ms
-[2K[1G✨  Done in 1.02s.
+[32mCJS[39m ⚡️ Build success in 10ms
+[32mESM[39m [1mdist/link/index.mjs           [22m[32m553.00 B[39m
+[32mESM[39m [1mdist/counter-button/index.mjs [22m[32m1.50 KB[39m
+[32mESM[39m [1mdist/chunk-4SF65RZN.mjs       [22m[32m1.32 KB[39m
+[32mESM[39m ⚡️ Build success in 10ms
+[2K[1G✨  Done in 0.42s.
