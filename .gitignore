@@ -3,7 +3,17 @@
 .env.development.local
 .env.test.local
 .env.production.local
-.next/**/*
-.turbo/**/*
+
+# Next.js build output
+.next
+**/.next
+**/.next/**
+
+# Turbo build outputs
+.turbo
+**/.turbo
+**/.turbo/**
 
 node_modules
+**/node_modules
+**/node_modules/**
