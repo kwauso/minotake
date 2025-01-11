@@ -22,7 +22,7 @@ export default function PublicationPage() {
         <Header />
         <KeyVisual />
         <SectionNav />
-        <div>
+        <div className="overflow-x-hidden">
           <Section id="about">
             <AboutSection />
           </Section>

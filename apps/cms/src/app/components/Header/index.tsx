@@ -68,44 +68,48 @@ export const Header = () => {
       </div>
 
       {/* SP版 */}
-      <div className="md:hidden flex flex-col w-full">
-        {/* 上部ロゴエリア */}
-        <div className="flex items-center justify-between px-7 pt-[68px] pb-4">
-          <Link href="/" className="flex items-center gap-1">
+      <div className="md:hidden flex items-center justify-between px-7 h-[90px]">
+        <Link href="/" className="flex-shrink-0">
+          <Image 
+            src="/images/common/logo.svg" 
+            alt="DAOX" 
+            width={70} 
+            height={28} 
+            priority
+          />
+        </Link>
+        
+        <div className="flex-1 mx-4">
+          <div className="flex items-center gap-2 h-9 px-3 rounded-max bg-black/5">
             <Image 
-              src="/images/common/logo.svg" 
-              alt="DAOX" 
-              width={38.85}
-              height={14}
-              priority
-            />
-            <Image 
-              src="/images/common/logo_mark.svg" 
+              src="/images/common/search_icon.svg" 
               alt=""
-              width={28}
-              height={28}
+              width={13}
+              height={13}
             />
-          </Link>
+            <span className="text-xs leading-[13px] text-black/50 font-jp">検索する</span>
+          </div>
         </div>
 
-        {/* 下部ナビゲーション */}
-        <div className="flex items-center gap-4 px-7 pb-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 h-12 px-5 rounded-max bg-black/5">
-              <span className="text-[15px] font-light">􀊫</span>
-              <span className="text-[13px] leading-[13px] text-black/50 font-jp">検索する</span>
-            </div>
-          </div>
+        <div className="flex items-center gap-4">
           <button className="flex items-center justify-center">
-            <span className="text-[20px] font-light">􀉩</span>
+            <Image 
+              src="/images/common/user_icon.svg" 
+              alt=""
+              width={14}
+              height={14}
+            />
           </button>
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex flex-col gap-[3.5px] w-4 h-3"
+            className="flex items-center justify-center"
           >
-            <span className="w-full h-[1.5px] bg-black rounded-[1px]" />
-            <span className="w-full h-[1.5px] bg-black rounded-[1px]" />
-            <span className="w-full h-[1.5px] bg-black rounded-[1px]" />
+            <Image 
+              src="/images/common/menu.svg" 
+              alt="メニュー"
+              width={18}
+              height={12}
+            />
           </button>
         </div>
       </div>

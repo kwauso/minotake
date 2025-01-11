@@ -23,7 +23,7 @@ const sections: Section[] = [
 ];
 
 export const SectionNav = () => {
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,7 +52,7 @@ export const SectionNav = () => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 112; // ヘッダー(64px) + ナビ自体の高さ(48px)
+      const headerOffset = 112;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -64,7 +64,7 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[152px] z-40 bg-white border-b border-gray-200 md:top-[100px]">
+    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[58px]">
       <div className="max-w-[1312px] mx-auto px-9">
         <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {sections.map(({ id, title }) => (
