@@ -4,13 +4,13 @@ import Image from 'next/image';
 export const KeyVisual = () => {
   return (
     <div 
-      className="relative h-[680px] flex flex-col items-center justify-between px-9 pt-[60px] pb-[60px] mt-[100px]"
+      className="relative h-[680px] flex flex-col items-center justify-between px-4 md:px-9 pt-[60px] pb-[60px] mt-[100px] w-full"
       style={{
         background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/kv.png') center/cover no-repeat`
       }}
     >
       {/* 上部テキスト */}
-      <div className="flex flex-col items-center gap-[30px] w-[820px]">
+      <div className="flex flex-col items-center gap-[30px] w-full md:w-[820px]">
         <p className="text-white/70 text-xs leading-4 font-jp text-center">
           群馬ピークスプロジェクト
         </p>
@@ -26,7 +26,7 @@ export const KeyVisual = () => {
       </div>
 
       {/* 下部ステータス */}
-      <div className="flex items-center justify-center gap-10 w-[1240px]">
+      <div className="flex items-center justify-center gap-10 w-full md:w-[1240px]">
         <StatusItem
           label="累計調達額 / 目標金額"
           value="¥4,620,000"

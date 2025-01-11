@@ -68,7 +68,7 @@ export const Header = () => {
       </div>
 
       {/* SP版 */}
-      <div className="md:hidden flex items-center justify-between px-7 h-[90px]">
+      <div className="md:hidden flex items-center justify-between px-7 h-[90px] w-full">
         <Link href="/" className="flex-shrink-0">
           <Image 
             src="/images/common/logo.svg" 
@@ -80,12 +80,12 @@ export const Header = () => {
         </Link>
         
         <div className="flex-1 mx-4">
-          <div className="flex items-center gap-2 h-9 px-3 rounded-max bg-black/5">
+          <div className="flex items-center gap-2 h-12 px-6 rounded-max bg-black/5">
             <Image 
               src="/images/common/search_icon.svg" 
               alt=""
-              width={13}
-              height={13}
+              width={18}
+              height={18}
             />
             <span className="text-xs leading-[13px] text-black/50 font-jp">検索する</span>
           </div>
@@ -96,8 +96,8 @@ export const Header = () => {
             <Image 
               src="/images/common/user_icon.svg" 
               alt=""
-              width={14}
-              height={14}
+              width={18}
+              height={18}
             />
           </button>
           <button 
