@@ -11,6 +11,8 @@ import { Overview } from '@/app/components/Overview';
 import { Story } from '@/app/components/Story';
 import { motion } from 'framer-motion';
 import { Benefits } from '@/app/components/Benefits';
+import { Activity } from '@/app/components/Activity';
+import { FundUsage } from '@/app/components/FundUsage';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
@@ -38,6 +40,12 @@ export default function PublicationPage() {
           </Section>
           <Section id="benefits">
             <Benefits />
+          </Section>
+          <Section id="activity">
+            <Activity />
+          </Section>
+          <Section id="usage">
+            <FundUsage />
           </Section>
         </div>
         <ProjectFooter />
