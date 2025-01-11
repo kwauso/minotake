@@ -6,16 +6,18 @@ node_modules
 # testing
 coverage
 
-# next.js
+# Next.js build output
 .next
 .next/
+**/.next
+**/.next/**
 out/
 build
-dist
 
-# turbo
+# Turbo build outputs
 .turbo
 **/.turbo
+**/.turbo/**
 
 # misc
 .DS_Store
@@ -42,6 +44,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -49,4 +52,3 @@ next-env.d.ts
 # IDE
 .idea
 .vscode
-
