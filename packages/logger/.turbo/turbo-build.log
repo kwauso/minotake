@@ -1,16 +1,24 @@
 
-[2K[1G[1myarn run v1.22.22[22m
+[2K[1G[1myarn run v1.22.19[22m
 [2K[1G[2m$ tsup[22m
 [34mCLI[39m Building entry: src/index.ts
 [34mCLI[39m Using tsconfig: tsconfig.json
 [34mCLI[39m tsup v8.3.5
-[34mCLI[39m Using tsup config: /Users/wikkkk/Projects/daox/packages/logger/tsup.config.ts
+[34mCLI[39m Using tsup config: /Users/kohei_old/dev/daox/packages/logger/tsup.config.ts
 [34mCLI[39m Target: node16
 [34mCLI[39m Cleaning output folder
 [34mCJS[39m Build start
 [32mCJS[39m [1mdist/index.js [22m[32m1.07 KB[39m
+<<<<<<< HEAD
 [32mCJS[39m ⚡️ Build success in 24ms
 DTS Build start
 DTS ⚡️ Build success in 1630ms
 DTS dist/index.d.ts 66.00 B
 [2K[1G✨  Done in 6.90s.
+=======
+[32mCJS[39m ⚡️ Build success in 6ms
+DTS Build start
+DTS ⚡️ Build success in 683ms
+DTS dist/index.d.ts 66.00 B
+[2K[1G✨  Done in 1.38s.
+>>>>>>> 1403144 (Update .gitignore)
