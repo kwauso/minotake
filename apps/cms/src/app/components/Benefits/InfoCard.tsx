@@ -9,8 +9,8 @@ interface InfoCardProps {
 
 export const InfoCard = ({ title, description, details, image }: InfoCardProps) => {
   return (
-    <div className="bg-[#F1F1F5] rounded-[40px] p-5 flex flex-row gap-5 items-center">
-      <div className="relative w-[200px] min-h-[120px] rounded-[20px] overflow-hidden">
+    <div className="bg-[#F1F1F5] rounded-[40px] p-5 flex flex-row gap-5 items-stretch">
+      <div className="relative w-[200px] rounded-[20px] overflow-hidden">
         <Image
           src={image}
           alt={title}
