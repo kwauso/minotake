@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { 
   TwitterShareButton, 
-  TwitterIcon,
+  XIcon,  // TwitterIconの代わりにXIconをインポート
   FacebookShareButton,
   FacebookIcon,
   LineShareButton,
@@ -109,9 +109,9 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
           <TwitterShareButton url={shareUrl} title={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
-                <TwitterIcon size={48} round />
+                <XIcon size={48} round />
               </div>
-              <span className="text-xs">X（Twitter）</span>
+              <span className="text-xs">X</span>
             </div>
           </TwitterShareButton>
 
