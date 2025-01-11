@@ -23,7 +23,7 @@ const sections: Section[] = [
 ];
 
 export const SectionNav = () => {
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,7 +52,7 @@ export const SectionNav = () => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 112;
+      const headerOffset = 112; // ヘッダー(64px) + ナビ自体の高さ(48px)
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -64,8 +64,8 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[64px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <div className="max-w-[920px] mx-auto">
+    <nav className="sticky top-[152px] z-40 bg-white border-b border-gray-200 md:top-[100px]">
+      <div className="max-w-[1312px] mx-auto px-9">
         <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {sections.map(({ id, title }) => (
             <Link
@@ -73,7 +73,7 @@ export const SectionNav = () => {
               href={`#${id}`}
               onClick={(e) => handleClick(e, id)}
               className={`
-                px-4 py-2 rounded-full text-xs whitespace-nowrap font-genei-gothic
+                px-4 py-2 rounded-full text-xs whitespace-nowrap
                 transition-all duration-300 ease-in-out
                 ${activeSection === id 
                   ? 'bg-black text-white' 
