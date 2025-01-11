@@ -12,6 +12,8 @@ import { Story } from '@/app/components/Story';
 import { Benefits } from '@/app/components/Benefits';
 import { Activity } from '@/app/components/Activity';
 import { FundUsage } from '@/app/components/FundUsage';
+import { DaoEasterEgg } from '@/app/components/DaoEasterEgg';
+import { DesignOverlay } from '@/app/components/DesignOverlay';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
@@ -20,8 +22,13 @@ export default function PublicationPage() {
     return (
       <div className="min-h-screen bg-white">
         <Header />
-        <KeyVisual />
+
+        <div className="w-full overflow-x-hidden">
+          <KeyVisual />
+        </div>
+        
         <SectionNav />
+
         <div className="overflow-x-hidden">
           <Section id="about">
             <AboutSection />
@@ -43,6 +50,8 @@ export default function PublicationPage() {
           </Section>
         </div>
         <ProjectFooter />
+        <DaoEasterEgg /> 
+        <DesignOverlay />
       </div>
     );
   }

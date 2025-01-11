@@ -64,7 +64,7 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[58px]">
+    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[90px]">
       <div className="max-w-[1312px] mx-auto px-9">
         <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {sections.map(({ id, title }) => (
