@@ -1,9 +1,16 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sp': {'max': '767px'},  // SP用
+      'tb': {'max': '1023px'}, // タブレット用
+      ...defaultTheme.screens, // 既存のブレークポイント
+    },
     extend: {
       maxWidth: {
         'content': '1312px',
