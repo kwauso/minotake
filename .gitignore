@@ -7,6 +7,7 @@ node_modules
 coverage
 
 # next.js
+.next
 .next/
 out/
 build
@@ -14,6 +15,7 @@ dist
 
 # turbo
 .turbo
+**/.turbo
 
 # misc
 .DS_Store
@@ -26,6 +28,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Logs
+*.log
+**/*.log
+
 # local env files
 .env
 .env.*
@@ -36,7 +42,6 @@ yarn-error.log*
 
 # vercel
 .vercel
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -44,3 +49,4 @@ next-env.d.ts
 # IDE
 .idea
 .vscode
+

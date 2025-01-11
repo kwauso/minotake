@@ -34,7 +34,7 @@ export const ProjectFooter = () => {
           md:w-full w-[440px]
         `}
       >
-        <div className="md:flex hidden items-center px-9 py-3">
+        <div className="md:flex hidden items-center justify-between px-9 py-3">
           {/* PC版のステータス情報 */}
           <div className="flex items-center gap-10">
             <StatusItem
@@ -62,10 +62,8 @@ export const ProjectFooter = () => {
             />
           </div>
 
-          <div className="w-px h-8 bg-white/20 mx-9" />
-
           {/* PC版のアクション */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ml-auto">
             <div>
               <p className="text-[11px] leading-[14px] opacity-50">募集期限</p>
               <p className="text-[21px] leading-8 font-en font-light">2025.01.31</p>
