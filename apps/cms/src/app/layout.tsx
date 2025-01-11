@@ -1,13 +1,26 @@
-import "./styles.css";
+import localFont from 'next/font/local';
+import './globals.css';
+
+const genEiGothic = localFont({
+  src: './fonts/GenEiGothicM-Regular.ttf',
+  variable: '--font-genei-gothic'
+});
+
+export const metadata = {
+  title: 'DAOX',
+  description: 'DAOX - 地域活性化プロジェクト',
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="ja" className={`${genEiGothic.variable}`}>
+      <body className="font-genei-gothic">
+        {children}
+      </body>
     </html>
   );
 }

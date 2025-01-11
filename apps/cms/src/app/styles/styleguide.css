@@ -1,0 +1,18 @@
+:root {
+  --collection-1-margin-l-PC: 60px;
+  --collection-1-margin-m-PC: 40px;
+  --collection-1-margin-none: 0px;
+  --collection-1-margin-s-PC: 20px;
+  --collection-1-margin-XL-PC: 120px;
+  --collection-1-margin-XS-PC: 16px;
+  --collection-1-margin-XXL-PC: 600px;
+  --collection-1-margin-XXS-PC: 8px;
+  --collection-1-round-10: 10px;
+  --collection-1-round-15: 15px;
+  --collection-1-round-20: 20px;
+  --collection-1-round-30: 30px;
+  --collection-1-round-40: 40px;
+  --collection-1-round-5: 5px;
+  --collection-1-round-max: 999px;
+  --elv-y10: 0px 10px 20px 0px rgba(0, 0, 0, 0.08);
+} 

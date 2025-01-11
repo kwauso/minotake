@@ -21,5 +21,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "framer-motion": "^11.16.4",
+    "react-share": "^5.1.2"
+  }
 }
