@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 type Section = {
@@ -24,6 +24,7 @@ const sections: Section[] = [
 
 export const SectionNav = () => {
   const [activeSection, setActiveSection] = useState('about');
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,6 +32,14 @@ export const SectionNav = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
+            // アクティブなセクションが変更されたら、そのボタンまでスクロール
+            const activeButton = document.querySelector(`[data-section="${entry.target.id}"]`);
+            if (activeButton && navRef.current) {
+              navRef.current.scrollTo({
+                left: (activeButton as HTMLElement).offsetLeft - 36, // pl-9
+                behavior: 'smooth'
+              });
+            }
           }
         });
       },
@@ -64,20 +73,21 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[90px]">
-      <div className="max-w-[1312px] mx-auto px-9">
-        <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
+    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[89px]">
+      <div className="mx-auto py-4">
+        <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide px-9">
           {sections.map(({ id, title }) => (
             <Link
               key={id}
               href={`#${id}`}
+              data-section={id}
               onClick={(e) => handleClick(e, id)}
               className={`
-                px-4 py-2 rounded-full text-xs whitespace-nowrap
+                px-4 py-2 rounded-full text-[13px] whitespace-nowrap
                 transition-all duration-300 ease-in-out
                 ${activeSection === id 
                   ? 'bg-black text-white' 
-                  : 'bg-transparent text-black hover:bg-gray-100'
+                  : 'bg-[#E5E5E5] text-black hover:bg-gray-100'
                 }
               `}
             >
