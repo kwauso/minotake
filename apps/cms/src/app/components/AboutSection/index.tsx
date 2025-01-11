@@ -120,14 +120,14 @@ export const AboutSection = () => {
 
           <button
             onClick={prevSlide}
-            className="absolute left-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
+            className="absolute left-4 md:left-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
             aria-label="前の画像へ"
           >
             <Image src="/images/publications/prev.svg" alt="" width={24} height={24} />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
+            className="absolute right-4 md:right-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
             aria-label="次の画像へ"
           >
             <Image src="/images/publications/next.svg" alt="" width={24} height={24} />

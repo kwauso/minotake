@@ -18,7 +18,7 @@ export const Overview = () => {
 
   return (
     <section id="summary" className="py-32">
-      <div className="flex flex-col max-w-[1080px] mx-auto items-center gap-[60px]">
+      <div className="flex flex-col w-full max-w-[90vw] md:max-w-[1080px] mx-auto items-center gap-[60px] px-4">
         {/* メイン画像 */}
         <div className="relative w-full h-[540px] rounded-[40px] overflow-hidden">
           <Image
@@ -30,8 +30,8 @@ export const Overview = () => {
         </div>
 
         {/* コンテンツブロック1 */}
-        <div className="w-full items-start gap-10 px-5 flex">
-          <div className="flex w-[580px] items-start gap-10 py-[3px]">
+        <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
+          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 何をするか
@@ -50,8 +50,8 @@ export const Overview = () => {
         <div className="w-full h-px bg-black/10" />
 
         {/* コンテンツブロック2 */}
-        <div className="w-full items-start gap-10 px-5 flex">
-          <div className="flex w-[580px] items-start gap-10 py-[3px]">
+        <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
+          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 背景
@@ -70,8 +70,8 @@ export const Overview = () => {
         <div className="w-full h-px bg-black/10" />
 
         {/* コンテンツブロック3 */}
-        <div className="w-full items-start gap-10 px-5 flex">
-          <div className="flex w-[580px] items-start gap-10 py-[3px]">
+        <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
+          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 目指す世界
