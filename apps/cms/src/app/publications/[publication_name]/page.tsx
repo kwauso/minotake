@@ -9,13 +9,20 @@ import { ProjectFooter } from '@/app/components/ProjectFooter';
 import { AboutSection } from '@/app/components/AboutSection';
 import { Overview } from '@/app/components/Overview';
 import { Story } from '@/app/components/Story';
+import { motion } from 'framer-motion';
+import { Benefits } from '@/app/components/Benefits';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 
   if (params.publication_name === 'gunma_wine2025') {
     return (
-      <div className="min-h-screen bg-white">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen bg-white overflow-x-hidden"
+      >
         <Header />
         <KeyVisual />
         <SectionNav />
@@ -29,12 +36,23 @@ export default function PublicationPage() {
           <Section id="story">
             <Story />
           </Section>
-          {/* 他のセクションも同様に追加 */}
+          <Section id="benefits">
+            <Benefits />
+          </Section>
         </div>
         <ProjectFooter />
-      </div>
+      </motion.div>
     );
   }
 
-  return <div>プロジェクトが見つかりません</div>;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex items-center justify-center min-h-screen bg-white"
+    >
+      プロジェクトが見つかりません
+    </motion.div>
+  );
 } 
