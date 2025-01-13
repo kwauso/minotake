@@ -115,6 +115,7 @@ export const ProjectFooter = () => {
                   alt=""
                   width={16}
                   height={16}
+                  className="sp:w-[11px] sp:h-[11px]"
                 />
 
               </Link>
