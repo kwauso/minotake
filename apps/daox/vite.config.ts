@@ -17,6 +17,14 @@ export default defineConfig({
       include: [/node_modules/],
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      external: [],
+      output: {
+        manualChunks: {
+          'supabase': ['@supabase/supabase-js'],
+        },
+      },
+    },
   },
   optimizeDeps: {
     include: ['@supabase/supabase-js'],
