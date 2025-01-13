@@ -3,12 +3,12 @@ import { supabase } from '../lib/supabase'
 
 export const Route = createRootRoute({
   component: RootComponent,
-  beforeLoad: async () => {
+  beforeLoad: async ({ location }) => {
     const { data: { session } } = await supabase.auth.getSession()
     const isAuthenticated = !!session
 
     // ルートパス（/）へのアクセス時、認証状態に応じてリダイレクト
-    if (window.location.pathname === '/') {
+    if (location.pathname === '/') {
       if (isAuthenticated) {
         throw redirect({ to: '/comingsoon' })
       } else {
@@ -17,7 +17,7 @@ export const Route = createRootRoute({
     }
 
     // その他のパスの場合の認証チェック
-    if (!isAuthenticated && window.location.pathname !== '/waitinglist') {
+    if (!isAuthenticated && location.pathname !== '/waitinglist') {
       throw redirect({ to: '/waitinglist' })
     }
   },
