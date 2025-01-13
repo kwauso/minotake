@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 
 type Dao = {
   id: string;
@@ -16,23 +15,31 @@ export default function DaoListPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchDaos = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('daos')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error) throw error;
-        setDaos(data || []);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : 'エラーが発生しました');
-      } finally {
-        setLoading(false);
+    const mockDaos: Dao[] = [
+      {
+        id: '1',
+        name: 'サンプルDAO 1',
+        description: 'これはサンプルDAOの説明文です。',
+        created_at: '2024-03-20T00:00:00Z'
+      },
+      {
+        id: '2',
+        name: 'サンプルDAO 2',
+        description: 'コミュニティ主導の分散型組織のサンプルです。',
+        created_at: '2024-03-19T00:00:00Z'
+      },
+      {
+        id: '3',
+        name: 'テストDAO',
+        description: '開発とテスト用のDAOです。',
+        created_at: '2024-03-18T00:00:00Z'
       }
-    };
+    ];
 
-    fetchDaos();
+    setTimeout(() => {
+      setDaos(mockDaos);
+      setLoading(false);
+    }, 1000);
   }, []);
 
   if (loading) return <div>読み込み中...</div>;

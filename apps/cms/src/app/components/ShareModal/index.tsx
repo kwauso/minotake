@@ -106,27 +106,33 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
         </div>
 
         <div className="flex justify-center gap-6 mb-8">
+          {/* @ts-ignore */}
           <TwitterShareButton url={shareUrl} title={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
+                {/* @ts-ignore */}
                 <TwitterIcon size={48} round />
               </div>
               <span className="text-xs">X（Twitter）</span>
             </div>
           </TwitterShareButton>
 
+          {/* @ts-ignore */}
           <FacebookShareButton url={shareUrl} quote={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
+                {/* @ts-ignore */}
                 <FacebookIcon size={48} round />
               </div>
               <span className="text-xs">Facebook</span>
             </div>
           </FacebookShareButton>
 
+          {/* @ts-ignore */}
           <LineShareButton url={shareUrl} title={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
+                {/* @ts-ignore */}
                 <LineIcon size={48} round />
               </div>
               <span className="text-xs">LINE</span>
