@@ -110,6 +110,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
           <TwitterShareButton url={shareUrl} title={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
+                {/* @ts-ignore */}
                 <XIcon size={48} round />
               </div>
               <span className="text-xs">X</span>

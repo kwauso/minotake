@@ -133,7 +133,7 @@ export const Benefits = () => {
                 return (
                   <>
                     <BenefitCard key={`benefit-${index}`} {...benefit} />
-                    {isOwnershipBenefit && benefitsData[shareholderType.id]?.info && (
+                    {isOwnershipBenefit && shareholderType.id === SHAREHOLDER_TYPES.ALL.id && benefitsData[shareholderType.id]?.info && (
                       <div className="flex flex-col gap-5">
                         {benefitsData[shareholderType.id].info.map((info, infoIndex) => (
                           <InfoCard key={`info-${infoIndex}`} {...info} />
