@@ -14,6 +14,8 @@ type TimeSlot = {
   available: boolean;
 };
 
+// 説明会のフォームは消して、日程を選択すると「Googleカレンダーに登録する機能」を追加する
+
 export const ScheduleModal = ({ isOpen, onClose }: Props) => {
   const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
   const [email, setEmail] = useState('');

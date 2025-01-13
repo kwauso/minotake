@@ -21,7 +21,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = '群馬の山から、世界が認める自然派ワインを。🍷✨\n\n一緒に新しい価値を創り出しませんか？\n#群馬ピークスプロジェクト #自然派ワイン';
+  const shareTitle = '群馬の山から、世界が認める自然派ワインを。🍷✨\n\n一緒に新しい価値を創り出しませんか？\n#ぐんま山育DAO #自然派ワイン';
 
   useEffect(() => {
     if (isOpen) {
@@ -101,7 +101,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
             より多くの仲間と一緒に、群馬の新しい未来を創っていきましょう！ ✨
           </p>
           <p className="text-xs text-gray-500 mt-2">
-            #群馬ピークスプロジェクト #自然派ワイン 🍷
+            #ぐんま山育DAO #自然派ワイン 🍷
           </p>
         </div>
 

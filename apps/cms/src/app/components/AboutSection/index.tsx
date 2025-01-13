@@ -13,7 +13,7 @@ type MediaItem = {
 const mediaItems: MediaItem[] = [
   {
     type: 'video',
-    src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     poster: 'https://picsum.photos/id/237/1920/1080'
   },
   {
@@ -155,7 +155,7 @@ export const AboutSection = () => {
             自然や社会との再生可能な関係を育むビジネスモデルを、<br />
             皆さんと一緒に築いていきたいと考えています。
           </p>
-          <p className="text-xs mt-12">群馬ピークスプロジェクト 一同</p>
+          <p className="text-xs mt-12">ぐんま山育DAO 一同</p>
         </div>
       </div>
     </section>

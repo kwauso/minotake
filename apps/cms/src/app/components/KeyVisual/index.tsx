@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const KeyVisual = () => {
   return (
     <div 
-      className="relative h-[680px] flex flex-col items-center justify-between px-4 md:px-9 pt-[60px] pb-[60px] mt-[100px] w-full"
+      className="relative flex flex-col items-center justify-between px-4 md:px-9 pt-[60px] pb-[60px] mt-[100px] w-full sp:h-[680px] md:h-[calc(100vh-100px)] md:max-h-[680px]"
       style={{
         background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/kv.png') center/cover no-repeat`
       }}
@@ -12,9 +12,9 @@ export const KeyVisual = () => {
       {/* 上部テキスト */}
       <div className="flex flex-col items-center gap-[30px] w-full md:w-[820px]">
         <p className="text-white/70 text-xs leading-4 font-jp text-center">
-          群馬ピークスプロジェクト
+          ぐんま山育DAO
         </p>
-        <h1 className="text-white text-[40px] leading-[48px] font-jp text-center">
+        <h1 className="text-white text-[40px] leading-[48px] font-jp text-center sp:px-6 sp:line-height-[20px] sp:text-[30px]">
           群馬の山から、世界が認める自然派ワインを｡
         </h1>
         <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
