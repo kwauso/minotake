@@ -13,11 +13,15 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      external: ['@supabase/supabase-js'],
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
     },
   },
   optimizeDeps: {
     include: ['@supabase/supabase-js'],
+    esbuildOptions: {
+      target: 'es2020',
+    },
   },
 })
