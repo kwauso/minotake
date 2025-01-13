@@ -1,3 +1,4 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './__root'
 import { Route as ComingsoonRoute } from './comingsoon'
 import { Route as WaitinglistRoute } from './waitinglist'
@@ -8,6 +9,10 @@ export const Route = createFileRoute('/')({
   beforeLoad: () => {
     throw redirect({ to: '/login' })
   },
+})
+
+export const Route = createFileRoute('/')({
+  component: () => null
 })
 
 export const routeTree = rootRoute.addChildren([
