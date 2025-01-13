@@ -89,7 +89,8 @@ export const AboutSection = () => {
     <section className="py-32">
       <div className="relative max-w-[1312px] mx-auto px-9 mb-[120px]">
         <div className="flex items-center justify-center h-[540px]">
-          <AnimatePresence initial={false} custom={direction}>
+          {/* @ts-ignore */}
+          <AnimatePresence initial={false} mode="wait">
             {[-1, 0, 1].map((offset) => {
               const index = (currentSlide + offset + mediaItems.length) % mediaItems.length;
               const position = offset === -1 ? 'prev' : offset === 0 ? 'current' : 'next';
@@ -117,7 +118,7 @@ export const AboutSection = () => {
               );
             })}
           </AnimatePresence>
-
+          
           <button
             onClick={prevSlide}
             className="absolute left-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"

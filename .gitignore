@@ -33,6 +33,9 @@ yarn-error.log*
 # Logs
 *.log
 **/*.log
+**/.turbo/turbo-build.log
+packages/ui/.turbo/turbo-build.log
+packages/logger/.turbo/turbo-build.log
 
 # local env files
 .env
@@ -48,6 +51,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# build
+**/dist/**
+**/public/build/**
+**/public/out/**
 
 # IDE
 .idea

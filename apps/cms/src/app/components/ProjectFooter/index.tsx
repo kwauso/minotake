@@ -124,7 +124,17 @@ export const ProjectFooter = () => {
   );
 };
 
-const StatusItem = ({ label, value, subValue, customValue }) => (
+const StatusItem = ({ 
+  label, 
+  value, 
+  subValue, 
+  customValue 
+}: { 
+  label: string; 
+  value?: string; 
+  subValue?: string; 
+  customValue?: React.ReactNode;
+}) => (
   <div className="flex flex-col">
     <span className="text-[11px] leading-[15px] opacity-50 font-jp">{label}</span>
     {customValue || (
