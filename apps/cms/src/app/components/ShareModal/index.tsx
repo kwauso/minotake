@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { 
   TwitterShareButton, 
-  TwitterIcon,
+  XIcon,  // TwitterIconの代わりにXIconをインポート
   FacebookShareButton,
   FacebookIcon,
   LineShareButton,
@@ -21,7 +21,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = '群馬の山から、世界が認める自然派ワインを。🍷✨\n\n一緒に新しい価値を創り出しませんか？\n#群馬ピークスプロジェクト #自然派ワイン';
+  const shareTitle = '群馬の山から、世界が認める自然派ワインを。🍷✨\n\n一緒に新しい価値を創り出しませんか？\n#ぐんま山育DAO #自然派ワイン';
 
   useEffect(() => {
     if (isOpen) {
@@ -101,7 +101,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
             より多くの仲間と一緒に、群馬の新しい未来を創っていきましょう！ ✨
           </p>
           <p className="text-xs text-gray-500 mt-2">
-            #群馬ピークスプロジェクト #自然派ワイン 🍷
+            #ぐんま山育DAO #自然派ワイン 🍷
           </p>
         </div>
 
@@ -110,10 +110,9 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
           <TwitterShareButton url={shareUrl} title={shareTitle}>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 flex items-center justify-center">
-                {/* @ts-ignore */}
-                <TwitterIcon size={48} round />
+                <XIcon size={48} round />
               </div>
-              <span className="text-xs">X（Twitter）</span>
+              <span className="text-xs">X</span>
             </div>
           </TwitterShareButton>
 

@@ -9,6 +9,11 @@ import { ProjectFooter } from '@/app/components/ProjectFooter';
 import { AboutSection } from '@/app/components/AboutSection';
 import { Overview } from '@/app/components/Overview';
 import { Story } from '@/app/components/Story';
+import { Benefits } from '@/app/components/Benefits';
+import { Activity } from '@/app/components/Activity';
+import { FundUsage } from '@/app/components/FundUsage';
+import { DaoEasterEgg } from '@/app/components/DaoEasterEgg';
+import { DesignOverlay } from '@/app/components/DesignOverlay';
 
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
@@ -17,9 +22,14 @@ export default function PublicationPage() {
     return (
       <div className="min-h-screen bg-white">
         <Header />
-        <KeyVisual />
+
+        <div className="w-full overflow-x-hidden">
+          <KeyVisual />
+        </div>
+        
         <SectionNav />
-        <div>
+
+        <div className="overflow-x-hidden">
           <Section id="about">
             <AboutSection />
           </Section>
@@ -29,9 +39,19 @@ export default function PublicationPage() {
           <Section id="story">
             <Story />
           </Section>
-          {/* 他のセクションも同様に追加 */}
+          <Section id="benefits">
+            <Benefits />
+          </Section>
+          <Section id="activity">
+            <Activity />
+          </Section>
+          <Section id="usage">
+            <FundUsage />
+          </Section>
         </div>
         <ProjectFooter />
+        <DaoEasterEgg /> 
+        <DesignOverlay />
       </div>
     );
   }
