@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { BenefitCard } from './BenefitCard';
 import { InfoCard } from './InfoCard';
 import { Divider } from './Divider';
+import { Fragment } from 'react';
 
 // 株主区分の定義
 const SHAREHOLDER_TYPES = {
@@ -19,8 +20,27 @@ const SHAREHOLDER_TYPES = {
   },
 } as const;
 
-// 特典情報の定義
-const benefitsData = {
+type Benefit = {
+  type: string;
+  title: string;
+  description: string;
+  note?: string;
+  image: string;
+};
+
+type Info = {
+  title: string;
+  description: string;
+  details?: string[];
+  image: string;
+};
+
+type BenefitData = {
+  benefits: Benefit[];
+  info?: Info[];
+};
+
+const benefitsData: Record<string, BenefitData> = {
   [SHAREHOLDER_TYPES.ALL.id]: {
     benefits: [
       {
@@ -131,16 +151,14 @@ export const Benefits = () => {
               {benefitsData[shareholderType.id]?.benefits.map((benefit, index) => {
                 const isOwnershipBenefit = benefit.type === 'オーナー権';
                 return (
-                  <>
-                    <BenefitCard key={`benefit-${index}`} {...benefit} />
-                    {isOwnershipBenefit && benefitsData[shareholderType.id]?.info && (
-                      <div className="flex flex-col gap-5">
-                        {benefitsData[shareholderType.id].info.map((info, infoIndex) => (
-                          <InfoCard key={`info-${infoIndex}`} {...info} />
-                        ))}
+                  <Fragment key={`benefit-${index}`}>
+                    <BenefitCard {...benefit} />
+                    {isOwnershipBenefit && benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
+                      <div key={`info-container-${infoIndex}`} className="flex flex-col gap-5">
+                        <InfoCard {...info} />
                       </div>
-                    )}
-                  </>
+                    ))}
+                  </Fragment>
                 );
               })}
             </div>

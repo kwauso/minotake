@@ -36,17 +36,28 @@ export const DesignOverlay = () => {
       {/* PC版デザイン */}
       <div className="fixed inset-0 pointer-events-none hidden md:block z-[99999]">
         <img 
-          src="/images/tmp/_pc_design.png"
+          src="/images/tmp/pc_design.png"
           alt=""
           className="w-full opacity-50"
           style={{ transform: `translateY(0px)` }}
+        />
+      </div>1
+
+
+      {/* TB版デザイン */}
+      <div className="fixed inset-0 pointer-events-none md:hidden z-[99999]">
+        <img 
+          src="/images/tmp/tb_design.png"
+          alt=""
+          className="w-full opacity-50"
+          style={{ transform: `translateY(${offsetY}px)` }}
         />
       </div>
 
       {/* SP版デザイン */}
       <div className="fixed inset-0 pointer-events-none md:hidden z-[99999]">
         <img 
-          src="/images/tmp/_mobile_design.png"
+          src="/images/tmp/sp_design.png"
           alt=""
           className="w-full opacity-50"
           style={{ transform: `translateY(${offsetY}px)` }}
