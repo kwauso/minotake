@@ -14,7 +14,10 @@ import { Activity } from '@/app/components/Activity';
 import { FundUsage } from '@/app/components/FundUsage';
 import { DaoEasterEgg } from '@/app/components/DaoEasterEgg';
 import { DesignOverlay } from '@/app/components/DesignOverlay';
-
+import { Roadmap } from '@/app/components/Roadmap';
+import { JoinFlow } from '@/app/components/JoinFlow';
+import { RatioChart } from '@/app/components/RatioChart';
+import { FAQ } from '@/app/components/FAQ';
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 
@@ -45,8 +48,20 @@ export default function PublicationPage() {
           <Section id="activity">
             <Activity />
           </Section>
+          <Section id="roadmap">
+            <Roadmap />
+          </Section>
+          <Section id="join-flow">
+            <JoinFlow />
+          </Section>
           <Section id="usage">
             <FundUsage />
+          </Section>
+          <Section id="ratio">
+            <RatioChart />
+          </Section>
+          <Section id="faq">
+            <FAQ />
           </Section>
         </div>
         <ProjectFooter />

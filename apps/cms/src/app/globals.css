@@ -2,6 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply font-[350] text-h1 tb:text-h1-tb sp:text-h1-sp;
+  }
+  
+  h2 {
+    @apply text-h2 font-gothic-semilight tb:text-h2-tb sp:text-h2-sp;
+  }
+  
+  h3 {
+    @apply text-h3 font-gothic-semilight tb:text-h3-tb sp:text-h3-sp;
+  }
+  
+  h4 {
+    @apply text-h4 font-gothic-regular tb:text-h4-tb sp:text-h4-sp;
+  }
+  
+  h5 {
+    @apply text-h5 font-gothic-semilight tb:text-h5-tb sp:text-h5-sp;
+  }
+
+  h6 {
+    @apply text-h6 font-gothic-regular tb:text-h6-tb sp:text-h6-sp;
+  }
+}
+
+.subhead1 {
+  @apply font-gothic-semilight text-subhead1;
+}
+
+.subhead2 {
+  @apply font-gothic-semilight text-subhead2;
+}
+
+.subhead3 {
+  @apply font-gothic-semilight text-subhead3;
+}
+
+.subhead4 {
+  @apply font-gothic-semilight text-subhead4;
+}
+
+.subhead5 {
+  @apply font-gothic-semilight text-subhead5;
+}
+
+.body1 {
+  @apply font-gothic-semilight text-body1;
+}
+
+.body2 {
+  @apply font-gothic-regular text-body2;
+}
+
+.body3 {
+  @apply font-gothic-semilight text-body3;
+}
+
+.body4 {
+  @apply font-gothic-semilight text-body4;
+}
+
+.body5 {
+  @apply font-gothic-semilight text-body5;
+}
+
+.body6 {
+  @apply font-gothic-semilight text-body6;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;

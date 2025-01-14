@@ -15,7 +15,7 @@ const sections: Section[] = [
   { id: 'benefits', title: '投資特典' },
   { id: 'roles', title: '参加者の役割' },
   { id: 'roadmap', title: 'ロードマップ' },
-  { id: 'process', title: '参加方法・流れ' },
+  { id: 'join-flow', title: '参加方法・流れ' },
   { id: 'usage', title: '本募集の資金使途' },
   { id: 'members', title: 'メンバー/サポート' },
   { id: 'ratio', title: '参加者構成比' },

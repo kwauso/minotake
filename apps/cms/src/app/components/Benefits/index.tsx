@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { BenefitCard } from './BenefitCard';
-import { InfoCard } from './InfoCard';
+import { InfoCard } from '../common/InfoCard';
 import { Divider } from './Divider';
 import { Fragment } from 'react';
 
@@ -154,9 +154,13 @@ export const Benefits = () => {
                   <Fragment key={`benefit-${index}`}>
                     <BenefitCard {...benefit} />
                     {isOwnershipBenefit && benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
-                      <div key={`info-container-${infoIndex}`} className="flex flex-col gap-5">
-                        <InfoCard {...info} />
-                      </div>
+                      <InfoCard
+                        key={`info-${infoIndex}`}
+                        image={info.image}
+                        title={info.title}
+                        description={info.description}
+                        details={info.details}
+                      />
                     ))}
                   </Fragment>
                 );

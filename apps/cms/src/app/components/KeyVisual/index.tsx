@@ -14,7 +14,7 @@ export const KeyVisual = () => {
         <p className="text-white/70 text-xs leading-4 font-jp text-center">
           ぐんま山育DAO
         </p>
-        <h1 className="text-white text-[40px] leading-[48px] font-jp text-center sp:px-6 sp:line-height-[20px] sp:text-[30px]">
+        <h1 className="text-white leading-[48px] font-jp text-center sp:px-6">
           群馬の山から、世界が認める自然派ワインを｡
         </h1>
         <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
@@ -26,7 +26,7 @@ export const KeyVisual = () => {
       </div>
 
       {/* 下部ステータス */}
-      <div className="flex items-center justify-center gap-10 w-full md:w-[1240px]">
+      <div className="flex items-center justify-center gap-11 w-full md:w-[1240px]">
         <StatusItem
           label="累計調達額 / 目標金額"
           value="¥4,620,000"
@@ -53,7 +53,7 @@ export const KeyVisual = () => {
         <Divider />
         <StatusItem
           label="設立"
-          value="2025/1/1"
+          value="2025.01.3 1"
         />
         <Divider />
         <StatusItem

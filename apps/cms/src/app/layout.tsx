@@ -4,7 +4,18 @@ import localFont from 'next/font/local';
 import './globals.css';
 
 const genEiGothic = localFont({
-  src: './fonts/GenEiGothicM-Regular.ttf',
+  src: [
+    {
+      path: './fonts/GenEiGothicM-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GenEiGothicM-SemiLight.ttf',
+      weight: '350',
+      style: 'normal',
+    }
+  ],
   variable: '--font-genei-gothic'
 });
 
@@ -15,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={`${genEiGothic.variable}`}>
-      <body className="font-genei-gothic">
+      <body>
         {children}
       </body>
     </html>
