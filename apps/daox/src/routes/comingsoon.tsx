@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { useAuthGuard } from '../lib/auth';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from '@tanstack/react-router';
+import { requireAuth } from '../lib/auth';
 
 // Zendeskウィジェットの型定義
 declare global {
@@ -14,10 +14,12 @@ declare global {
 
 export const Route = createFileRoute('/comingsoon')({
   component: ComingSoon,
+  beforeLoad: async () => {
+    await requireAuth();
+  },
 });
 
 export default function ComingSoon() {
-  useAuthGuard('/waitinglist', false); // 未認証の場合は/waitinglistにリダイレクト
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -3,11 +3,11 @@ import { supabase } from '../lib/supabase';
 import { createFileRoute, useNavigate, Link } from '@tanstack/react-router';
 import { useAuthGuard } from '../lib/auth';
 
-export const Route = createFileRoute('/login')({
-  component: Login,
+export const Route = createFileRoute('/signup')({
+  component: Signup,
 });
 
-export default function Login() {
+export default function Signup() {
   useAuthGuard('/comingsoon', true);
 
   const [email, setEmail] = useState('');
@@ -16,13 +16,13 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
       });
@@ -30,7 +30,7 @@ export default function Login() {
       if (error) throw error;
       navigate({ to: '/comingsoon' });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'ログイン中にエラーが発生しました');
+      setError(err instanceof Error ? err.message : 'アカウント作成中にエラーが発生しました');
     } finally {
       setLoading(false);
     }
@@ -42,10 +42,10 @@ export default function Login() {
         <div className="bg-white p-8 rounded-lg shadow-md space-y-8">
           <div>
             <h2 className="text-center text-3xl font-extrabold text-gray-900">
-              ログイン
+              アカウント作成
             </h2>
           </div>
-          <form className="space-y-6" onSubmit={handleLogin}>
+          <form className="space-y-6" onSubmit={handleSignup}>
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
                 <label htmlFor="email-address" className="sr-only">
@@ -71,7 +71,7 @@ export default function Login() {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="パスワード"
@@ -91,17 +91,17 @@ export default function Login() {
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                {loading ? 'Loading...' : 'ログイン'}
+                {loading ? 'Loading...' : 'アカウント作成'}
               </button>
             </div>
           </form>
         </div>
         <div className="text-center mt-4">
           <Link
-            to="/signup"
+            to="/login"
             className="text-sm text-indigo-600 hover:text-indigo-500"
           >
-            アカウント作成はこちら
+            ログインはこちら
           </Link>
         </div>
       </div>

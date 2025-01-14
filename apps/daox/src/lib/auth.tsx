@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, redirect } from '@tanstack/react-router';
 import { supabase } from './supabase';
 import { AuthChangeEvent, Session } from '@supabase/supabase-js';
+import { TOP_ROUTES, RoutePath } from '../constants/routes';
 
-export function useAuthGuard(redirectTo: string, whenAuthenticated: boolean) {
+export function useAuthGuard(redirectTo: RoutePath, whenAuthenticated: boolean) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,4 +30,23 @@ export function useAuthGuard(redirectTo: string, whenAuthenticated: boolean) {
       subscription.unsubscribe();
     };
   }, [navigate, redirectTo, whenAuthenticated]);
-} 
+}
+
+export async function requireAuth(redirectTo: RoutePath = TOP_ROUTES.UNAUTHED_TOP) {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    throw redirect({ to: redirectTo });
+  }
+  return { session };
+}
+
+export async function handleAuthRedirect() {
+  const { data: { session } } = await supabase.auth.getSession();
+  const isAuthenticated = !!session;
+
+  if (isAuthenticated) {
+    throw redirect({ to: TOP_ROUTES.AUTHED_TOP });
+  } else {
+    throw redirect({ to: TOP_ROUTES.UNAUTHED_TOP });
+  }
+}
