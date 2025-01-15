@@ -18,6 +18,8 @@ import { Roadmap } from '@/app/components/Roadmap';
 import { JoinFlow } from '@/app/components/JoinFlow';
 import { RatioChart } from '@/app/components/RatioChart';
 import { FAQ } from '@/app/components/FAQ';
+// import { Members } from '@/app/components/Members';
+
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 

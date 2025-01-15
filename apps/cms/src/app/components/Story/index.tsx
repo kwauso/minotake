@@ -22,6 +22,7 @@ export const Story = () => {
       category: '01 - ワインについて',
       title: '今回創るぶどう品種',
       image: '/images/publications/kv.png',
+      description: '文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章。',
       alt: 'ワイン畑の風景',
       content: '文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章。'
     },
@@ -119,8 +120,8 @@ export const Story = () => {
 
   return (
     <section ref={ref} className="py-32">
-      <div className="max-w-[1080px] mx-auto">
-        <div className="grid grid-cols-3 gap-6">
+      <div className="max-w-[1080px] mx-auto tb:px-8 sp:px-7">
+        <div className="grid grid-cols-3 gap-6 tb:grid-cols-2 sp:grid-cols-1">
           {stories.map((story, index) => (
             <div 
               key={index} 
@@ -133,15 +134,24 @@ export const Story = () => {
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-95"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
+              <div className="absolute inset-0 bg-black/50" />
               <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
-                  {story.category}
-                </p>
-                <div className="flex justify-between items-end">
-                  <h3 className="text-white font-genei-gothic text-xl leading-relaxed">
-                    {story.title}
-                  </h3>
+                <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-5">
+                    <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
+                      {story.category}
+                    </p>
+                    <h4 className="text-white font-jp leading-relaxed">
+                      {story.title}
+                    </h4>
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-white/70 font-jp body3">
+                    {story.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex justify-end">
                   <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
                     詳細を見る
                   </p>

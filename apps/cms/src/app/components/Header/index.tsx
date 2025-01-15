@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-[10px] z-50">
       {/* PC版 */}
-      <div className="hidden md:flex items-center gap-10 max-w-[1312px] mx-auto px-9 h-[100px]">
+      <div className="flex items-center gap-10 max-w-[1312px] mx-auto px-9 h-[100px]">
         <div className="flex items-center gap-5 flex-1">
           <Link href="/" className="flex items-center gap-1 flex-shrink-0 gap-x-5">
             <Image 
@@ -75,7 +75,7 @@ export const Header = () => {
       </div>
 
       {/* SP版 */}
-      <div className="md:hidden flex items-center justify-between px-7 h-[90px] w-full">
+      <div className="hidden flex items-center justify-between px-7 h-[90px] w-full">
         <Link href="/" className="flex-shrink-0">
           <Image 
             src="/images/common/logo.svg" 

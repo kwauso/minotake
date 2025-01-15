@@ -30,8 +30,8 @@ export const Overview = () => {
         </div>
 
         {/* コンテンツブロック1 */}
-        <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
-          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
+        <div className="w-full items-start gap-5 md:gap-10 px-4 tb:px-0 sp:px-0 flex flex-col md:flex-row">
+          <div className="flex w-full tb:flex-col md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 何をするか
@@ -51,7 +51,7 @@ export const Overview = () => {
 
         {/* コンテンツブロック2 */}
         <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
-          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
+          <div className="flex w-full tb:flex-col md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 背景
@@ -70,8 +70,8 @@ export const Overview = () => {
         <div className="w-full h-px bg-black/10" />
 
         {/* コンテンツブロック3 */}
-        <div className="w-full items-start gap-5 md:gap-10 px-4 flex flex-col md:flex-row">
-          <div className="flex w-full md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
+        <div className="w-full items-start gap-5 md:gap-10 px-4 tb:px-0 sp:px-0 flex flex-col md:flex-row">
+          <div className="flex w-full tb:flex-col md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
             <div className="w-[100px] flex items-center py-1">
               <div className="opacity-50 font-genei-gothic text-xs">
                 目指す世界

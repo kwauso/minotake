@@ -137,8 +137,8 @@ const benefitsData: Record<string, BenefitData> = {
 
 export const Benefits = () => {
   return (
-    <section className="py-32">
-      <div className="flex flex-col gap-[120px] max-w-[760px] mx-auto">
+    <section className="py-32 px-10 tb:px-0 sp:px-7">
+      <div className="flex flex-col gap-[120px] max-w-[760px] tb:max-w-[610px] sp:max-w-[100vw] mx-auto">
         {Object.values(SHAREHOLDER_TYPES).map((shareholderType, index) => (
           <div key={shareholderType.id}>
             {index > 0 && <Divider />}

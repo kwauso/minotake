@@ -73,8 +73,8 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[100px] z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 sp:top-[89px]">
-      <div className="mx-auto py-4">
+    <nav className="sticky top-[100px] z-40 tb:top-[88px] sp:top-[89px]">
+      <div className="mx-auto py-4 bg-white/95 backdrop-blur-[10px]">
         <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide px-9">
           {sections.map(({ id, title }) => (
             <Link
@@ -83,7 +83,7 @@ export const SectionNav = () => {
               data-section={id}
               onClick={(e) => handleClick(e, id)}
               className={`
-                px-4 py-2 rounded-full text-[13px] whitespace-nowrap
+                px-4 py-2 rounded-full subhead3 whitespace-nowrap
                 transition-all duration-300 ease-in-out
                 ${activeSection === id 
                   ? 'bg-black text-white' 
@@ -95,6 +95,18 @@ export const SectionNav = () => {
             </Link>
           ))}
         </div>
+      </div>
+      
+      {/* グラデーション部分 */}
+      <div className="h-6 relative mt-[-1px]">
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            background: 'linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 100%)',
+            maskImage: 'linear-gradient(to bottom, white 0%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, white 0%, transparent 100%)'
+          }} 
+        />
       </div>
     </nav>
   );

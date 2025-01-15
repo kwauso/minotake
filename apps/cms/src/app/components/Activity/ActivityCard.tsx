@@ -10,7 +10,7 @@ interface ActivityCardProps {
 
 export const ActivityCard = ({ number, title, description, note, image }: ActivityCardProps) => {
   return (
-    <div className="flex flex-row gap-10 items-start justify-start w-[920px]">
+    <div className="flex flex-row gap-10 items-start justify-start max-w-[920px]">
       <div className="flex flex-col gap-4 py-2 flex-1">
         <span className="font-en font-light text-lg leading-6">{number}</span>
         <h3 className="font-genei-gothic text-xl leading-8 whitespace-pre-line">{title}</h3>
@@ -19,7 +19,7 @@ export const ActivityCard = ({ number, title, description, note, image }: Activi
           <p className="font-genei-gothic text-[10px] leading-[18px] opacity-50">{note}</p>
         )}
       </div>
-      <div className="relative w-[452px] h-[248px] rounded-[20px] overflow-hidden">
+      <div className="relative w-[452px] h-[248px] tb:w-[40vw] rounded-[20px] overflow-hidden">
         <Image
           src={image}
           alt={title}

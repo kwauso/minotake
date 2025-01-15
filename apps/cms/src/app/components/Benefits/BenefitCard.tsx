@@ -10,8 +10,8 @@ interface BenefitCardProps {
 
 export const BenefitCard = ({ type, title, description, note, image }: BenefitCardProps) => {
   return (
-    <div className="flex flex-row gap-10 items-center justify-center w-[760px]">
-      <div className="relative w-[360px] h-[540px] rounded-[30px] overflow-hidden">
+    <div className="flex flex-row sp:flex-col gap-10 items-center justify-center max-w-[760px]">
+      <div className="relative w-[360px] tb:w-[280px] sp:w-full h-[540px] tb:max-h-full sp:h-[100vw] rounded-[30px] overflow-hidden">
         <Image
           src={image}
           alt={title}
