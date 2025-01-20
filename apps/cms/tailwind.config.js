@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -545,6 +546,18 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwind-scrollbar-hide')
+    require('tailwind-scrollbar-hide'),
+    plugin(function({ addVariant, e }) {
+      addVariant('japanese', ({ container }) => {
+        container.walkRules(rule => {
+          rule.selector = `.font-auto:is(:lang(ja), ${rule.selector.slice(1)})`
+        });
+      });
+      addVariant('english', ({ container }) => {
+        container.walkRules(rule => {
+          rule.selector = `.font-auto:is(:not(:lang(ja)), ${rule.selector.slice(1)})`
+        });
+      });
+    })
   ],
 } 

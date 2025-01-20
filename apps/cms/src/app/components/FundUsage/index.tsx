@@ -29,8 +29,8 @@ const fundUsages = [
 
 export const FundUsage = () => {
   return (
-    <section className="py-32 px-8">
-      <div className="flex flex-col gap-4 max-w-[920px] mx-auto">
+    <section className="margin-y-3l">
+      <div className="flex flex-col gap-space-xs max-w-[920px] mx-auto">
         {fundUsages.map((usage, index) => (
           <FundUsageCard key={index} {...usage} />
         ))}

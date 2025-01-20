@@ -15,9 +15,9 @@ type StepItemProps = {
 export const StepItem = ({ title, description, note, notes }: StepItemProps) => {
   return (
     <div className="flex flex-col gap-2">
-      <p className="text-xl leading-8 font-jp">{title}</p>
+      <h5 className="font-auto">{title}</h5>
       {description && (
-        <p className="text-[11px] leading-[22px] opacity-50 font-jp">
+        <p className="font-auto opacity-50 body5">
           {description}
         </p>
       )}

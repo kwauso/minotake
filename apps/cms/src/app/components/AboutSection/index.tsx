@@ -137,26 +137,26 @@ export const AboutSection = () => {
       </div>
 
       <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl mb-12">群馬の山地を産地に。</h2>
+        <h2 className="font-jp mb-12">群馬の山地を産地に。</h2>
         <div className="space-y-8 body1">
-          <p>
+          <p className="font-jp body1">
             私たちは、前橋の豊かな山々を舞台に、<br />
             リジェネラティブ（再生型）の農業と<br />
             ワイン醸造を実践しながら、<br />
-            ソーシャルグッドな価値を生み出す新たな挑戦を始めます。
-          </p>
-          <p>
+            ソーシャルグッドな価値を生み出す新たな挑戦を始めます。<br />
+            <br />
             このプロジェクトは、単なるワインづくりにとどまらず、<br />
             「経世済民」の精神を現代のかたちで体現し、<br />
-            共助を育む場の経済循環を創り出すものでもあります。
-          </p>
-          <p>
+            共助を育む場の経済循環を創り出すものでもあります。<br />
+            <br />
             山の恵みと知恵を活かし、<br />
             次世代が「もっと先を描きたい」と思えるような、<br />
             自然や社会との再生可能な関係を育むビジネスモデルを、<br />
             皆さんと一緒に築いていきたいと考えています。
           </p>
-          <p className="text-xs mt-12">ぐんま山育DAO 一同</p>
+          <p className="subhead4 text-black/50 font-jp mt-12">
+          ぐんま山育
+          <span className="font-en">DAO</span> 一同</p>
         </div>
       </div>
     </section>

@@ -100,7 +100,7 @@ export const JoinFlow = () => {
   };
 
   return (
-    <section ref={ref} className="py-32">
+    <section ref={ref} className="padding-y-3xl">
       <div className="flex flex-col items-center gap-[120px] max-w-[600px] mx-auto">
         <FlowCard type="個人" steps={personalSteps} />
         <div className="w-full h-[1px] bg-black/20" />

@@ -44,39 +44,6 @@ const roadmapItems: RoadmapItem[] = [
   }
 ];
 
-const slideVariants = {
-  farPrev: {
-    x: '-200%',
-    scale: 0.6,
-    opacity: 0.5,
-    zIndex: 0,
-  },
-  prev: {
-    x: '-100%',
-    scale: 0.6,
-    opacity: 0.5,
-    zIndex: 0,
-  },
-  current: {
-    x: 0,
-    scale: 1,
-    opacity: 1,
-    zIndex: 1,
-  },
-  next: {
-    x: '100%',
-    scale: 0.6,
-    opacity: 0.5,
-    zIndex: 0,
-  },
-  farNext: {
-    x: '200%',
-    scale: 0.6,
-    opacity: 0.5,
-    zIndex: 0,
-  }
-};
-
 export const Roadmap = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -94,7 +61,7 @@ export const Roadmap = () => {
   return (
     <section className="py-32">
       <div className="flex flex-col items-center gap-10">
-        <div className="relative w-[1080px] h-[400px] flex items-center justify-center">
+        <div className="relative w-[1080px] h-[400px] flex items-center justify-center gap-space-l">
           <AnimatePresence initial={false}>
             {[-2, -1, 0, 1, 2].map((offset) => {
               const index = (currentSlide + offset + roadmapItems.length) % roadmapItems.length;
@@ -105,10 +72,11 @@ export const Roadmap = () => {
                 offset === 1 ? 'next' : 'farNext';
               
               const xPosition = 
-                offset === -2 ? -520 :
-                offset === -1 ? -320 :
+                offset === -2 ? -600 :
+                offset === -1 ? -360 :
                 offset === 0 ? 0 :
-                offset === 1 ? 320 : 520;
+                offset === 1 ? 360 :
+                600;
               
               return (
                 <motion.div
@@ -116,17 +84,17 @@ export const Roadmap = () => {
                   initial={{ x: direction > 0 ? 520 : -520 }}
                   animate={{ 
                     x: xPosition,
-                    scale: position === 'current' ? 1 : 0.6,
+                    scale: position === 'current' ? 1 : 1,
                     opacity: position === 'current' ? 1 : 0.5,
                     zIndex: position === 'current' ? 1 : 0
                   }}
                   exit={{ x: direction > 0 ? -520 : 520 }}
                   transition={{
-                    duration: 0.4,
+                    duration: 0.7,
                     ease: "easeInOut"
                   }}
                   className={`absolute flex flex-col gap-4 ${
-                    position === 'current' ? 'w-[440px]' : 'w-[200px] cursor-pointer'
+                    position === 'current' ? 'w-[440px] sp:w-[316px]' : 'w-[200px] cursor-pointer'
                   }`}
                   onClick={() => {
                     if (position === 'prev' || position === 'farPrev') prevSlide();
@@ -165,15 +133,15 @@ export const Roadmap = () => {
         </div>
 
         <div className="flex items-center gap-[30px]">
-          <button onClick={prevSlide} className="opacity-50 hover:opacity-70 transition-opacity">
-            <Image src="/images/publications/prev.svg" alt="前へ" width={18.5} height={8.98} />
+          <button onClick={prevSlide} className="hover:opacity-70 transition-opacity">
+            <Image src="/images/publications/prev.svg" alt="前へ" width={8.98} height={18.5} />
           </button>
           <div className="font-en font-light text-[15px] leading-[18px]">
             <span>{String(currentSlide + 1).padStart(2, '0')}</span>
-            <span className="text-black/30">/ {String(roadmapItems.length).padStart(2, '0')}</span>
+            <span className="text-black/30"> / {String(roadmapItems.length).padStart(2, '0')}</span>
           </div>
-          <button onClick={nextSlide} className="opacity-50 hover:opacity-70 transition-opacity">
-            <Image src="/images/publications/next.svg" alt="次へ" width={18.5} height={8.98} />
+          <button onClick={nextSlide} className="hover:opacity-70 transition-opacity">
+            <Image src="/images/publications/next.svg" alt="次へ" width={8.98} height={18.5} />
           </button>
         </div>
       </div>

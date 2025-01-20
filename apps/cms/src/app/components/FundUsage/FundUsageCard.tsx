@@ -7,26 +7,28 @@ interface FundUsageCardProps {
 
 export const FundUsageCard = ({ category, title, description, amount }: FundUsageCardProps) => {
   return (
-    <div className="bg-white rounded-[20px] p-5 md:p-10 shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] w-full">
-      <div className="flex flex-row gap-10 items-center">
-        <span className="w-20 text-xs leading-4 opacity-50 font-genei-gothic">
+    <div className="bg-white rounded-[20px] padding-x-l padding-y-s shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] w-full">
+      <div className="flex flex-row sp:flex-col gap-10 sp:gap-space-l items-center sp:items-start">
+        <span className="w-20 subhead4 opacity-50 font-genei-gothic">
           {category}
         </span>
-        <div className="flex flex-col gap-1 flex-1">
-          <div className="flex justify-between items-center">
-            <h4 className="font-genei-gothic text-sm leading-[18px]">{title}</h4>
-            <div className="flex items-baseline">
-              <span className="font-en font-light text-[26px] leading-[32px] text-right">
-                {amount.toLocaleString()}
-              </span>
-              <span className="font-genei-gothic text-[20px] leading-[32px] font-[350] ml-1">
-                万円
-              </span>
-            </div>
+        <div className="flex flex-col gap-space-4xs flex-1">
+          <div className="flex justify-between items-cente padding-y-2xs">
+            <h6 className="font-auto">{title}</h6>
           </div>
-          <p className="font-genei-gothic text-[11px] leading-[22px] opacity-50 whitespace-pre-line">
+          <p className="body5 opacity-50 whitespace-pre-line">
             {description}
           </p>
+        </div>
+        <div className="flex items-center sp:w-full sp:justify-end">
+          <div className="flex items-baseline">
+            <h4 className="font-auto font-en text-right">
+              {amount.toLocaleString()}
+            </h4>
+            <h5 className="font-auto ml-1">
+              万円
+            </h5>
+          </div>
         </div>
       </div>
     </div>

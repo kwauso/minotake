@@ -25,10 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`${genEiGothic.variable}`}>
-      <body>
-        {children}
-      </body>
+    <html lang="ja">
+      <body>{children}</body>
     </html>
   );
 }

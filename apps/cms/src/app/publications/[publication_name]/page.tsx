@@ -28,13 +28,13 @@ export default function PublicationPage() {
       <div className="min-h-screen bg-white">
         <Header />
 
-        <div className="w-full overflow-x-hidden">
+        <div className="w-full overflow-x-hidden margin-bottom-l">
           <KeyVisual />
         </div>
         
         <SectionNav />
 
-        <div className="overflow-x-hidden">
+        <div className="overflow-x-hidden padding-x-side">
           <Section id="about">
             <AboutSection />
           </Section>

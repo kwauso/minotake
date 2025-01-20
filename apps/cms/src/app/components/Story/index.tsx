@@ -46,7 +46,7 @@ export const Story = () => {
     },
     {
       category: '05 - ワインについて',
-      title: '日本文化と自然派ワイン',
+      title: '日本文化と<br />自然派ワイン',
       image: '/images/publications/kv.png',
       alt: 'ワイン畑の風景'
     },
@@ -119,48 +119,51 @@ export const Story = () => {
   };
 
   return (
-    <section ref={ref} className="py-32">
-      <div className="max-w-[1080px] mx-auto tb:px-8 sp:px-7">
-        <div className="grid grid-cols-3 gap-6 tb:grid-cols-2 sp:grid-cols-1">
-          {stories.map((story, index) => (
-            <div 
-              key={index} 
-              className="relative aspect-[3/4] rounded-[20px] overflow-hidden cursor-pointer group bg-black/5"
-              onClick={() => handleCardClick(index)}
-            >
-              <Image
-                src={story.image}
-                alt={story.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-95"
-              />
-              <div className="absolute inset-0 bg-black/50" />
-              <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                <div className="flex flex-col gap-1">
-                  <div className="flex flex-col gap-5">
+    <section ref={ref} className="py-32 sp:w-[100vw] sp:ml-[-28px]">
+      <div className="w-fit mx-auto tb:px-8 sp:w-full sp:px-0">
+        <div className="relative sp:overflow-hidden">
+          <div className="grid grid-cols-3 sp:padding-x-l gap-space-l tb:grid-cols-2 sp:flex sp:overflow-x-auto sp:scrollbar-hide sp:gap-4 sp:w-full">
+            {stories.map((story, index) => (
+              <div 
+                key={index} 
+                className="relative w-[280px] h-[407px] rounded-[20px] overflow-hidden cursor-pointer group bg-black/5 sp:min-w-[280px] sp:w-[280px] shadow-lg sp:shadow-none"
+                onClick={() => handleCardClick(index)}
+              >
+                <Image
+                  src={story.image}
+                  alt={story.alt}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-95"
+                />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 p-s flex flex-col justify-between">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-5">
+                      <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
+                        {story.category}
+                      </p>
+                      <h4 
+                        className="text-white font-jp leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: story.title }}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="text-white/70 font-jp body3">
+                        {story.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
                     <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
-                      {story.category}
-                    </p>
-                    <h4 className="text-white font-jp leading-relaxed">
-                      {story.title}
-                    </h4>
-                  </div>
-                  <div className="flex flex-col">
-                    <p className="text-white/70 font-jp body3">
-                    {story.description}
+                      詳細を見る
                     </p>
                   </div>
-                </div>
-                <div className="flex justify-end">
-                  <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
-                    詳細を見る
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          {/* <div className="absolute right-0 top-0 bottom-0 w-[40px] bg-gradient-to-l from-white/5 to-transparent pointer-events-none sp:block hidden" /> */}
         </div>
-
       </div>
       <StoryModal
         isOpen={isModalOpen}

@@ -4,15 +4,16 @@ import Image from 'next/image';
 export const KeyVisual = () => {
   return (
     <div 
-      className="relative flex flex-col items-center justify-between px-4 md:px-9 pt-[52px] pb-[52px] mt-[100px] w-full sp:h-[680px] h-[calc(100vh-100px)] md:max-h-[680px]"
+      className="relative flex flex-col items-center justify-between px-4 md:px-9 padding-y-xl mt-[100px] w-full sp:h-[680px] h-[calc(100vh-100px)] md:max-h-[680px]"
       style={{
         background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/kv.png') center/cover no-repeat`
       }}
     >
       {/* 上部テキスト */}
-      <div className="flex flex-col items-center gap-[30px] tb:gap-[20px] sp:gap-[20px] w-full md:w-[820px]">
+      <div className="flex flex-col items-center gap-space-m w-full md:w-[820px]">
         <p className="text-white/70 font-jp subhead4 text-center">
-          ぐんま山育DAO
+          ぐんま山育
+          <span className="font-en">DAO</span>
         </p>
         <h1 className="text-white font-jp text-center sp:px-6">
           群馬の山から、世界が認める自然派ワインを｡

@@ -15,11 +15,11 @@ export const DesignOverlay = () => {
       if (e.metaKey || e.ctrlKey) {
         if (e.code === 'ArrowUp') {
           e.preventDefault();
-          setOffsetY(prev => prev - 5);
+          setOffsetY(prev => prev - 10);
         }
         if (e.code === 'ArrowDown') {
           e.preventDefault();
-          setOffsetY(prev => prev + 5);
+          setOffsetY(prev => prev + 10);
         }
       }
     };
@@ -42,7 +42,7 @@ export const DesignOverlay = () => {
   return (
     <>
       {/* PC版デザイン (1024px以上) */}
-      <div className="fixed inset-0 pointer-events-none hidden lg:block z-[99999]">
+      <div className="fixed inset-0 pointer-events-none tb:hidden sp:hidden lg:block z-[99999] top-[58px]">
         <img 
           src="/images/tmp/pc_design.png"
           alt=""
@@ -52,7 +52,7 @@ export const DesignOverlay = () => {
       </div>
 
       {/* TB版デザイン (768px ~ 1023px) */}
-      <div className="fixed inset-0 pointer-events-none hidden md:block lg:hidden z-[99999]">
+      <div className="fixed inset-0 pointer-events-none hidden tb:block lg:hidden z-[99999]">
         <img 
           src="/images/tmp/tb_design.png"
           alt=""
@@ -62,7 +62,7 @@ export const DesignOverlay = () => {
       </div>
 
       {/* SP版デザイン (767px以下) */}
-      <div className="fixed inset-0 pointer-events-none sp:block md:hidden z-[99999]">
+      <div className="fixed inset-0 pointer-events-none sp:block hidden tb:hidden z-[99999]">
         <img 
           src="/images/tmp/sp_design.png"
           alt=""
