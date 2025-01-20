@@ -120,7 +120,7 @@ export const ProjectFooter = () => {
 
               </Link>
               <Link 
-                href="/join"
+                href="https://daox-app.vercel.app"
                 className="h-[44px] px-[18px] bg-white text-black rounded-[5px] backdrop-blur-[10px] flex items-center gap-1.5"
               >
                 <span className="text-sm sp:text-xs sp:font-en">参加する</span>

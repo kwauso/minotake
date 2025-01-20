@@ -1,19 +1,11 @@
-import { createRootRoute, Outlet, redirect } from '@tanstack/react-router'
-import { supabase } from '../lib/supabase'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { handleAuthRedirect } from '../lib/auth'
 
 export const Route = createRootRoute({
   component: RootComponent,
-  beforeLoad: async () => {
-    const { data: { session } } = await supabase.auth.getSession()
-    const isAuthenticated = !!session
-
-    // ルートパスの場合のみリダイレクト
-    if (window.location.pathname === '/') {
-      if (isAuthenticated) {
-        throw redirect({ to: '/comingsoon' })
-      } else {
-        throw redirect({ to: '/waitinglist' })
-      }
+  beforeLoad: async ({ location }) => {
+    if (location.pathname === '/') {
+      await handleAuthRedirect();
     }
   },
 })

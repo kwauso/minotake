@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type AnimatePresenceProps } from 'framer-motion';
 
 interface StoryModalProps {
   isOpen: boolean;
@@ -111,6 +111,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
           className="h-full relative bg-white overflow-hidden"
           style={{ borderRadius: '40px' }}
         >
+          {/* @ts-ignore */}
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentStory.title}
