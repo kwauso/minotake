@@ -153,19 +153,17 @@ export const Benefits = () => {
                 return (
                   <div key={`benefit-${index}`} className="flex flex-col gap-space-s">
                     <BenefitCard {...benefit} />
-                    {isOwnershipBenefit && (
-                      <div className="flex flex-col gap-space-s">
-                        {benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
-                          <InfoCard
-                            key={`info-${infoIndex}`}
-                            image={info.image}
-                            title={info.title}
-                            description={info.description}
-                            details={info.details}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    <div className="flex flex-col gap-space-s">
+                      {isOwnershipBenefit && benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
+                        <InfoCard
+                          key={`info-${infoIndex}`}
+                          image={info.image}
+                          title={info.title}
+                          description={info.description}
+                          details={info.details}
+                        />
+                      ))}
+                    </div>
                   </div>
                 );
               })}
