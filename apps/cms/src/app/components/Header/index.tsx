@@ -10,9 +10,9 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-[10px] z-50">
       {/* PC版 */}
-      <div className="hidden md:flex items-center gap-10 max-w-[1312px] mx-auto px-9 h-[100px]">
+      <div className="flex items-center gap-10 max-w-[1312px] mx-auto px-9 h-[100px]">
         <div className="flex items-center gap-5 flex-1">
-          <Link href="/" className="flex items-center gap-1 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-1 flex-shrink-0 gap-x-5">
             <Image 
               src="/images/common/logo.svg" 
               alt="DAOX" 
@@ -20,8 +20,15 @@ export const Header = () => {
               height={28} 
               priority
             />
+            <Image 
+              src="/images/common/beta_badge.svg" 
+              alt="Beta Ver" 
+              width={63} 
+              height={21} 
+              priority
+            />
           </Link>
-          <div className="flex-1">
+          {/* <div className="flex-1">
             <div className="flex items-center gap-2 h-12 px-5 rounded-max bg-black/5">
               <Image 
                 src="/images/common/search_icon.svg" 
@@ -35,10 +42,10 @@ export const Header = () => {
                 className="w-full bg-transparent border-none outline-none text-[13px] leading-[17px] placeholder:text-black/50 font-jp"
               />
             </div>
-          </div>
+          </div> */}
         </div>
         <nav className="flex items-center gap-6">
-          {[
+          {/* {[
             { href: '/', label: 'ホーム' },
             { href: '/about', label: '私たちについて' },
             { href: '/guide', label: 'サイトの使い方' },
@@ -51,7 +58,7 @@ export const Header = () => {
             >
               {label}
             </Link>
-          ))}
+          ))} */}
           <Link 
             href="/login" 
             className="flex items-center gap-1 text-black"
@@ -68,7 +75,7 @@ export const Header = () => {
       </div>
 
       {/* SP版 */}
-      <div className="md:hidden flex items-center justify-between px-7 h-[90px] w-full">
+      <div className="hidden flex items-center justify-between px-7 h-[90px] w-full">
         <Link href="/" className="flex-shrink-0">
           <Image 
             src="/images/common/logo.svg" 

@@ -37,7 +37,7 @@ const activities = [
 
 export const Activity = () => {
   return (
-    <section className="py-32">
+    <section id="roles" className="py-32">
       <div className="flex flex-col gap-[120px] max-w-[920px] mx-auto">
         {activities.map((activity, index) => (
           <ActivityCard key={index} {...activity} />

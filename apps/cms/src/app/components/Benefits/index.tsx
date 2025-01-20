@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { BenefitCard } from './BenefitCard';
-import { InfoCard } from './InfoCard';
+import { InfoCard } from '../common/InfoCard';
 import { Divider } from './Divider';
+import { Fragment } from 'react';
 
 // 株主区分の定義
 const SHAREHOLDER_TYPES = {
@@ -19,8 +20,27 @@ const SHAREHOLDER_TYPES = {
   },
 } as const;
 
-// 特典情報の定義
-const benefitsData = {
+type Benefit = {
+  type: string;
+  title: string;
+  description: string;
+  note?: string;
+  image: string;
+};
+
+type Info = {
+  title: string;
+  description: string;
+  details?: string[];
+  image: string;
+};
+
+type BenefitData = {
+  benefits: Benefit[];
+  info?: Info[];
+};
+
+const benefitsData: Record<string, BenefitData> = {
   [SHAREHOLDER_TYPES.ALL.id]: {
     benefits: [
       {
@@ -56,7 +76,7 @@ const benefitsData = {
         title: '畑・区画の選択方法について',
         description: 'プロジェクト全体のぶどう畑（総面積 XXヘクタール）を、1区画あたり2ヘクタールずつに分割します。出資者の皆様はお好みの区画を選択可能です。',
         details: [
-          '選択区画での収益配当選択した区画で生産されたワインの売上額に応じて、収益の一部を配当として受け取ることができます。',
+          '選択区画での収益配当選択した区画で生産されたワインの売上額に応じて、収益の一部を配当として受け取ることができます。詳細は<a href="/documents/regulation" class="text-blue-600 underline hover:text-blue-800">「ぐんま山育DAO_規定」</a>をご確認ください。',
           '配当率（例：XX％）実際の配当率は、DAOXの投票によって決定されます。'
         ],
         image: '/images/publications/kv.png'
@@ -117,30 +137,36 @@ const benefitsData = {
 
 export const Benefits = () => {
   return (
-    <section className="py-32">
-      <div className="flex flex-col gap-[120px] max-w-[760px] mx-auto">
+    <section className="py-32 px-10 tb:px-0 sp:px-7">
+      <div className="flex flex-col gap-space-2xl max-w-[760px] tb:max-w-[610px] sp:max-w-[100vw] mx-auto">
         {Object.values(SHAREHOLDER_TYPES).map((shareholderType, index) => (
           <div key={shareholderType.id}>
             {index > 0 && <Divider />}
             
-            <h2 className="font-genei-gothic text-[36px] leading-[48px] mb-[60px] mt-[60px]">
+            <h2 className="font-auto mb-[60px] mt-[60px]">
               {shareholderType.title}
             </h2>
             
-            <div className="flex flex-col gap-[60px]">
+            <div className="flex flex-col gap-space-2xl">
               {benefitsData[shareholderType.id]?.benefits.map((benefit, index) => {
                 const isOwnershipBenefit = benefit.type === 'オーナー権';
                 return (
-                  <>
-                    <BenefitCard key={`benefit-${index}`} {...benefit} />
-                    {isOwnershipBenefit && shareholderType.id === SHAREHOLDER_TYPES.ALL.id && benefitsData[shareholderType.id]?.info && (
-                      <div className="flex flex-col gap-5">
-                        {benefitsData[shareholderType.id].info.map((info, infoIndex) => (
-                          <InfoCard key={`info-${infoIndex}`} {...info} />
+                  <div key={`benefit-${index}`} className="flex flex-col gap-space-s">
+                    <BenefitCard {...benefit} />
+                    {isOwnershipBenefit && (
+                      <div className="flex flex-col gap-space-s">
+                        {benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
+                          <InfoCard
+                            key={`info-${infoIndex}`}
+                            image={info.image}
+                            title={info.title}
+                            description={info.description}
+                            details={info.details}
+                          />
                         ))}
                       </div>
                     )}
-                  </>
+                  </div>
                 );
               })}
             </div>

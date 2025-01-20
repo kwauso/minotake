@@ -3,53 +3,71 @@ import { useState, useEffect } from 'react';
 export const DesignOverlay = () => {
   const [show, setShow] = useState(false);
   const [offsetY, setOffsetY] = useState(-57);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // スペースキーで表示/非表示を切り替え
       if (e.code === 'Space') {
-        e.preventDefault(); // スクロールを防止
+        e.preventDefault();
         setShow(prev => !prev);
       }
 
-      // Command + 上下矢印で位置調整
-      if (e.metaKey) {
+      if (e.metaKey || e.ctrlKey) {
         if (e.code === 'ArrowUp') {
           e.preventDefault();
-          setOffsetY(prev => prev - 1);
+          setOffsetY(prev => prev - 10);
         }
         if (e.code === 'ArrowDown') {
           e.preventDefault();
-          setOffsetY(prev => prev + 1);
+          setOffsetY(prev => prev + 10);
         }
       }
     };
 
+    const handleScroll = () => {
+      setScrollY(-window.scrollY);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   if (!show) return null;
 
   return (
     <>
-      {/* PC版デザイン */}
-      <div className="fixed inset-0 pointer-events-none hidden md:block z-[99999]">
+      {/* PC版デザイン (1024px以上) */}
+      <div className="fixed inset-0 pointer-events-none tb:hidden sp:hidden lg:block z-[99999] top-[58px]">
         <img 
-          src="/images/tmp/_pc_design.png"
+          src="/images/tmp/pc_design.png"
           alt=""
           className="w-full opacity-50"
-          style={{ transform: `translateY(0px)` }}
+          style={{ transform: `translateY(${scrollY + offsetY}px)` }}
         />
       </div>
 
-      {/* SP版デザイン */}
-      <div className="fixed inset-0 pointer-events-none md:hidden z-[99999]">
+      {/* TB版デザイン (768px ~ 1023px) */}
+      <div className="fixed inset-0 pointer-events-none hidden tb:block lg:hidden z-[99999]">
         <img 
-          src="/images/tmp/_mobile_design.png"
+          src="/images/tmp/tb_design.png"
           alt=""
           className="w-full opacity-50"
-          style={{ transform: `translateY(${offsetY}px)` }}
+          style={{ transform: `translateY(${scrollY + offsetY}px)` }}
+        />
+      </div>
+
+      {/* SP版デザイン (767px以下) */}
+      <div className="fixed inset-0 pointer-events-none sp:block hidden tb:hidden z-[99999]">
+        <img 
+          src="/images/tmp/sp_design.png"
+          alt=""
+          className="w-full opacity-50"
+          style={{ transform: `translateY(${scrollY + offsetY}px)` }}
         />
       </div>
     </>
