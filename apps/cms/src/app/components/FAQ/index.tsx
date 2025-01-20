@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { useSetAtom } from 'jotai';
@@ -103,19 +103,17 @@ export const FAQ = () => {
                 />
               </motion.div>
             </button>
-            <AnimatePresence>
-              {openItems.includes(index) && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-5 font-genei-gothic text-sm leading-6"
-                >
-                  {item.answer}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div
+              animate={{ 
+                height: openItems.includes(index) ? 'auto' : 0,
+                opacity: openItems.includes(index) ? 1 : 0
+              }}
+              initial={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-5 font-genei-gothic text-sm leading-6 overflow-hidden"
+            >
+              {item.answer}
+            </motion.div>
           </div>
         ))}
       </div>

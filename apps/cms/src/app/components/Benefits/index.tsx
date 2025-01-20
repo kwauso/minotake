@@ -151,21 +151,21 @@ export const Benefits = () => {
               {benefitsData[shareholderType.id]?.benefits.map((benefit, index) => {
                 const isOwnershipBenefit = benefit.type === 'オーナー権';
                 return (
-                  <div className="flex flex-col gap-space-s">
-                    <Fragment key={`benefit-${index}`}>
-                      <BenefitCard {...benefit} />
+                  <div key={`benefit-${index}`} className="flex flex-col gap-space-s">
+                    <BenefitCard {...benefit} />
+                    {isOwnershipBenefit && (
                       <div className="flex flex-col gap-space-s">
-                      {isOwnershipBenefit && benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
-                        <InfoCard
-                          key={`info-${infoIndex}`}
-                          image={info.image}
-                          title={info.title}
-                          description={info.description}
-                          details={info.details}
-                        />
-                      ))}
+                        {benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
+                          <InfoCard
+                            key={`info-${infoIndex}`}
+                            image={info.image}
+                            title={info.title}
+                            description={info.description}
+                            details={info.details}
+                          />
+                        ))}
                       </div>
-                    </Fragment>
+                    )}
                   </div>
                 );
               })}
