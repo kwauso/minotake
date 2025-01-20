@@ -20,6 +20,7 @@ const sections: Section[] = [
   { id: 'members', title: 'メンバー/サポート' },
   { id: 'ratio', title: '参加者構成比' },
   { id: 'faq', title: 'FAQ' },
+  { id: 'documents', title: '資料' },
 ];
 
 export const SectionNav = () => {
@@ -73,7 +74,7 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[100px] z-40 tb:top-[88px] sp:top-[89px]">
+    <nav className="sticky top-[100px] z-40 tb:top-[89px] sp:top-[89px]">
       <div className="mx-auto py-4 bg-white/95 backdrop-blur-[10px]">
         <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide px-9">
           {sections.map(({ id, title }) => (

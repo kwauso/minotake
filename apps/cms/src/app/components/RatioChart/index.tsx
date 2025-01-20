@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useSetAtom } from 'jotai';
 import { currentSectionAtom } from '@/store/atoms';
@@ -75,6 +75,7 @@ const participants: Participant[] = [
 ];
 
 export const RatioChart = () => {
+  const [isSpSize, setIsSpSize] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.5,
   });
@@ -86,14 +87,37 @@ export const RatioChart = () => {
     }
   }, [inView, setCurrentSection]);
 
-  const size = 440;
-  const strokeWidth = 60;
-  const radius = (size - strokeWidth) / 2;
-  const center = size / 2;
+  useEffect(() => {
+    setIsSpSize(window.innerWidth <= 767);
+    const handleResize = () => {
+      setIsSpSize(window.innerWidth <= 767);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // サイズの設定を画面サイズに応じて変更
+  const size = {
+    pc: 440,
+    sp: 246
+  };
+
+  const strokeWidth = {
+    pc: 48,
+    sp: 32
+  };
+
+  const currentSize = isSpSize ? size.sp : size.pc;
+  const currentStrokeWidth = isSpSize ? strokeWidth.sp : strokeWidth.pc;
+
+  const radius = (currentSize - currentStrokeWidth) / 2;
+  const center = currentSize / 2;
 
   const getLabelPosition = (startAngle: number, endAngle: number) => {
     const angle = ((startAngle + endAngle) / 2) * (Math.PI / 180);
-    const distance = radius + strokeWidth + 40;
+    // SP表示の場合は距離を短くする
+    const labelDistance = isSpSize ? 20 : 40;
+    const distance = radius + currentStrokeWidth + labelDistance;
     return {
       x: center + distance * Math.cos(angle - Math.PI / 2),
       y: center + distance * Math.sin(angle - Math.PI / 2),
@@ -104,9 +128,8 @@ export const RatioChart = () => {
     <section ref={ref} className="py-32">
       <div className="max-w-[1312px] mx-auto px-9">
         <div className="relative flex justify-center items-center">
-          {/* グラフレイヤー */}
-          <div className="relative w-[440px] h-[440px]">
-            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+          <div className="relative sp:w-[246px] sp:h-[246px] w-[440px] h-[440px]">
+            <svg width={currentSize} height={currentSize} viewBox={`0 0 ${currentSize} ${currentSize}`}>
               <defs>
                 {participants.map((_, index) => (
                   <linearGradient
@@ -125,7 +148,7 @@ export const RatioChart = () => {
                   d={describeArc(center, center, radius, participant.startAngle, participant.endAngle)}
                   fill="none"
                   stroke={`url(#gradient-${index})`}
-                  strokeWidth={strokeWidth}
+                  strokeWidth={currentStrokeWidth}
                   initial={{ pathLength: 0 }}
                   animate={inView ? { pathLength: 1 } : {}}
                   transition={{ duration: 1, delay: index * 0.1 }}
@@ -139,7 +162,7 @@ export const RatioChart = () => {
               return (
                 <motion.div
                   key={index}
-                  className="absolute whitespace-nowrap text-sm font-genei-gothic"
+                  className="absolute whitespace-nowrap font-auto sp:subhead4 subhead2"
                   style={{
                     left: `${pos.x}px`,
                     top: `${pos.y}px`,

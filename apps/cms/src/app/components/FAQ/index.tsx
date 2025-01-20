@@ -81,7 +81,7 @@ export const FAQ = () => {
         {faqItems.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-[20px] p-10 shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] overflow-hidden"
+            className="flex flex-col bg-white rounded-[20px] p-10 shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] overflow-hidden"
           >
             <button
               onClick={() => toggleItem(index)}
@@ -110,8 +110,9 @@ export const FAQ = () => {
               }}
               initial={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mt-5 font-genei-gothic text-sm leading-6 overflow-hidden"
+              className="font-auto text-sm leading-6 overflow-hidden"
             >
+              <br />
               {item.answer}
             </motion.div>
           </div>
