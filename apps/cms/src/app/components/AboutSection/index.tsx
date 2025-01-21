@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -29,6 +29,20 @@ const mediaItems: MediaItem[] = [
 export const AboutSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isSP, setIsSP] = useState(false);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setIsSP(window.innerWidth <= 767);
+    };
+
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    
+    return () => {
+      window.removeEventListener('resize', checkViewport);
+    };
+  }, []);
 
   const nextSlide = () => {
     setDirection(1);
@@ -64,75 +78,168 @@ export const AboutSection = () => {
     );
   };
 
-  const slideVariants = {
-    prev: {
-      x: '-85%',
-      scale: 0.6,
-      opacity: 0.7,
-      zIndex: 0,
-    },
-    current: {
-      x: 0,
-      scale: 0.7,
-      opacity: 1,
-      zIndex: 1,
-    },
-    next: {
-      x: '85%',
-      scale: 0.6,
-      opacity: 0.7,
-      zIndex: 0,
+  const getSlideSize = (position: string) => {
+    if (position === 'current') {
+      return {
+        width: isSP ? 384 : 600,
+        height: isSP ? 216 : 338 
+      };
+    }
+    return {
+      width: isSP ? 316 : 440,
+      height: isSP ? 178 : 247.5
+    };
+  };
+
+  const getSlidePosition = (position: string) => {
+    const xOffset = isSP ? {
+      prev: -370,
+      current: 0,
+      next: 370
+    } : {
+      prev: -560,
+      current: 0,
+      next: 560
+    };
+
+    return {
+      x: xOffset[position as keyof typeof xOffset],
+      opacity: position === 'current' ? 1 : 1,
+      zIndex: position === 'current' ? 1 : 0
+    };
+  };
+
+  const getSlideStyle = (position: string) => {
+    const size = getSlideSize(position);
+    const slidePosition = getSlidePosition(position);
+
+    return {
+      width: size.width,
+      height: size.height,
+      x: slidePosition.x,
+      opacity: slidePosition.opacity,
+      zIndex: slidePosition.zIndex
+    };
+  };
+
+  const getButtonPosition = () => {
+    return {
+      prev: {
+        x: isSP ? -180 : -340,
+      },
+      next: {
+        x: isSP ? 180 : 300,
+      }
+    };
+  };
+
+  const handleDragEnd = (event: any, info: any) => {
+    const swipeThreshold = 50; // スワイプを検知する閾値
+    const { offset } = info;
+
+    if (Math.abs(offset.x) > swipeThreshold) {
+      if (offset.x > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
     }
   };
 
   return (
     <section className="py-32">
       <div className="relative max-w-[1312px] mx-auto px-9 mb-[120px]">
-        <div className="flex items-center justify-center h-[540px]">
+        <div className="flex items-center justify-center h-[540px] sp:h-[400px]">
           {/* @ts-ignore */}
           <AnimatePresence initial={false} mode="wait">
             {[-1, 0, 1].map((offset) => {
               const index = (currentSlide + offset + mediaItems.length) % mediaItems.length;
               const position = offset === -1 ? 'prev' : offset === 0 ? 'current' : 'next';
+              const size = getSlideSize(position);
+              const slidePosition = getSlidePosition(position);
               
               return (
                 <motion.div
                   key={index}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial={direction > 0 ? 'next' : 'prev'}
-                  animate={position}
-                  exit={direction > 0 ? 'prev' : 'next'}
-                  transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    scale: { duration: 0.4 },
-                    opacity: { duration: 0.3 }
+                  initial={{ 
+                    ...getSlideStyle(direction > 0 ? 'next' : 'prev'),
+                    x: direction > 0 ? slidePosition.x + 600 : slidePosition.x - 600
                   }}
-                  className={`absolute w-[55%] aspect-[16/9] rounded-[20px] overflow-hidden
-                    ${position === 'current' ? 'cursor-default' : 'cursor-pointer hover:opacity-90'}
-                  `}
-                  onClick={() => position === 'prev' ? prevSlide() : position === 'next' ? nextSlide() : null}
+                  animate={getSlideStyle(position)}
+                  exit={{ 
+                    ...getSlideStyle(direction > 0 ? 'prev' : 'next'),
+                    x: direction > 0 ? slidePosition.x - 600 : slidePosition.x + 600
+                  }}
+                  transition={{
+                    duration: 0.7,
+                    ease: "easeInOut",
+                    width: {
+                      duration: 0.7,
+                      ease: "easeInOut"
+                    },
+                    height: {
+                      duration: 0.7,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  className="absolute overflow-hidden rounded-[20px]"
+                  onClick={() => {
+                    if (position === 'prev') prevSlide();
+                    if (position === 'next') nextSlide();
+                  }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.7}
+                  onDragEnd={handleDragEnd}
+                  dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
                 >
                   {renderMedia(mediaItems[index], 'w-full h-full object-cover')}
                 </motion.div>
               );
             })}
           </AnimatePresence>
-          
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 md:left-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
-            aria-label="前の画像へ"
+
+          <div 
+            className="absolute sp:hidden top-1/2 -translate-y-1/2 z-10"
+            style={{ 
+              left: '50%',
+              transform: `translateX(${getButtonPosition().prev.x}px) translateY(-50%)`
+            }}
           >
-            <Image src="/images/publications/prev.svg" alt="" width={24} height={24} />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 md:right-[25%] top-1/2 -translate-y-1/2 p-4 hover:opacity-70 transition-opacity z-10"
-            aria-label="次の画像へ"
+            <button 
+              onClick={prevSlide} 
+              className="p-4 hover:opacity-70 transition-opacity"
+              aria-label="前の画像へ"
+            >
+              <Image 
+                src="/images/publications/prev.svg" 
+                alt="" 
+                width={isSP ? 16 : 12} 
+                height={isSP ? 16 : 19} 
+              />
+            </button>
+          </div>
+
+          <div 
+            className="absolute sp:hidden top-1/2 -translate-y-1/2 z-10"
+            style={{ 
+              left: '50%',
+              transform: `translateX(${getButtonPosition().next.x}px) translateY(-50%)`
+            }}
           >
-            <Image src="/images/publications/next.svg" alt="" width={24} height={24} />
-          </button>
+            <button 
+              onClick={nextSlide} 
+              className="p-4 hover:opacity-70 transition-opacity"
+              aria-label="次の画像へ"
+            >
+              <Image 
+                src="/images/publications/next.svg" 
+                alt="" 
+                width={isSP ? 16 : 12} 
+                height={isSP ? 16 : 19} 
+              />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -155,8 +262,8 @@ export const AboutSection = () => {
             皆さんと一緒に築いていきたいと考えています。
           </p>
           <p className="subhead4 text-black/50 font-jp mt-12">
-          ぐんま山育
-          <span className="font-en">DAO</span> 一同</p>
+            ぐんま山育<span className="font-en">DAO</span> 一同
+          </p>
         </div>
       </div>
     </section>

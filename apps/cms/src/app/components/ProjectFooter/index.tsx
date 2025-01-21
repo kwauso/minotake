@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ScheduleModal } from '../ScheduleModal';
@@ -9,9 +9,11 @@ import { StatusItem } from '../StatusItem';
 
 export const ProjectFooter = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false); // Changed to false
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [showGradient, setShowGradient] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,10 +22,39 @@ export const ProjectFooter = () => {
       setIsVisible(shouldShow);
     };
 
+    const checkScrollable = () => {
+      if (!scrollContainerRef.current) return;
+      
+      const { scrollWidth, clientWidth } = scrollContainerRef.current;
+      const isScrollable = scrollWidth > clientWidth;
+      setShowGradient(isScrollable);
+    };
+
+    const handleHorizontalScroll = () => {
+      if (!scrollContainerRef.current) return;
+      
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const isAtEnd = Math.ceil(scrollLeft + clientWidth) >= scrollWidth;
+      const isScrollable = scrollWidth > clientWidth;
+      setShowGradient(isScrollable && !isAtEnd);
+    };
+
     handleScroll();
+    checkScrollable();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkScrollable);
+    scrollContainerRef.current?.addEventListener('scroll', handleHorizontalScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScrollable);
+      scrollContainerRef.current?.removeEventListener('scroll', handleHorizontalScroll);
+    };
   }, []);
+
+  const toggleDetails = () => {
+    setIsDetailsVisible(!isDetailsVisible);
+  };
 
   return (
     <>
@@ -35,17 +66,19 @@ export const ProjectFooter = () => {
           w-full
         `}
       >
-        {/* PC版で、幅が足りなくなったら、募集期限〜、シェアボタン〜のところで折り返す */}
-        <div className="flex flex-wrap items-center justify-between px-9 py-3 gap-y-4 sp:flex-col sp:px-4 sp:gap-y-4 sp:w-full">
-          <div className="relative sp:w-full">
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex items-center gap-x-10 sp:gap-x-3 min-w-max">
+        <div className="flex flex-wrap items-center justify-between padding-x-side py-3 sp:p-4 gap-space-s sp:flex-col sp:px-4 sp:gap-y-0 sp:w-full">
+          <div className={`relative sp:w-full transition-all duration-300 ease-in-out overflow-hidden ${isDetailsVisible ? 'sp:max-h-[200px] sp:mb-4' : 'sp:max-h-0 sp:mb-0'}`}>
+            <div 
+              ref={scrollContainerRef}
+              className="overflow-x-auto tb:max-w-[337px] sp:max-w-full scrollbar-hide"
+            >
+              <div className="flex items-center gap-space-xs sp:gap-x-3 min-w-max">
                 <StatusItem
                   label="累計調達額 / 目標金額"
                   value="¥4,620,000"
                   subValue="¥50,000,000"
                   valueClassName="sp:text-base"
-                  subValueClassName="sp:text-xs sp:opacity-70"
+                  subValueClassName="subhead4 sp:opacity-70"
                 />
                 <div className="w-px h-8 bg-white/20" />
                 <StatusItem
@@ -68,18 +101,46 @@ export const ProjectFooter = () => {
                 />
               </div>
             </div>
-            <div className="absolute right-0 top-0 bottom-0 w-[140px] bg-gradient-to-l from-black to-transparent pointer-events-none sp:block hidden" />
+            <div 
+              className={`
+                absolute right-0 top-0 bottom-0 w-[140px] 
+                hidden tb:block
+                bg-gradient-to-l from-black to-transparent 
+                pointer-events-none transition-opacity duration-300
+                ${showGradient ? 'opacity-100' : 'opacity-0'}
+              `} 
+            />
+          </div>
+          <div className={`sp:w-full sp:flex sp:justify-between sp:items-center ml-auto transition-all duration-300 ease-in-out overflow-hidden ${isDetailsVisible ? 'sp:max-h-[200px] sp:mb-4' : 'sp:max-h-0 sp:mb-0'}`}>
+            <div>
+              <p className="subhead5 opacity-50">募集期限</p>
+              <h5 className="font-en font-light">2025.01.31</h5>
+            </div>
+            {/* <span 
+              onClick={toggleDetails}
+              className="text-[10px] leading-[14px] opacity-50 hidden sp:block cursor-pointer hover:opacity-70"
+            >
+              上記表示を隠す
+            </span> */}
           </div>
 
+          <div 
+            onClick={toggleDetails}
+            className="hidden sp:flex padding-bottom-s items-center justify-center sp:w-full gap-1 cursor-pointer hover:opacity-70"
+          >
+            <Image 
+              src="/images/publications/arrow_upper.svg" 
+              alt="詳細を表示"
+              width={12}
+              height={7}
+              className={`transition-transform duration-300 ${isDetailsVisible ? 'rotate-180' : 'rotate-0'}`}
+            />
+            <p className="flex items-center subhead4 opacity-50">
+              {isDetailsVisible ? '詳細を隠す' : '詳細を表示'}
+            </p>
+          </div>
           <div className="flex items-center gap-6 sp:flex-col sp:w-full sp:gap-3">
-            <div className="sp:w-full sp:flex sp:justify-between sp:items-center">
-              <div>
-                <p className="text-[11px] leading-[14px] opacity-50">募集期限</p>
-                <p className="text-[21px] sp:text-lg leading-8 sp:leading-5 font-en font-light">2025.01.31</p>
-              </div>
-              <span className="text-[10px] leading-[14px] opacity-50 hidden sp:block">上記表示を隠す</span>
-            </div>
-            <div className="flex items-center gap-2 sp:w-full sp:flex-wrap">
+            <div className="flex items-center gap-2 sp:w-full sp:justify-between">
               <button 
                 onClick={() => setIsShareModalOpen(true)}
                 className="w-[32px] h-[44px] flex items-center justify-center bg-white/10 rounded-[5px]"
@@ -93,9 +154,9 @@ export const ProjectFooter = () => {
               </button>
               <button 
                 onClick={() => setIsScheduleModalOpen(true)}
-                className="h-[44px] px-[18px] border border-white/50 rounded-[5px] backdrop-blur-[10px] flex items-center gap-1.5"
+                className="h-[44px] sp:flex-1 px-[18px] border border-white/50 rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
-                <span className="text-sm sp:text-xs sp:font-en">説明会日程へ</span>
+                <span className="font-jp subhead4 whitespace-nowrap">説明会日程へ</span>
                 <Image 
                   src="/images/publications/right_arrow_white.svg" 
                   alt=""
@@ -105,25 +166,10 @@ export const ProjectFooter = () => {
                 />
               </button>
               <Link 
-                href="/details"
-                className="h-[44px] px-[18px] bg-white/30 rounded-[5px] backdrop-blur-[10px] flex items-center gap-1.5"
-              >
-                <span className="text-sm sp:text-xs sp:font-en">企業詳細へ</span>
-                {/* SP版のwidthは11px */}
-                <Image 
-                  src="/images/publications/right_arrow_white.svg" 
-                  alt=""
-                  width={16}
-                  height={16}
-                  className="sp:w-[11px] sp:h-[11px]"
-                />
-
-              </Link>
-              <Link 
                 href="https://daox-app.vercel.app"
-                className="h-[44px] px-[18px] bg-white text-black rounded-[5px] backdrop-blur-[10px] flex items-center gap-1.5"
+                className="h-[44px] sp:flex-1 px-[18px] bg-white text-black rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
-                <span className="text-sm sp:text-xs sp:font-en">参加する</span>
+                <span className="font-jp subhead4 whitespace-nowrap">参加する</span>
                 <Image 
                   src="/images/publications/right_arrow_black.svg" 
                   alt=""
@@ -141,10 +187,9 @@ export const ProjectFooter = () => {
         isOpen={isShareModalOpen} 
         onClose={() => setIsShareModalOpen(false)} 
       />
-      
-      <ScheduleModal 
-        isOpen={isScheduleModalOpen} 
-        onClose={() => setIsScheduleModalOpen(false)} 
+      <ScheduleModal
+        isOpen={isScheduleModalOpen}
+        onClose={() => setIsScheduleModalOpen(false)}
       />
     </>
   );

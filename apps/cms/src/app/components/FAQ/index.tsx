@@ -81,15 +81,15 @@ export const FAQ = () => {
         {faqItems.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-[20px] p-10 shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] overflow-hidden"
+            className="flex flex-col bg-white rounded-[20px] p-10 shadow-[0px_10px_20px_0px_rgba(0,0,0,0.08)] overflow-hidden"
           >
             <button
               onClick={() => toggleItem(index)}
               className="w-full flex justify-between items-center gap-10"
             >
-              <h3 className="text-left font-genei-gothic text-xl leading-8">
+              <h5 className="text-left font-jp">
                 {item.question}
-              </h3>
+              </h5>
               <motion.div
                 animate={{ rotate: openItems.includes(index) ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
@@ -110,8 +110,9 @@ export const FAQ = () => {
               }}
               initial={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="mt-5 font-genei-gothic text-sm leading-6 overflow-hidden"
+              className="font-auto text-sm leading-6 overflow-hidden"
             >
+              <br />
               {item.answer}
             </motion.div>
           </div>

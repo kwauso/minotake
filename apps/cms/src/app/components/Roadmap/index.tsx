@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type RoadmapItem = {
   date: string;
@@ -62,71 +62,75 @@ export const Roadmap = () => {
     <section className="py-32">
       <div className="flex flex-col items-center gap-10">
         <div className="relative w-[1080px] h-[400px] flex items-center justify-center gap-space-l">
-          {[-2, -1, 0, 1, 2].map((offset) => {
-            const index = (currentSlide + offset + roadmapItems.length) % roadmapItems.length;
-            const position = 
-              offset === -2 ? 'farPrev' :
-              offset === -1 ? 'prev' :
-              offset === 0 ? 'current' :
-              offset === 1 ? 'next' : 'farNext';
-            
-            const xPosition = 
-              offset === -2 ? -600 :
-              offset === -1 ? -360 :
-              offset === 0 ? 0 :
-              offset === 1 ? 360 :
-              600;
-            
-            return (
-              <motion.div
-                key={`${index}-${currentSlide}`}
-                initial={{ x: direction > 0 ? 520 : -520, opacity: 0 }}
-                animate={{ 
-                  x: xPosition,
-                  scale: position === 'current' ? 1 : 1,
-                  opacity: position === 'current' ? 1 : 0.5,
-                  zIndex: position === 'current' ? 1 : 0
-                }}
-                transition={{
-                  duration: 0.7,
-                  ease: "easeInOut"
-                }}
-                className={`absolute flex flex-col gap-4 ${
-                  position === 'current' ? 'w-[440px] sp:w-[316px]' : 'w-[200px] cursor-pointer'
-                }`}
-                onClick={() => {
-                  if (position === 'prev' || position === 'farPrev') prevSlide();
-                  if (position === 'next' || position === 'farNext') nextSlide();
-                }}
-              >
-                <div className={`relative overflow-hidden ${
-                  position === 'current' ? 'h-[248px] rounded-[20px]' : 'h-[186px] rounded-[15px]'
-                }`}>
-                  <Image
-                    src={roadmapItems[index].image}
-                    alt={roadmapItems[index].title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="px-2 flex flex-col gap-2">
-                  <p className={`font-en font-light ${
-                    position === 'current' ? 'text-[19px] leading-6' : 'text-sm leading-[17px]'
+          {/* @ts-ignore */}
+          <AnimatePresence initial={false}>
+            {[-2, -1, 0, 1, 2].map((offset) => {
+              const index = (currentSlide + offset + roadmapItems.length) % roadmapItems.length;
+              const position = 
+                offset === -2 ? 'farPrev' :
+                offset === -1 ? 'prev' :
+                offset === 0 ? 'current' :
+                offset === 1 ? 'next' : 'farNext';
+              
+              const xPosition = 
+                offset === -2 ? -600 :
+                offset === -1 ? -360 :
+                offset === 0 ? 0 :
+                offset === 1 ? 360 :
+                600;
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ x: direction > 0 ? 520 : -520 }}
+                  animate={{ 
+                    x: xPosition,
+                    scale: position === 'current' ? 1 : 1,
+                    opacity: position === 'current' ? 1 : 0.5,
+                    zIndex: position === 'current' ? 1 : 0
+                  }}
+                  exit={{ x: direction > 0 ? -520 : 520 }}
+                  transition={{
+                    duration: 0.7,
+                    ease: "easeInOut"
+                  }}
+                  className={`absolute flex flex-col gap-4 ${
+                    position === 'current' ? 'w-[440px] sp:w-[316px]' : 'w-[200px] cursor-pointer'
+                  }`}
+                  onClick={() => {
+                    if (position === 'prev' || position === 'farPrev') prevSlide();
+                    if (position === 'next' || position === 'farNext') nextSlide();
+                  }}
+                >
+                  <div className={`relative overflow-hidden ${
+                    position === 'current' ? 'h-[248px] rounded-[20px]' : 'h-[186px] rounded-[15px]'
                   }`}>
-                    {roadmapItems[index].date}
-                  </p>
-                  <p className={`font-jp ${
-                    position === 'current' ? 'text-xl leading-8' : 'text-sm leading-[18px]'
-                  }`}>
-                    {roadmapItems[index].title}
-                  </p>
-                  <p className="font-jp text-[11px] leading-[22px]">
-                    {roadmapItems[index].description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+                    <Image
+                      src={roadmapItems[index].image}
+                      alt={roadmapItems[index].title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="px-2 flex flex-col gap-2">
+                    <p className={`font-en font-light ${
+                      position === 'current' ? 'text-[19px] leading-6' : 'text-sm leading-[17px]'
+                    }`}>
+                      {roadmapItems[index].date}
+                    </p>
+                    <p className={`font-jp ${
+                      position === 'current' ? 'text-xl leading-8' : 'text-sm leading-[18px]'
+                    }`}>
+                      {roadmapItems[index].title}
+                    </p>
+                    <p className="font-jp text-[11px] leading-[22px]">
+                      {roadmapItems[index].description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
 
         <div className="flex items-center gap-[30px]">

@@ -18,8 +18,8 @@ import { Roadmap } from '@/app/components/Roadmap';
 import { JoinFlow } from '@/app/components/JoinFlow';
 import { RatioChart } from '@/app/components/RatioChart';
 import { FAQ } from '@/app/components/FAQ';
-// import { Members } from '@/app/components/Members';
-
+import { Members } from '@/app/components/Members';
+import { Documents } from '@/app/components/Documents';
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 
@@ -59,12 +59,18 @@ export default function PublicationPage() {
           <Section id="usage">
             <FundUsage />
           </Section>
+          <Section id="members">
+            <Members />
+          </Section>
           <Section id="ratio">
             <RatioChart />
           </Section>
           <Section id="faq">
             <FAQ />
           </Section>
+          <section id="documents">
+            <Documents />
+          </section>
         </div>
         <ProjectFooter />
         <DaoEasterEgg /> 

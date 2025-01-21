@@ -137,25 +137,23 @@ const benefitsData: Record<string, BenefitData> = {
 
 export const Benefits = () => {
   return (
-    <section className="py-32 px-10 tb:px-0 sp:px-7">
-      <div className="flex flex-col gap-space-2xl max-w-[760px] tb:max-w-[610px] sp:max-w-[100vw] mx-auto">
+    <section className="py-32 px-0">
+      <div className="flex flex-col max-w-[760px] tb:max-w-[610px] sp:max-w-[100vw] mx-auto">
         {Object.values(SHAREHOLDER_TYPES).map((shareholderType, index) => (
-          <div key={shareholderType.id}>
-            {index > 0 && <Divider />}
-            
-            <h2 className="font-auto mb-[60px] mt-[60px]">
-              {shareholderType.title}
-            </h2>
-            
-            <div className="flex flex-col gap-space-2xl">
-              {benefitsData[shareholderType.id]?.benefits.map((benefit, index) => {
-                const isOwnershipBenefit = benefit.type === 'オーナー権';
-                return (
-                  <div key={`benefit-${index}`} className="flex flex-col gap-space-s">
-                    <BenefitCard {...benefit} />
-                    {isOwnershipBenefit && (
+          <Fragment key={shareholderType.id}>
+            <div>
+              <h2 className="font-auto mb-[60px]">
+                {shareholderType.title}
+              </h2>
+              
+              <div className="flex flex-col gap-space-2xl">
+                {benefitsData[shareholderType.id]?.benefits.map((benefit, index) => {
+                  const isOwnershipBenefit = benefit.type === 'オーナー権';
+                  return (
+                    <div key={`benefit-${index}`} className="flex flex-col gap-space-s">
+                      <BenefitCard {...benefit} />
                       <div className="flex flex-col gap-space-s">
-                        {benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
+                        {isOwnershipBenefit && benefitsData[shareholderType.id]?.info?.map((info, infoIndex) => (
                           <InfoCard
                             key={`info-${infoIndex}`}
                             image={info.image}
@@ -165,12 +163,17 @@ export const Benefits = () => {
                           />
                         ))}
                       </div>
-                    )}
-                  </div>
-                );
-              })}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+            
+            {/* 最後の要素以外にセパレーターを表示 */}
+            {index < Object.values(SHAREHOLDER_TYPES).length - 1 && (
+              <div className="w-full h-[1px] bg-black/10 my-[60px]" />
+            )}
+          </Fragment>
         ))}
       </div>
     </section>
