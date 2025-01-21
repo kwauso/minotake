@@ -17,19 +17,19 @@ export const StatusItem = ({
   valueClassName,
   subValueClassName
 }: Props) => (
-  <div className="flex flex-col items-start">
-    <p className="text-[11px] leading-[15px] text-white/50 font-jp">
+  <div className="flex flex-col gap-space-4xs items-start">
+    <p className="subhead5 text-white/50 font-jp">
       {label}
     </p>
     {customValue || (
       <div className="flex items-center gap-2">
-        <span className={`text-base leading-5 ${isJP ? 'font-jp' : 'font-en font-light'} text-white ${valueClassName || ''}`}>
+        <span className={`subhead2 text-base leading-5 ${isJP ? 'font-jp' : 'font-en font-light'} text-white ${valueClassName || ''}`}>
           {value}
         </span>
         {subValue && (
           <>
-            <span className="text-xs text-white/70">/</span>
-            <span className={`text-xs text-white/70 font-en ${subValueClassName || ''}`}>
+            <span className="subhead5 text-white/70">/</span>
+            <span className="text-xs font-weight-400 text-white/70 font-en">
               {subValue}
             </span>
           </>

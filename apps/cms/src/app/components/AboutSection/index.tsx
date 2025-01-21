@@ -104,7 +104,7 @@ export const AboutSection = () => {
 
     return {
       x: xOffset[position as keyof typeof xOffset],
-      opacity: position === 'current' ? 1 : 0.7,
+      opacity: position === 'current' ? 1 : 1,
       zIndex: position === 'current' ? 1 : 0
     };
   };
@@ -150,6 +150,7 @@ export const AboutSection = () => {
     <section className="py-32">
       <div className="relative max-w-[1312px] mx-auto px-9 mb-[120px]">
         <div className="flex items-center justify-center h-[540px] sp:h-[400px]">
+          {/* @ts-ignore */}
           <AnimatePresence initial={false} mode="wait">
             {[-1, 0, 1].map((offset) => {
               const index = (currentSlide + offset + mediaItems.length) % mediaItems.length;

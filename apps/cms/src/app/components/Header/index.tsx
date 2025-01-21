@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-[10px] z-50">
       {/* PC版 */}
-      <div className="flex items-center gap-10 max-w-[1312px] mx-auto px-9 h-[100px]">
+      <div className="flex items-center gap-10 w-full mx-auto px-9 h-[100px]">
         <div className="flex items-center gap-5 flex-1">
           <Link href="/" className="flex items-center gap-1 flex-shrink-0 gap-x-5">
             <Image 

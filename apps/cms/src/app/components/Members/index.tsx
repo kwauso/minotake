@@ -88,6 +88,7 @@ export const Members = () => {
           className="relative w-[1080px] tb:w-full flex items-center justify-center"
           style={{ height: `${containerHeight}px` }}
         >
+          {/* @ts-ignore */}
           <AnimatePresence initial={false}>
             {[-2, -1, 0, 1, 2].map((offset) => {
               const index = (currentSlide + offset + members.length) % members.length;
