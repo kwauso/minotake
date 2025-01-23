@@ -111,17 +111,27 @@ export const Members = () => {
                   ref={(node) => {
                     if (node) updateHeight(position, node);
                   }}
-                  initial={{ x: direction > 0 ? 520 : -520 }}
+                  initial={{ 
+                    x: direction > 0 ? 520 : -520,
+                    scale: position === 'current' ? 1 : 0.8
+                  }}
                   animate={{ 
                     x: xPosition,
-                    scale: position === 'current' ? 1 : 1,
-                    opacity: position === 'current' ? 1 : 1,
+                    scale: position === 'current' ? 1 : 0.8,
+                    opacity: position === 'current' ? 1 : 0.8,
                     zIndex: position === 'current' ? 1 : 0
                   }}
-                  exit={{ x: direction > 0 ? -520 : 520 }}
+                  exit={{ 
+                    x: direction > 0 ? -520 : 520,
+                    scale: position === 'current' ? 1 : 0.8
+                  }}
                   transition={{
                     duration: 0.7,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
+                    scale: {
+                      duration: 0.7,
+                      ease: "easeInOut"
+                    }
                   }}
                   className={`absolute flex flex-col gap-space-xs items-center ${
                     position === 'current' ? 'w-[280px] sp:w-[248px]' : 'w-[200px] sp:w-[112px] cursor-pointer'
