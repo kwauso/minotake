@@ -13,6 +13,7 @@ export function middleware(request: NextRequest) {
       user === process.env.BASIC_AUTH_USER &&
       pwd === process.env.BASIC_AUTH_PASSWORD
     ) {
+      console.log(user, pwd)
       return NextResponse.next()
     }
   }
