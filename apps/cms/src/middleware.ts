@@ -2,18 +2,23 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  // 環境変数のチェック
+  const authUser = process.env.BASIC_AUTH_USER
+  const authPassword = process.env.BASIC_AUTH_PASSWORD
+
+  // 環境変数が設定されていない場合は認証をスキップ
+  if (!authUser || !authPassword) {
+    console.warn('Basic auth credentials not found in environment variables')
+    return NextResponse.next()
+  }
+
   const basicAuth = request.headers.get('authorization')
 
   if (basicAuth) {
     const authValue = basicAuth.split(' ')[1]
     const [user, pwd] = atob(authValue).split(':')
 
-    // Basic認証の認証情報を環境変数から取得
-    if (
-      user === process.env.BASIC_AUTH_USER &&
-      pwd === process.env.BASIC_AUTH_PASSWORD
-    ) {
-      console.log(user, pwd)
+    if (user === authUser && pwd === authPassword) {
       return NextResponse.next()
     }
   }
