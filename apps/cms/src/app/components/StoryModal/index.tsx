@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, type AnimatePresenceProps } from 'framer-motion';
+import { StoryNavigation } from './StoryNavigation';
+import { Caption } from './Caption';
 
 interface StoryModalProps {
   isOpen: boolean;
@@ -24,42 +25,17 @@ interface StoryModalProps {
   };
 }
 
-export const StoryModal: React.FC<StoryModalProps> = ({ 
-  isOpen, 
-  onClose, 
-  currentStory, 
-  onPrev, 
+export const StoryModal: React.FC<StoryModalProps> = ({
+  isOpen,
+  onClose,
+  currentStory,
+  onPrev,
   onNext,
   prevStory,
-  nextStory 
+  nextStory
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [direction, setDirection] = useState(0);
-
-  const handleSlideChange = (dir: 'left' | 'right') => {
-    setDirection(dir === 'left' ? -1 : 1);
-    if (dir === 'left') {
-      onPrev();
-    } else {
-      onNext();
-    }
-  };
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? '-100%' : '100%',
-      opacity: 0
-    })
-  };
 
   useEffect(() => {
     if (isOpen) {
@@ -85,13 +61,25 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const isFirstStory = !prevStory;
   const isLastStory = !nextStory;
 
   if (!isOpen && !isAnimating) return null;
 
   return (
-    <div 
+    <div
       className={`
         fixed inset-0 z-[100] flex items-end
         transition-all duration-500 ease-out
@@ -99,110 +87,156 @@ export const StoryModal: React.FC<StoryModalProps> = ({
       `}
       onClick={onClose}
     >
-      <div 
+      <div
         className={`
-          w-full h-[90vh]
+          w-full h-[90vh] tb:h-[100vh]
           transform transition-transform duration-500 ease-out
           ${isVisible ? 'translate-y-0' : 'translate-y-full'}
         `}
         onClick={e => e.stopPropagation()}
       >
-        <div 
-          className="h-full relative bg-white overflow-hidden"
-          style={{ borderRadius: '40px' }}
+        <div
+          className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none"
         >
-          {/* @ts-ignore */}
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={currentStory.title}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              className="absolute inset-0 flex"
-            >
-              <div className="flex w-full h-full">
-                <div className="w-1/2 relative rounded-tl-[40px] overflow-hidden">
-                  <div className="absolute inset-0 bg-black rounded-tl-[40px] overflow-hidden">
-                    <div 
-                      className="absolute inset-0 opacity-80"
-                      style={{
-                        backgroundImage: `url(${currentStory.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    <div className="relative h-full flex flex-col justify-between p-9">
-                      <div className="space-y-5">
-                        <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
-                          {currentStory.category}
+          <div className="absolute inset-0 flex tb:flex-col">
+            <div className="flex w-full h-full tb:flex-col">
+              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
+                <div 
+                  className="absolute inset-0 bg-black overflow-hidden rounded-tl-[40px] tb:rounded-none h-full" 
+                >
+                  <div className="hidden tb:absolute tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
+                    <button
+                      onClick={onClose}
+                      className="hover:opacity-70 transition-opacity"
+                    >
+                      <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={32} height={32} />
+                    </button>
+                  </div>
+                  <div
+                    className="absolute inset-0 opacity-80"
+                    style={{
+                      backgroundImage: `url(${currentStory.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                  <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
+                    <div className="space-y-5">
+                      <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
+                        {currentStory.category}
+                      </p>
+                      <div className="space-y-2">
+                        <h2 className="text-white font-genei-gothic text-[32px] leading-[40px]">
+                          {currentStory.title}
+                        </h2>
+                        <p className="text-white/80 font-genei-gothic text-[15px] leading-8">
+                          {currentStory.content || ''}
                         </p>
-                        <div className="space-y-2">
-                          <h2 className="text-white font-genei-gothic text-[32px] leading-[40px]">
-                            {currentStory.title}
-                          </h2>
-                          <p className="text-white/80 font-genei-gothic text-[15px] leading-8">
-                            {currentStory.content || ''}
-                          </p>
-                        </div>
                       </div>
+                    </div>
 
-                      <div className="flex gap-4">
-                        {!isFirstStory && (
-                          <button
-                            onClick={() => handleSlideChange('left')}
-                            className={`flex-1 flex items-center gap-4 p-4 rounded-[20px] backdrop-blur-[10px] bg-black/30 ${isLastStory ? 'w-full' : ''}`}
-                          >
-                            <span className="text-white transform scale-x-[-1]">→</span>
-                            <div className="flex-1">
-                              <p className="text-white/50 font-light text-[13px] leading-[17px]">PREV</p>
-                              <p className="text-white font-genei-gothic text-[14px] leading-[18px]">{prevStory?.title}</p>
-                            </div>
-                          </button>
-                        )}
-                        
-                        {!isLastStory && (
-                          <button
-                            onClick={() => handleSlideChange('right')}
-                            className={`flex-1 flex items-center gap-4 p-4 rounded-[20px] backdrop-blur-[10px] bg-black/30 ${isFirstStory ? 'w-full' : ''}`}
-                          >
-                            <div className="flex-1">
-                              <p className="text-white/50 font-light text-[13px] leading-[17px]">NEXT</p>
-                              <p className="text-white font-genei-gothic text-[14px] leading-[18px]">{nextStory?.title}</p>
-                            </div>
-                          </button>
-                        )}
-                      </div>
+                    <div className={`${!isFirstStory && !isLastStory ? 'grid grid-cols-2' : 'flex'} gap-5 w-full`}>
+                      {!isFirstStory && (
+                        <button
+                          onClick={onPrev}
+                          className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
+                        >
+                          <Image
+                            src="/images/publications/left_arrow_white.svg"
+                            alt="前へ"
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0 opacity-60 absolute left-3"
+                          />
+                          <div className="flex flex-col gap-space-2xs overflow-hidden pl-10 flex-1">
+                            <p className="text-white/50 subhead3 font-light text-left">
+                              PREV
+                            </p>
+                            <h6 className="text-white font-jp truncate text-left">
+                              {prevStory?.title}
+                            </h6>
+                          </div>
+                        </button>
+                      )}
+
+                      {!isLastStory && (
+                        <button
+                          onClick={onNext}
+                          className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
+                        >
+                          <div className="flex flex-col gap-space-2xs overflow-hidden pr-10 flex-1">
+                            <p className="text-white/50 subhead3 font-light text-left">
+                              NEXT
+                            </p>
+                            <h6 className="text-white font-jp truncate text-left">
+                              {nextStory?.title}
+                            </h6>
+                          </div>
+                          <Image
+                            src="/images/publications/right_arrow_white.svg"
+                            alt="次へ"
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0 opacity-60 absolute right-3"
+                          />
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="w-1/2 p-12 overflow-y-auto bg-white">
-                  <div className="flex justify-between items-center mb-12">
-                    <h3 className="font-genei-gothic text-2xl">{currentStory.title}</h3>
+              <div className="w-1/2 p-12 overflow-y-auto bg-white tb:w-full">
+                <div className="flex justify-end tb:hidden">
+                  <button
+                    onClick={onClose}
+                    className="hover:opacity-70 transition-opacity"
+                  >
+                    <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={24} height={24} />
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-[56px]">
+                  <div className="flex flex-col gap-[18px]">
+                    <h2 className="text-black/80 font-genei-gothic text-[23px] leading-[30px]">
+                      {currentStory.title}
+                    </h2>
+                    <p className="text-black/50 font-genei-gothic text-[14px] leading-[32px]">
+                      {currentStory.content}
+                    </p>
+                    <Image
+                      src={currentStory.image}
+                      alt={currentStory.alt}
+                      width={600}
+                      height={329}
+                      className="rounded-[30px] object-cover w-full h-[329px]"
+                    />
+                    <Caption>
+                      {currentStory.description || currentStory.content}
+                    </Caption>
+                  </div>
+
+                  <div className="flex flex-col gap-[56px] items-center">
+                    {nextStory && (
+                      <StoryNavigation
+                        type="NEXT"
+                        title={nextStory.title}
+                        onClick={onNext}
+                      />
+                    )}
                     <button
                       onClick={onClose}
-                      className="p-2 hover:opacity-70 transition-opacity"
+                      className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
                     >
-                      <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={24} height={24} />
+                      閉じる
                     </button>
-                  </div>
-                  <div className="prose prose-lg">
-                    <p className="font-genei-gothic text-base leading-relaxed">
-                      {currentStory.content || ''}
-                    </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}; 
+};

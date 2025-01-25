@@ -118,6 +118,14 @@ export const Story = () => {
     );
   };
 
+  const prevStory = currentStoryIndex > 0 
+    ? stories[currentStoryIndex - 1] 
+    : undefined;
+
+  const nextStory = currentStoryIndex < stories.length - 1 
+    ? stories[currentStoryIndex + 1] 
+    : undefined;
+
   return (
     <section ref={ref} className="py-32 sp:w-[100vw] sp:ml-[-28px]">
       <div className="w-fit mx-auto tb:px-8 sp:w-full sp:px-0">
@@ -133,7 +141,7 @@ export const Story = () => {
                   src={story.image}
                   alt={story.alt}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-95"
+                  className="object-cover opacity-95"
                 />
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 p-s flex flex-col justify-between">
@@ -162,15 +170,14 @@ export const Story = () => {
               </div>
             ))}
           </div>
-          {/* <div className="absolute right-0 top-0 bottom-0 w-[40px] bg-gradient-to-l from-white/5 to-transparent pointer-events-none sp:block hidden" /> */}
         </div>
       </div>
       <StoryModal
         isOpen={isModalOpen}
         onClose={handleModalClose}
         currentStory={stories[currentStoryIndex]}
-        prevStory={stories[(currentStoryIndex - 1 + stories.length) % stories.length]}
-        nextStory={stories[(currentStoryIndex + 1) % stories.length]}
+        prevStory={prevStory}
+        nextStory={nextStory}
         onPrev={handlePrev}
         onNext={handleNext}
       />
