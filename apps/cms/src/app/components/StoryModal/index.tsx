@@ -14,6 +14,7 @@ interface StoryModalProps {
     image: string;
     alt: string;
     content?: string;
+    description?: string;
   };
   onPrev: () => void;
   onNext: () => void;
