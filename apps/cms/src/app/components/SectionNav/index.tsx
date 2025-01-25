@@ -25,7 +25,27 @@ const sections: Section[] = [
 
 export const SectionNav = () => {
   const [activeSection, setActiveSection] = useState('about');
+  const [paddingSide, setPaddingSide] = useState(36); // デフォルト値
   const navRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const lastButtonRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const updatePaddingSide = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) { // PC
+        setPaddingSide(36);
+      } else if (width >= 768) { // TB
+        setPaddingSide(28);
+      } else { // SP
+        setPaddingSide(20);
+      }
+    };
+
+    updatePaddingSide();
+    window.addEventListener('resize', updatePaddingSide);
+    return () => window.removeEventListener('resize', updatePaddingSide);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,11 +53,12 @@ export const SectionNav = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            // アクティブなセクションが変更されたら、そのボタンまでスクロール
             const activeButton = document.querySelector(`[data-section="${entry.target.id}"]`);
-            if (activeButton && navRef.current) {
+            if (activeButton && navRef.current && lastButtonRef.current) {
+              const scrollPosition = (activeButton as HTMLElement).offsetLeft - paddingSide;
+
               navRef.current.scrollTo({
-                left: (activeButton as HTMLElement).offsetLeft - 36, // pl-9
+                left: scrollPosition,
                 behavior: 'smooth'
               });
             }
@@ -56,7 +77,7 @@ export const SectionNav = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [paddingSide]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -74,27 +95,40 @@ export const SectionNav = () => {
   };
 
   return (
-    <nav className="sticky top-[98px] z-40 tb:top-[89px] sp:top-[89px]">
-      <div className="mx-auto py-4 bg-white/95 backdrop-blur-[10px]">
-        <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide px-9">
-          {sections.map(({ id, title }) => (
-            <Link
-              key={id}
-              href={`#${id}`}
-              data-section={id}
-              onClick={(e) => handleClick(e, id)}
-              className={`
-                px-4 py-2 rounded-full subhead3 whitespace-nowrap
-                transition-all duration-300 ease-in-out
-                ${activeSection === id 
-                  ? 'bg-black text-white' 
-                  : 'bg-[#E5E5E5] text-black hover:bg-gray-100'
-                }
-              `}
-            >
-              {title}
-            </Link>
-          ))}
+    <nav className="sticky top-[51px] z-40 tb:top-[89px] sp:top-[51px]">
+      <div className="mx-auto py-4 bg-white">
+        <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide padding-x-side">
+          <div ref={buttonsRef} className="flex gap-2">
+            {sections.map(({ id, title }, index) => (
+              <Link
+                key={id}
+                ref={index === sections.length - 1 ? lastButtonRef : null}
+                href={`#${id}`}
+                data-section={id}
+                onClick={(e) => handleClick(e, id)}
+                className={`
+                  px-4 py-2 rounded-full subhead3 whitespace-nowrap
+                  transition-all duration-300 ease-in-out
+                  ${activeSection === id 
+                    ? 'bg-black text-white' 
+                    : 'bg-[#E5E5E5] text-black hover:bg-gray-100'
+                  }
+                `}
+              >
+                {title}
+              </Link>
+            ))}
+            {/* 右側の余白用の要素 - 動的に計算 */}
+            <div 
+              className="min-w-[calc(100vw-36px)]" 
+              style={{ 
+                marginRight: lastButtonRef.current 
+                  ? -lastButtonRef.current.offsetWidth 
+                  : 0 
+              }}
+              aria-hidden="true" 
+            />
+          </div>
         </div>
       </div>
       

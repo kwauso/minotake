@@ -12,7 +12,7 @@
   }
   
   h2 {
-    @apply text-h2-ja tb:text-h2-ja-tb sp:text-h2-ja-sp mb-[60px];
+    @apply text-h2-ja tb:text-h2-ja-tb sp:text-h2-ja-sp;
   }
   
   h2.font-en {

@@ -1,13 +1,13 @@
-type ContentSectionProps = {
+interface ContentSectionProps {
   label: string;
   title: string;
   description: string;
-};
+}
 
-export const ContentSection = ({ label, title, description }: ContentSectionProps) => {
+export const ContentSection: React.FC<ContentSectionProps> = ({ label, title, description }) => {
   return (
-    <div className="w-full items-start gap-5 md:gap-10 flex flex-col md:flex-row">
-      <div className="flex w-full flex-row tb:flex-col gap-space-l md:w-[580px] items-start gap-5 md:gap-10 py-[3px]">
+    <div className="w-full items-start margin-y-l gap-space-l md:gap-10 flex flex-row tb:flex-col">
+      <div className="flex flex-row tb:flex-col gap-space-l w-[580px] sp:w-full items-start gap-space-l">
         <div className="w-[100px] flex items-center py-1">
           <div className="opacity-50 font-jp subhead4">
             {label}

@@ -1,5 +1,7 @@
 'use client';
 
+import { Header } from '@/app/components/Header';
+import { ScrollHeader } from '@/app/components/ScrollHeader';
 import localFont from 'next/font/local';
 import './globals.css';
 import { useEffect } from 'react';
@@ -49,7 +51,8 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${genEiGothic.variable} font-genei-gothic`}>
+        <ScrollHeader />
         {children}
       </body>
     </html>
