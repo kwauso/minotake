@@ -54,12 +54,12 @@ export default function PublicationPage() {
           <div id="roadmap">
             <Roadmap />
           </div>
-          <div id="join-flow">
+          {/* <div id="join-flow">
             <JoinFlow />
           </div>
           <div id="usage">
             <FundUsage />
-          </div>
+          </div> */}
           <div id="members">
             <Members />
           </div>

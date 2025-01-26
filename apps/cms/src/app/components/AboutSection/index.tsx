@@ -12,17 +12,16 @@ type MediaItem = {
 
 const mediaItems: MediaItem[] = [
   {
-    type: 'video',
-    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    poster: 'https://picsum.photos/id/237/1920/1080'
+    type: 'image',
+    src: '/images/publications/photo/2.about/img_about_01@2x.jpg'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/id/1018/1920/1080',
-  },
+    src: '/images/publications/photo/2.about/img_about_02@2x.jpg',
+  },  
   {
     type: 'image',
-    src: 'https://picsum.photos/id/1015/1920/1080',
+    src: '/images/publications/photo/2.about/img_about_03@2x.jpg',
   }
 ];
 
@@ -102,10 +101,26 @@ export const AboutSection = () => {
       next: 560
     };
 
+    // z-indexを動的に設定
+    // direction > 0 の場合（右から左への移動）: 右のスライドが奥を通る
+    // direction < 0 の場合（左から右への移動）: 左のスライドが奥を通る
+    const getZIndex = () => {
+      if (direction > 0) {
+        // 右から左への移動時
+        return position === 'current' ? 2 : position === 'prev' ? 1 : 0;
+      } else if (direction < 0) {
+        // 左から右への移動時
+        return position === 'current' ? 2 : position === 'next' ? 1 : 0;
+      } else {
+        // 初期状態
+        return position === 'current' ? 2 : 1;
+      }
+    };
+
     return {
       x: xOffset[position as keyof typeof xOffset],
       opacity: position === 'current' ? 1 : 1,
-      zIndex: position === 'current' ? 1 : 0
+      zIndex: getZIndex()
     };
   };
 

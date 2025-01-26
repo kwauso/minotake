@@ -6,7 +6,7 @@ export const KeyVisual = () => {
     <div 
       className="relative flex flex-col items-center justify-between px-4 md:px-9 padding-y-xl mt-[] w-full sp:h-[680px] h-[calc(100vh-100px)] max-h-[680px]"
       style={{
-        background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/kv.png') center/cover no-repeat`
+        background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/photo/1.kv/img_kv_1@2x.jpg') center/cover no-repeat`
       }}
     >
       {/* 上部テキスト */}
