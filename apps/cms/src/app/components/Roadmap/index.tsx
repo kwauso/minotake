@@ -13,34 +13,34 @@ type RoadmapItem = {
 
 const roadmapItems: RoadmapItem[] = [
   {
-    date: '2024.04~06',
-    title: '土地購入・整備開始',
-    description: 'あああああああああ',
-    image: '/images/publications/kv.png'
+    date: '2025 / 1Q',
+    title: '立ち上げ準備・資金調達・メンバー募集開始',
+    description: 'ぐんま山育DAOを設立し、参加メンバーを募集します。',
+    image: '/images/publications/photo/7.roadmap/img_roadmap_01@2x.jpg'
   },
   {
-    date: '2024.07~09',
-    title: 'ぶどう苗木植付け',
-    description: 'あああああああああ',
-    image: '/images/publications/kv.png'
+    date: '2025 / 2Q',
+    title: '事業開始',
+    description: '1.醸造所が付設した食文化の発信拠点の創出をいたします(施設の立ち上げを自治体へ声かけ）。\n2.酒類販売ライセンスの取得を目指します。\n3.産地化体験を行います。\n・ワイナリー整備体験\n・醸造家大岡氏のレクチャーワークショップ\n・苗植え体験',
+    image: '/images/publications/photo/7.roadmap/img_roadmap_02@2x.jpg'
   },
   {
-    date: '2024.10~12',
-    title: '初期施設整備完了',
-    description: 'あああああああああ',
-    image: '/images/publications/kv.png'
-  },
-  {
-    date: '04',
-    title: '醸造開始',
-    description: 'ああああああああ',
-    image: '/images/publications/kv.png'
+    date: '2025 / 3Q - 4Q',
+    title: '商品制作開始',
+    description: '産地化体験を行います。\n・自然派ワインに合う食のマリアージュ体験',
+    image: '/images/publications/photo/7.roadmap/img_roadmap_03@2x.jpg'
   },
   {
     date: '2026',
-    title: 'ふるさと納税返礼品登録',
-    description: 'あああああああああ',
-    image: '/images/publications/kv.png'
+    title: 'テスト製造・初回収穫',
+    description: '1.栽培管理を行います。\n2.醸造設備の整備を行います。\n3.テストヴィンテージを製造いたします。\n4.初回の収穫・醸造を行います。',
+    image: '/images/publications/photo/7.roadmap/img_roadmap_04@2x.jpg'
+  },
+  {
+    date: '2027',
+    title: '醸造・販売',
+    description: '1.ふるさと納税返礼品の登録をします。\n2.第一回目の自然派ワインを販売開始します。',
+    image: '/images/publications/photo/7.roadmap/img_roadmap_05@2x.jpg'
   }
 ];
 
@@ -114,18 +114,24 @@ export const Roadmap = () => {
                   </div>
                   <div className="px-2 flex flex-col gap-2">
                     <p className={`font-en font-light ${
-                      position === 'current' ? 'text-[19px] leading-6' : 'text-sm leading-[17px]'
+                      position === 'current' ? 'subhead1' : 'subhead3'
                     }`}>
                       {roadmapItems[index].date}
                     </p>
-                    <p className={`font-jp ${
-                      position === 'current' ? 'text-xl leading-8' : 'text-sm leading-[18px]'
-                    }`}>
-                      {roadmapItems[index].title}
-                    </p>
-                    <p className="font-jp text-[11px] leading-[22px]">
-                      {roadmapItems[index].description}
-                    </p>
+                    {/* 下記は、currentの場合は、h5、それ以外の場合はh6タグを使用 */}
+                    {position === 'current' ? (
+                      <h5 className={`font-jp`}>
+                        {roadmapItems[index].title}
+                      </h5>
+                    ) : (
+                      <h6 className={`font-jp`}>
+                        {roadmapItems[index].title}
+                      </h6>
+                    )}
+                    {/* 下記は、currentの場合は、line-clampなし、それ以外の場合はline-clamp-1タグを使用 */}
+                      <p className="font-jp body6 line-clamp-1">
+                        {roadmapItems[index].description}
+                      </p>
                   </div>
                 </motion.div>
               );

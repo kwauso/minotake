@@ -33,7 +33,6 @@ const sections: Section[] = [
   { id: 'members', title: 'メンバー/サポート' },
   { id: 'ratio', title: '参加者構成比' },
   { id: 'faq', title: 'FAQ' },
-  { id: 'documents', title: '詳細/規約' },
 ];
 
 export const SectionNav = () => {
