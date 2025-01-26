@@ -65,37 +65,47 @@ export const StorySection = () => {
             {stories.map((story, index) => (
               <div 
                 key={index} 
-                className="relative w-[280px] h-[407px] rounded-[20px] overflow-hidden cursor-pointer group bg-black/5 sp:min-w-[280px] sp:w-[280px] shadow-lg sp:shadow-none"
+                className="relative w-[280px] h-[407px] rounded-[20px] overflow-hidden cursor-pointer group/card bg-black/5 sp:min-w-[280px] sp:w-[280px] shadow-lg sp:shadow-none"
                 onClick={() => handleCardClick(index)}
               >
                 <Image
                   src={story.image}
                   alt={story.alt}
                   fill
-                  className="object-cover opacity-95"
+                  className="object-cover opacity-95 group-hover/card:blur-sm transition-all duration-300"
                 />
-                <div className="absolute inset-0 bg-black/50" />
-                <div className="absolute inset-0 p-s flex flex-col justify-between">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex flex-col gap-5">
-                      <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
-                        {story.category}
-                      </p>
-                      <h4 
-                        className="text-white font-jp leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: story.title }}
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-white/70 font-jp body3">
+                <div className="absolute inset-0 bg-black/50 group-hover/card:bg-black/70 transition-all duration-300" />
+                <div className="absolute inset-0 p-s flex flex-col">
+                  <div className="flex flex-col gap-5">
+                    <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
+                      {story.category}
+                    </p>
+                    <h4 
+                      className="text-white font-jp leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: story.title }}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-auto">
+                    <div className="transition-all duration-300">
+                      <p className="text-white/70 font-jp body5 line-clamp-2 group-hover/card:opacity-0">
                         {story.description}
                       </p>
+                      <div className="absolute h-[160px] overflow-y-hidden inset-x-s bottom-[60px] opacity-0 group-hover/card:opacity-100 transition-all duration-300 transform translate-y-full group-hover/card:translate-y-0">
+                        <p className="text-white/70 font-jp body5 line-clamp-6">
+                          {story.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex justify-end">
-                    <p className="text-white/70 font-genei-gothic text-xs tracking-wide">
-                      詳細を見る
-                    </p>
+                    <div className="flex justify-end mt-4">
+                      <div className="relative transform group-hover/card:-translate-x-2 transition-transform duration-300">
+                        <Image 
+                          src="/images/publications/right_arrow_white_50.svg" 
+                          alt="arrow_right_white" 
+                          width={28} 
+                          height={26} 
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

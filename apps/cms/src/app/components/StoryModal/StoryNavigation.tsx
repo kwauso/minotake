@@ -17,7 +17,7 @@ export const StoryNavigation = ({ type, title, onClick }: StoryNavigationProps) 
           {type}
         </p>
         <p className="text-black font-genei-gothic text-[14px] leading-[18px] truncate">
-          {title}
+          {title.replace(/<br\s*\/?>/g, '')}
         </p>
       </div>
       <Image 

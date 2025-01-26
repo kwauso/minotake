@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { StoryNavigation } from './StoryNavigation';
 import { Caption } from './Caption';
@@ -27,6 +27,11 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
+  const [isLeftContentVisible, setIsLeftContentVisible] = useState(true);
+  const [currentBgImage, setCurrentBgImage] = useState(currentStory.image);
+  const [nextBgImage, setNextBgImage] = useState('');
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -64,8 +69,18 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+  }, [currentStory]);
+
   const isFirstStory = !prevStory;
   const isLastStory = !nextStory;
+
+  const handlePageChange = (changeFunction: () => void) => {
+    changeFunction();
+  };
 
   if (!isOpen && !isAnimating) return null;
 
@@ -78,9 +93,10 @@ export const StoryModal: React.FC<StoryModalProps> = ({
           if (item.type === 'text') {
             return (
               <div key={index} className="flex flex-col gap-[18px]">
-                <h4 className="text-black/80 font-genei-gothic text-[20px] leading-[28px]">
-                  {item.subtitle}
-                </h4>
+                <h4 
+                  className="font-jp"
+                  dangerouslySetInnerHTML={{ __html: item.subtitle }}
+                />
                 <p 
                   className="text-black/50 font-genei-gothic text-[14px] leading-[32px]"
                   dangerouslySetInnerHTML={{ __html: item.body }}
@@ -134,68 +150,60 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     <div
       className={`
         fixed inset-0 z-[100] flex items-end
-        transition-all duration-500 ease-out
         ${isVisible ? 'bg-black/50' : 'bg-transparent pointer-events-none'}
       `}
       onClick={onClose}
     >
       <div
         className={`
-          w-full h-[90vh] tb:h-[100vh]
-          transform transition-transform duration-500 ease-out
+          w-full h-[90vh] tb:h-[100vh] transition-transform duration-500
           ${isVisible ? 'translate-y-0' : 'translate-y-full'}
         `}
         onClick={e => e.stopPropagation()}
       >
-        <div
-          className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none"
-        >
+        <div className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none">
           <div className="absolute inset-0 flex tb:flex-col">
             <div className="flex w-full h-full tb:flex-col">
               <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
-                <div 
-                  className="absolute inset-0 bg-black overflow-hidden rounded-tl-[40px] tb:rounded-none h-full" 
-                >
-                  <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
-                    <button
-                      onClick={onClose}
-                      className="hover:opacity-70 transition-opacity"
-                    >
-                      <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={32} height={32} />
-                    </button>
-                  </div>
+                <div className="absolute inset-0 overflow-hidden">
                   <div
-                    className="absolute inset-0 opacity-80"
+                    className="absolute inset-0"
                     style={{
                       backgroundImage: `url(${currentStory.image})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'center',
+                      opacity: 0.8
                     }}
                   />
                   <div className="absolute inset-0 bg-black/50" />
                   <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
-                    <div className="space-y-5">
+                    <div 
+                      className={`
+                        space-y-5 transition-opacity duration-300
+                        ${isLeftContentVisible ? 'opacity-100' : 'opacity-0'}
+                      `}
+                    >
                       <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
                         {currentStory.category}
                       </p>
                       <div className="space-y-2">
-                        <h2 className="text-white font-genei-gothic text-[32px] leading-[40px]">
-                          {currentStory.title}
-                        </h2>
-                        {/* {Array.isArray(currentStory.content) && currentStory.content.map((item, index) => (
-                          item.type === 'text' && (
-                            <p key={index} className="text-white/80 font-genei-gothic text-[15px] leading-8">
-                              {item.body}
-                            </p>
-                          )
-                        ))} */}
+                        <h2 
+                          className="text-white font-genei-gothic text-[32px] leading-[40px]"
+                          dangerouslySetInnerHTML={{ __html: currentStory.title }}
+                        />
                       </div>
                     </div>
 
-                    <div className={`${!isFirstStory && !isLastStory ? 'grid grid-cols-2' : 'flex'} gap-5 w-full`}>
+                    <div 
+                      className={`
+                        ${!isFirstStory && !isLastStory ? 'grid grid-cols-2' : 'flex'} 
+                        gap-5 w-full transition-opacity duration-300
+                        ${isLeftContentVisible ? 'opacity-100' : 'opacity-0'}
+                      `}
+                    >
                       {!isFirstStory && (
                         <button
-                          onClick={onPrev}
+                          onClick={() => handlePageChange(onPrev)}
                           className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
                         >
                           <Image
@@ -210,7 +218,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                               PREV
                             </p>
                             <h6 className="text-white font-jp truncate text-left">
-                              {prevStory?.title}
+                              {prevStory?.title.replace(/<br\s*\/?>/g, '')}
                             </h6>
                           </div>
                         </button>
@@ -218,7 +226,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
                       {!isLastStory && (
                         <button
-                          onClick={onNext}
+                          onClick={() => handlePageChange(onNext)}
                           className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
                         >
                           <div className="flex flex-col gap-space-2xs overflow-hidden pr-10 flex-1">
@@ -226,7 +234,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                               NEXT
                             </p>
                             <h6 className="text-white font-jp truncate text-left">
-                              {nextStory?.title}
+                              {nextStory?.title.replace(/<br\s*\/?>/g, '')}
                             </h6>
                           </div>
                           <Image
@@ -243,35 +251,45 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                 </div>
               </div>
 
-              <div className="w-1/2 p-12 overflow-y-auto bg-white tb:w-full">
-                <div className="flex justify-end tb:hidden">
-                  <button
-                    onClick={onClose}
-                    className="hover:opacity-70 transition-opacity"
-                  >
-                    <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={24} height={24} />
-                  </button>
-                </div>
-
-                <div className="flex flex-col gap-[56px]">
-                  <div className="flex flex-col gap-[18px]">
-                    <ContentRenderer content={currentStory.content} />
-                  </div>
-
-                  <div className="flex flex-col gap-[56px] items-center">
-                    {nextStory && (
-                      <StoryNavigation
-                        type="NEXT"
-                        title={nextStory.title}
-                        onClick={onNext}
-                      />
-                    )}
+              <div 
+                ref={contentRef}
+                className="w-1/2 p-12 overflow-y-auto bg-white tb:w-full"
+              >
+                <div 
+                  className={`
+                    transition-opacity duration-300
+                    ${isContentVisible ? 'opacity-100' : 'opacity-0'}
+                  `}
+                >
+                  <div className="flex justify-end tb:hidden">
                     <button
                       onClick={onClose}
-                      className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
+                      className="hover:opacity-70 transition-opacity"
                     >
-                      閉じる
+                      <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={24} height={24} />
                     </button>
+                  </div>
+
+                  <div className="flex flex-col gap-[56px]">
+                    <div className="flex flex-col gap-[18px]">
+                      <ContentRenderer content={currentStory.content} />
+                    </div>
+
+                    <div className="flex flex-col gap-[56px] items-center">
+                      {nextStory && (
+                        <StoryNavigation
+                          type="NEXT"
+                          title={nextStory.title}
+                          onClick={onNext}
+                        />
+                      )}
+                      <button
+                        onClick={onClose}
+                        className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
+                      >
+                        閉じる
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
