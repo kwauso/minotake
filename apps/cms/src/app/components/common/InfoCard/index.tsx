@@ -1,51 +1,102 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-type InfoCardProps = {
-  image: string;
+type ButtonProps = {
+  label: string;
+} & (
+  | { href: string; onClick?: never }
+  | { href?: never; onClick: () => void }
+);
+
+interface InfoCardProps {
   title: string;
   description: string;
   details?: string[];
-  button?: {
-    label: string;
-    onClick: () => void;
-  };
-};
+  image: string;
+  variant?: 'light' | 'dark';
+  button?: ButtonProps;
+}
 
-export const InfoCard = ({ image, title, description, details, button }: InfoCardProps) => {
+export const InfoCard = ({ 
+  title, 
+  description, 
+  details, 
+  image,
+  variant = 'light',
+  button
+}: InfoCardProps) => {
+  const baseStyles = variant === 'light' 
+    ? 'bg-[#F1F1F5]' 
+    : 'bg-black text-white';
+
+  const renderButton = () => {
+    if (!button) return null;
+
+    const buttonClasses = "mt-2 inline-flex items-center gap-1.5 bg-white text-black px-[18px] py-3 rounded-[5px] w-fit hover:opacity-70 transition-opacity";
+
+    if ('href' in button && button.href) {
+      return (
+        <Link 
+          href={button.href}
+          className={buttonClasses}
+        >
+          <span className="font-genei-gothic text-[14px] leading-[19px]">
+            {button.label}
+          </span>
+          <Image 
+            src="/images/publications/right_arrow_black.svg" 
+            alt=""
+            width={16}
+            height={16}
+          />
+        </Link>
+      );
+    }
+
+    if ('onClick' in button && button.onClick) {
+      return (
+        <button 
+          onClick={button.onClick}
+          className={buttonClasses}
+        >
+          <span className="font-genei-gothic text-[14px] leading-[19px]">
+            {button.label}
+          </span>
+          <Image 
+            src="/images/publications/right_arrow_black.svg" 
+            alt=""
+            width={16}
+            height={16}
+          />
+        </button>
+      );
+    }
+
+    return null;
+  };
+
   return (
-    <div className="bg-[#F1F1F5] rounded-[40px] padding-s flex flex-row gap-space-s items-stretch">
-      <div className="relative w-[200px] sp:w-[110px] sp:h-[140px] rounded-[20px] overflow-hidden">
+    <div className={`${baseStyles} rounded-[30px] p-5 flex flex-row gap-5 items-stretch`}>
+      <div className="relative w-[200px] min-h-[120px] sp:w-[110px] sp:max-h-[140px] rounded-[15px] overflow-hidden flex-shrink-0">
         <Image
           src={image}
-          alt=""
+          alt={title}
           fill
           className="object-cover"
         />
       </div>
-      <div className="flex-1 padding-y-2xs padding-x-2xs py-2 flex flex-col gap-2">
-        <h4 className="font-auto">{title}</h4>
-        <p className="font-auto body3 opacity-70">
-          {description}
-        </p>
+      <div className="flex flex-col gap-2 flex-1 px-5 py-2">
+        <h4 className="font-genei-gothic text-[20px] leading-[28px]">{title}</h4>
+        <p className="font-genei-gothic text-[14px] leading-[24px] opacity-60">{description}</p>
         {details && (
-          <ul>
+          <ul className="font-genei-gothic text-[11px] leading-[22px] opacity-50 list-disc pl-5">
             {details.map((detail, index) => (
-              <li key={index} className="list-none">
-                <div className="font-jp body5 text-black/50" dangerouslySetInnerHTML={{ __html: detail }} />
-              </li>
+              <li key={index}>{detail}</li>
             ))}
           </ul>
         )}
-        {button && (
-          <button 
-            onClick={button.onClick}
-            className="flex items-center gap-1.5 bg-white rounded-[5px] px-[18px] py-3 w-fit"
-          >
-            <span className="font-jp ">{button.label}</span>
-            <span>→</span>
-          </button>
-        )}
+        {renderButton()}
       </div>
     </div>
   );
-}; 
+};

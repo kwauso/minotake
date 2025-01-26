@@ -1,5 +1,14 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  redirect('/publications/gunma_wine2025');
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/publications/gunma_wine2025');
+  }, [router]);
+
+  return null;
 }

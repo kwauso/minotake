@@ -1,11 +1,10 @@
-'use client';
+'use client'
 
 import { useParams } from 'next/navigation';
 import { Header } from '@/app/components/Header';
 import { KeyVisual } from '@/app/components/KeyVisual';
 import { SectionNav } from '@/app/components/SectionNav';
-import { Section } from '@/app/components/Section';
-import { ProjectFooter } from '@/app/components/ProjectFooter';
+import { WaitlistFooter } from '@/app/components/WaitlistFooter';
 import { AboutSection } from '@/app/components/AboutSection';
 import { Overview } from '@/app/components/Overview';
 import { Story } from '@/app/components/Story';
@@ -20,7 +19,8 @@ import { RatioChart } from '@/app/components/RatioChart';
 import { FAQ } from '@/app/components/FAQ';
 import { Members } from '@/app/components/Members';
 import { Documents } from '@/app/components/Documents';
-
+import { OpenChat } from '@/app/components/OpenChat';
+import { Footer } from '@/app/components/Footer';
 export default function PublicationPage() {
   const params = useParams<{ publication_name: string }>();
 
@@ -35,48 +35,52 @@ export default function PublicationPage() {
         
         <SectionNav />
 
-        <div className="overflow-x-hidden padding-x-side">
-          <Section id="about">
+        <div className="flex flex-col overflow-x-hidden padding-x-side gap-space-3xl padding-bottom-3xl">
+          <div id="about">
             <AboutSection />
-          </Section>
-          <Section id="summary">
+          </div>
+          <div id="summary">
             <Overview />
-          </Section>
-          <Section id="story">
+          </div>
+          <div id="story">
             <Story />
-          </Section>
-          <Section id="benefits">
+          </div>
+          <div id="benefits">
             <Benefits />
-          </Section>
-          <Section id="activity">
+          </div>
+          <div id="activity">
             <Activity />
-          </Section>
-          <Section id="roadmap">
+          </div>
+          <div id="roadmap">
             <Roadmap />
-          </Section>
-          <Section id="join-flow">
+          </div>
+          <div id="join-flow">
             <JoinFlow />
-          </Section>
-          <Section id="usage">
+          </div>
+          <div id="usage">
             <FundUsage />
-          </Section>
-          <Section id="members">
+          </div>
+          <div id="members">
             <Members />
-          </Section>
-          <Section id="ratio">
+          </div>
+          <div id="ratio">
             <RatioChart />
-          </Section>
-          <Section id="faq">
+          </div>
+          <div id="faq">
             <FAQ />
-          </Section>
-          <Section id="documents">
+          </div>
+          <div id="documents">
             <Documents />
-          </Section>
+          </div>
+          <div id="openchat">
+            <OpenChat />
+          </div>
           
-        </div>
-        <ProjectFooter />
+        </div> 
+        <WaitlistFooter />
         <DaoEasterEgg /> 
         <DesignOverlay />
+        <Footer />
 
       </div>
     );
