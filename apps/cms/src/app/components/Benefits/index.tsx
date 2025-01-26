@@ -8,16 +8,8 @@ import { Fragment } from 'react';
 const SHAREHOLDER_TYPES = {
   ALL: {
     id: 'all',
-    title: '株主全員',
-  },
-  TEN: {
-    id: 'ten',
-    title: '10株以上',
-  },
-  HUNDRED: {
-    id: 'hundred',
-    title: '100株以上',
-  },
+    title: '全員',
+  }
 } as const;
 
 type Benefit = {
@@ -44,92 +36,74 @@ const benefitsData: Record<string, BenefitData> = {
   [SHAREHOLDER_TYPES.ALL.id]: {
     benefits: [
       {
-        type: 'オーナー権',
-        title: 'ぶどう畑の区画オーナー権と販売収益の受け取り',
-        description: '参加者は出資時にぶどう畑の区画を指定し、その区画から収穫したワインのオーナー権(※)を得⁨⁩ます。\n\n収穫されたワインは運用費用や販売手数料が引かれた収益の一部を出資者へ支払います。',
-        note: '※オーナー権とは、自身が選択した区画から収穫されたぶどうから、製造されたワインの収益の一部を受け取る権利のことを示します。直接的に、ぶどう苗の所有権や区画の不動産登記の権利を有する訳ではありません。',
-        image: '/images/publications/kv.png'
+        type: '案１：オーナー権',
+        title: 'ブドウ畑の区画オーナー権',
+        description: '参加者は出資時にブドウ畑の区画を指定し、その区画から収穫したワインのオーナー権(※)を得⁨⁩ます。',
+        note: '※オーナー権とは、自身が選択した区画から収穫されたブドウから、製造されたワインの収益の一部を受け取る権利のことを示します。直接的に、ブドウ苗の所有権や区画の不動産登記の権利を有する訳ではありません。',
+        image: '/images/publications/photo/5.benefits/img_benefits_01@3x.jpg'
       },
       {
-        type: '配当金',
+        type: '案２：利益分配',
         title: '利益剰余金を分配',
-        description: 'ワインの販売等を事業化した際に発生する利益剰余金を分配いたします。\n利益剰余金の決定も、次年度の事業予算などを加味して株主総会で皆様に決めていただきます。',
-        image: '/images/publications/kv.png'
+        description: 'ワインの販売等を事業化した際に発生する利益剰余金を分配いたします。',
+        image: '/images/publications/photo/5.benefits/img_benefits_02@3x.jpg'
       },
       {
-        type: '購入権',
+        type: '案３：優先購入権利',
         title: '醸造したワインを\n優先的に原価で購入可能',
         description: '自分たちで作ったワインを自分たちで購入ができます。',
         note: '※ワインを製品化した際に購入ができるようになります。',
-        image: '/images/publications/kv.png'
+        image: '/images/publications/photo/5.benefits/img_benefits_03@3x.jpg'
       },
       {
-        type: 'プレゼント',
+        type: '案４：製品贈呈',
         title: '醸造したワインを1本プレゼント',
         description: '自分たちで作ったワインを自分たちに贈ります。',
-        note: '※ワインを製品化した際にプレゼントされます。',
-        image: '/images/publications/kv.png'
-      }
-    ],
-    info: [
-      {
-        title: '畑・区画の選択方法について',
-        description: 'プロジェクト全体のぶどう畑（総面積 XXヘクタール）を、1区画あたり2ヘクタールずつに分割します。出資者の皆様はお好みの区画を選択可能です。',
-        details: [
-          '選択区画での収益配当選択した区画で生産されたワインの売上額に応じて、収益の一部を配当として受け取ることができます。詳細は<a href="/documents/regulation" class="text-blue-600 underline hover:text-blue-800">「ぐんま山育DAO_規定」</a>をご確認ください。',
-          '配当率（例：XX％）実際の配当率は、DAOXの投票によって決定されます。'
-        ],
-        image: '/images/publications/kv.png'
+        note: '※ワインを製品化した際にプレゼントいたします。',
+        image: '/images/publications/photo/5.benefits/img_benefits_04@3x.jpg'
       },
       {
-        title: '口数の多さで区画選択の優先順位が決定',
-        description: '土地の購入が完了し次第、株式数が多い順に区画を選択していただきます。',
-        image: '/images/publications/kv.png'
-      }
-    ]
-  },
-  [SHAREHOLDER_TYPES.TEN.id]: {
-    benefits: [
-      {
-        type: 'イベント',
+        type: '案５：イベント',
         title: '自然派ワインに合う食を体験する',
         description: '山菜をとる、素材を育てる、シェフと共に味わう、そういった非日常的な体験を提供します。',
         note: '※イベント等は不定期で行います。また皆さんで企画し開催していただくようなこともDAOならではの醍醐味となります。',
-        image: '/images/publications/kv.png'
+        image: '/images/publications/photo/5.benefits/img_benefits_05@3x.jpg'
       },
       {
-        type: 'イベント',
-        title: '大岡さんによる勉強会',
-        description: '日本を代表する醸造家の大岡さんによる定期的な勉強会に参加できます。',
-        image: '/images/publications/kv.png'
+        type: '案６：イベント',
+        title: 'プロフェッショナルによる勉強会',
+        description: '日本を代表する醸造家の大岡さんらによる定期的な勉強会に参加できます。',
+        image: '/images/publications/photo/5.benefits/img_benefits_06@3x.jpg'
       },
       {
-        type: 'イベント',
+        type: '案７：イベント',
         title: '収穫祭への優先招待',
-        description: 'ぶどうができたタイミングで収穫祭を行います。\nご家族などと一緒に自分たちで作った新鮮なぶどうを食べにいきましょう。',
-        image: '/images/publications/kv.png'
-      }
-    ]
-  },
-  [SHAREHOLDER_TYPES.HUNDRED.id]: {
-    benefits: [
+        description: 'ブドウができたタイミングで収穫祭を行います。\nご家族などと一緒に自分たちで作った新鮮なぶどうを食べにいきましょう。',
+        image: '/images/publications/photo/5.benefits/img_benefits_07@3x.jpg'
+      },
       {
-        type: '名入れ',
+        type: '案８：イベント',
+        title: '醸造家との試飲会参加権',
+        description: 'ワインができたら試飲会に参加できます。\nできたばかりの新鮮なワインを楽しんでください。',
+        image: '/images/publications/photo/5.benefits/img_benefits_08@3x.jpg'
+      },
+      {
+        type: '案９：名入れ',
         title: 'ワイナリー施設への名入れ',
         description: '畑横に作られるワイナリー施設に飾るボードに名前が連なります。',
-        image: '/images/publications/kv.png'
+        image: '/images/publications/photo/5.benefits/img_benefits_09@3x.jpg'
       },
       {
-        type: '名入れ',
+        type: '案１０：名入れ',
         title: 'ボトルラベルへの名入れ',
         description: '本プロジェクトで作成したワインに名前を入れさせていただきます。',
-        image: '/images/publications/kv.png'
+        image: '/images/publications/photo/5.benefits/img_benefits_10@3x.jpg'
       },
       {
-        type: 'ラベルデザイン',
+        type: '案１１：名入れ',
         title: 'オリジナルブランドの作成権',
-        description: 'ボトルデザインや名称など、プロジェクトとは個別の自分だけのオリジナルブランドを作成できます。',
-        image: '/images/publications/kv.png'
+        description: 'ボトルデザインや名称など、本プロジェクトとは別の自分だけのオリジナルブランドを作成できます。',
+        image: '/images/publications/photo/5.benefits/img_benefits_11@3x.jpg'
       }
     ]
   }

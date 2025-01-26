@@ -19,8 +19,8 @@ export const Overview = () => {
   }, [inView, setCurrentSection]);
 
   return (
-    <section ref={ref} id="summary" className="py-32">
-      <div className="flex flex-col tb:padding-x-s sp:px-0 w-full max-w-[1080px] max-w-[1080px] items-center gap-space-l mx-auto">
+    <section ref={ref} id="summary">
+      <div className="flex flex-col tb:padding-x-s sp:px-0 w-full max-w-[1080px] max-w-[1080px] items-center gap-space-xl mx-auto">
         <div className="relative w-full tb:w-[100vw] h-[540px] rounded-[40px] tb:rounded-none tb:max-h-[560px] sp:max-h-[352px] overflow-hidden">
           <Image
             src={overviewData.mainImage.src}

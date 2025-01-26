@@ -8,19 +8,31 @@ type Section = {
   title: string;
 };
 
+// const sections: Section[] = [
+//   { id: 'about', title: '私たちについて' },
+//   { id: 'summary', title: 'プロジェクト概要' },
+//   { id: 'story', title: 'ストーリー' },
+//   { id: 'benefits', title: '投資特典' },
+//   { id: 'roles', title: '参加者の役割' },
+//   { id: 'roadmap', title: 'ロードマップ' },
+//   { id: 'join-flow', title: '参加方法・流れ' },
+//   { id: 'usage', title: '本募集の資金使途' },
+//   { id: 'members', title: 'メンバー/サポート' },
+//   { id: 'ratio', title: '参加者構成比' },
+//   { id: 'faq', title: 'FAQ' },
+//   { id: 'documents', title: '資料' },
+// ];
+
 const sections: Section[] = [
   { id: 'about', title: '私たちについて' },
   { id: 'summary', title: 'プロジェクト概要' },
   { id: 'story', title: 'ストーリー' },
-  { id: 'benefits', title: '投資特典' },
+  { id: 'benefits', title: '参加者特典' },
   { id: 'roles', title: '参加者の役割' },
   { id: 'roadmap', title: 'ロードマップ' },
-  { id: 'join-flow', title: '参加方法・流れ' },
-  { id: 'usage', title: '本募集の資金使途' },
   { id: 'members', title: 'メンバー/サポート' },
   { id: 'ratio', title: '参加者構成比' },
   { id: 'faq', title: 'FAQ' },
-  { id: 'documents', title: '資料' },
 ];
 
 export const SectionNav = () => {
@@ -96,7 +108,7 @@ export const SectionNav = () => {
 
   return (
     <nav className="sticky top-[51px] z-40">
-      <div className="mx-auto py-4 bg-white">
+      <div className="mx-auto padding-top-xs padding-bottom-xs bg-white">
         <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide padding-x-side">
           <div ref={buttonsRef} className="flex gap-2">
             {sections.map(({ id, title }, index) => (

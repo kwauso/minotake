@@ -17,61 +17,61 @@ type Participant = {
 
 const participants: Participant[] = [
   { 
-    label: '経営者', 
-    percentage: 25, 
+    label: '農家・専門家', 
+    percentage: 30, 
     startAngle: 0, 
-    endAngle: 90,
+    endAngle: 108,
     gradient: { start: '#000000', end: '#333333' }
   },
   { 
-    label: '法人・団体', 
-    percentage: 18, 
-    startAngle: 90, 
-    endAngle: 154.8,
+    label: '運営', 
+    percentage: 20, 
+    startAngle: 108, 
+    endAngle: 180,
     gradient: { start: '#333333', end: '#4D4D4D' }
   },
   { 
-    label: '営業', 
+    label: 'デザイナー・編集', 
     percentage: 15, 
-    startAngle: 154.8, 
-    endAngle: 209.8,
+    startAngle: 180, 
+    endAngle: 234,
     gradient: { start: '#4D4D4D', end: '#666666' }
   },
   { 
-    label: 'エンジニア', 
-    percentage: 12, 
-    startAngle: 209.8, 
-    endAngle: 253.2,
+    label: '企画', 
+    percentage: 10, 
+    startAngle: 234, 
+    endAngle: 270,
     gradient: { start: '#666666', end: '#808080' }
   },
   { 
-    label: 'その他', 
+    label: '営業', 
     percentage: 10, 
-    startAngle: 253.2, 
-    endAngle: 289.2,
+    startAngle: 270, 
+    endAngle: 306,
     gradient: { start: '#808080', end: '#999999' }
   },
   { 
-    label: 'クリエイター', 
-    percentage: 8, 
-    startAngle: 289.2, 
-    endAngle: 318,
+    label: 'エンジニア', 
+    percentage: 5, 
+    startAngle: 306, 
+    endAngle: 324,
     gradient: { start: '#999999', end: '#B3B3B3' }
   },
   { 
-    label: '飲食', 
-    percentage: 7, 
-    startAngle: 318, 
-    endAngle: 343.2,
+    label: '法務', 
+    percentage: 5, 
+    startAngle: 324, 
+    endAngle: 342,
     gradient: { start: '#B3B3B3', end: '#CCCCCC' }
   },
   { 
-    label: '農家', 
+    label: '会計', 
     percentage: 5, 
-    startAngle: 343.2, 
+    startAngle: 342, 
     endAngle: 360,
     gradient: { start: '#CCCCCC', end: '#E6E6E6' }
-  },
+  }
 ];
 
 export const RatioChart = () => {
@@ -113,11 +113,29 @@ export const RatioChart = () => {
   const radius = (currentSize - currentStrokeWidth) / 2;
   const center = currentSize / 2;
 
-  const getLabelPosition = (startAngle: number, endAngle: number) => {
+  const getLabelPosition = (startAngle: number, endAngle: number, label: string) => {
     const angle = ((startAngle + endAngle) / 2) * (Math.PI / 180);
-    // SP表示の場合は距離を短くする
-    const labelDistance = isSpSize ? 20 : 40;
-    const distance = radius + currentStrokeWidth + labelDistance;
+    
+    // SP表示で農家・専門家の場合の特別な調整
+    if (isSpSize && label === '農家・専門家') {
+      return {
+        x: center + 100, // 左に20px移動
+        y: center - 130, // 上に50px移動
+      };
+    }
+
+    // 通常のラベル位置計算
+    const labelDistance = isSpSize ? {
+      x: 25,
+      y: 25
+    } : {
+      x: 40,
+      y: 40
+    };
+    
+    const distance = radius + currentStrokeWidth + 
+      (Math.abs(Math.sin(angle - Math.PI / 2)) > 0.5 ? labelDistance.y : labelDistance.x);
+    
     return {
       x: center + distance * Math.cos(angle - Math.PI / 2),
       y: center + distance * Math.sin(angle - Math.PI / 2),
@@ -158,7 +176,7 @@ export const RatioChart = () => {
 
             {/* テキストレイヤー */}
             {participants.map((participant, index) => {
-              const pos = getLabelPosition(participant.startAngle, participant.endAngle);
+              const pos = getLabelPosition(participant.startAngle, participant.endAngle, participant.label);
               return (
                 <motion.div
                   key={index}

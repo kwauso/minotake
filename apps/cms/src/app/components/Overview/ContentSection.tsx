@@ -8,7 +8,7 @@ interface ContentSectionProps {
 
 export const ContentSection: FC<ContentSectionProps> = ({ label, title, description }) => {
   return (
-    <div className="w-full items-start margin-y-l gap-space-l md:gap-10 flex flex-row tb:flex-col">
+    <div className="w-full items-start margin-bottom-xl gap-space-l md:gap-10 flex flex-row tb:flex-col">
       <div className="flex flex-row tb:flex-col gap-space-l w-[580px] sp:w-full items-start gap-space-l">
         <div className="w-[100px] flex items-center py-1">
           <div className="opacity-50 font-jp subhead4">

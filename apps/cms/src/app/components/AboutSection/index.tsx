@@ -12,17 +12,16 @@ type MediaItem = {
 
 const mediaItems: MediaItem[] = [
   {
-    type: 'video',
-    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    poster: 'https://picsum.photos/id/237/1920/1080'
+    type: 'image',
+    src: '/images/publications/photo/2.about/img_about_01@2x.jpg'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/id/1018/1920/1080',
-  },
+    src: '/images/publications/photo/2.about/img_about_02@2x.jpg',
+  },  
   {
     type: 'image',
-    src: 'https://picsum.photos/id/1015/1920/1080',
+    src: '/images/publications/photo/2.about/img_about_03@2x.jpg',
   }
 ];
 
@@ -102,10 +101,26 @@ export const AboutSection = () => {
       next: 560
     };
 
+    // z-indexを動的に設定
+    // direction > 0 の場合（右から左への移動）: 右のスライドが奥を通る
+    // direction < 0 の場合（左から右への移動）: 左のスライドが奥を通る
+    const getZIndex = () => {
+      if (direction > 0) {
+        // 右から左への移動時
+        return position === 'current' ? 2 : position === 'prev' ? 1 : 0;
+      } else if (direction < 0) {
+        // 左から右への移動時
+        return position === 'current' ? 2 : position === 'next' ? 1 : 0;
+      } else {
+        // 初期状態
+        return position === 'current' ? 2 : 1;
+      }
+    };
+
     return {
       x: xOffset[position as keyof typeof xOffset],
       opacity: position === 'current' ? 1 : 1,
-      zIndex: position === 'current' ? 1 : 0
+      zIndex: getZIndex()
     };
   };
 
@@ -147,9 +162,9 @@ export const AboutSection = () => {
   };
 
   return (
-    <section className="py-32">
+    <section className="pt-[300px] sp:pt-[300px]">
       <div className="relative max-w-[1312px] mx-auto px-9 mb-[120px]">
-        <div className="flex items-center justify-center h-[540px] sp:h-[400px]">
+        <div className="flex items-center justify-center h-[338px] sp:h-[216px]">
           {/* @ts-ignore */}
           <AnimatePresence initial={false} mode="wait">
             {[-1, 0, 1].map((offset) => {
@@ -245,22 +260,25 @@ export const AboutSection = () => {
 
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="font-jp mb-12">群馬の山地を産地に。</h2>
-        <div className="space-y-8 body1">
+        <div className="gap-space-xl body1">
           <p className="font-jp body1">
             私たちは、前橋の豊かな山々を舞台に、<br />
             リジェネラティブ（再生型）の農業と<br />
             ワイン醸造を実践しながら、<br />
-            ソーシャルグッドな価値を生み出す新たな挑戦を始めます。<br />
+            ソーシャルグッドな価値を生み出す<br />
+            新たな挑戦を始めます。<br />
             <br />
-            このプロジェクトは、単なるワインづくりにとどまらず、<br />
-            「経世済民」の精神を現代のかたちで体現し、<br />
-            共助を育む場の経済循環を創り出すものでもあります。<br />
+            このプロジェクトは､<br />
+            単なるワインづくりにとどまらず、<br />
+            「経世済民」の精神を現代のかたちで体現し､<br />
+            共助を育む幸せの経済循環を<br />
+            創り出す試みでもあります｡            <br />
             <br />
-            山の恵みと知恵を活かし、<br />
-            次世代が「もっと先を描きたい」と思えるような、<br />
-            自然や社会との再生可能な関係を育むビジネスモデルを、<br />
-            皆さんと一緒に築いていきたいと考えています。
-          </p>
+            山の恵みと知恵を活かし、次世代が<br />
+            「もっと先を描きたい」と思えるような､<br />
+            自然や社会との再生可能な関係を育む<br />
+            ビジネスモデルを皆さんと一緒に<br />
+            築いていきたいと考えています｡          </p>
           <p className="subhead4 text-black/50 font-jp mt-12">
             ぐんま山育<span className="font-en">DAO</span> 一同
           </p>
