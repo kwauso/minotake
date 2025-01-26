@@ -62,7 +62,7 @@ export const ShareModal = ({ isOpen, onClose }: Props) => {
   return (
     <div 
       className={`
-        fixed inset-0 z-[100] flex items-center justify-center
+        fixed inset-0 z-[100] flex items-center justify-center padding-x-side
         transition-all duration-500 ease-out
         ${isVisible ? 'bg-black/50' : 'bg-transparent pointer-events-none'}
       `}
