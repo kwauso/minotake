@@ -14,7 +14,7 @@ export const OpenChat = () => {
         image="/images/publications/openchat_logo.svg"
         variant="dark"
         button={{
-          label: "参加する",
+          label: "チャットに入る",
           href: LINE_OPENCHAT_URL
         }}
       />
