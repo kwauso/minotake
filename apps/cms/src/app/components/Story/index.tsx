@@ -7,8 +7,10 @@ import { currentSectionAtom, currentStoryAtom } from '@/app/store/navigation';
 import { currentStoryIndexAtom } from '@/app/store/story';
 import Image from 'next/image';
 import { StoryModal } from '../StoryModal';
+import { Story } from '@/app/types/story';
+import { stories } from '@/app/data/stories';
 
-export const Story = () => {
+export const StorySection = () => {
   const setCurrentSection = useSetAtom(currentSectionAtom);
   const setCurrentStory = useSetAtom(currentStoryAtom);
   const [currentStoryIndex, setCurrentStoryIndex] = useAtom(currentStoryIndexAtom);
@@ -16,77 +18,6 @@ export const Story = () => {
     threshold: 0.5,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const stories = [
-    {
-      category: '01 - ワインについて',
-      title: '今回創るぶどう品種',
-      image: '/images/publications/kv.png',
-      description: '文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章。',
-      alt: 'ワイン畑の風景',
-      content: '文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章。'
-    },
-    {
-      category: '02 - ワインについて',
-      title: '終わりなき探求家',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '03 - ワインについて',
-      title: '大岡という醸造家',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '04 - ワインについて',
-      title: '日本食と自然派ワインの相性',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '05 - ワインについて',
-      title: '日本文化と<br />自然派ワイン',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '06 - ワインについて',
-      title: 'ゆかりあるシェフたちとの共創',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '07 - ワインについて',
-      title: '馬車史の生産',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '08 - ワイナリー',
-      title: '自然と調和するワイナリー',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '09 - チャレンジ',
-      title: '世界への挑戦',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '10 - チャレンジ',
-      title: '山を育むことで日本の過疎化を防ぐ',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    },
-    {
-      category: '11 - チャレンジ',
-      title: '群馬の風景を価値あるものに変えていく',
-      image: '/images/publications/kv.png',
-      alt: 'ワイン畑の風景'
-    }
-  ];
 
   const handleCardClick = (index: number) => {
     setCurrentStoryIndex(index);

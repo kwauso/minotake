@@ -1,6 +1,6 @@
 export const overviewData = {
     mainImage: {
-      src: '/images/publications/kv.png',
+      src: '/images/publications/photo/3.overview/img_overview_01@2x.jpg',
       alt: 'ワイン畑の風景'
     },
     sections: [

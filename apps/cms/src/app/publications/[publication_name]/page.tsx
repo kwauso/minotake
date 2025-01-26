@@ -7,7 +7,7 @@ import { SectionNav } from '@/app/components/SectionNav';
 import { WaitlistFooter } from '@/app/components/WaitlistFooter';
 import { AboutSection } from '@/app/components/AboutSection';
 import { Overview } from '@/app/components/Overview';
-import { Story } from '@/app/components/Story';
+import { StorySection } from '@/app/components/Story';
 import { Benefits } from '@/app/components/Benefits';
 import { Activity } from '@/app/components/Activity';
 import { FundUsage } from '@/app/components/FundUsage';
@@ -43,7 +43,7 @@ export default function PublicationPage() {
             <Overview />
           </div>
           <div id="story">
-            <Story />
+            <StorySection />
           </div>
           <div id="benefits">
             <Benefits />

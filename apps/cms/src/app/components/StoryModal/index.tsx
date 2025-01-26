@@ -4,26 +4,16 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { StoryNavigation } from './StoryNavigation';
 import { Caption } from './Caption';
+import { ContentItem, Story } from '@/app/types/story';
 
 interface StoryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  currentStory: {
-    category: string;
-    title: string;
-    image: string;
-    alt: string;
-    content?: string;
-    description?: string;
-  };
+  currentStory: Story;
   onPrev: () => void;
   onNext: () => void;
-  prevStory?: {
-    title: string;
-  };
-  nextStory?: {
-    title: string;
-  };
+  prevStory?: Story;
+  nextStory?: Story;
 }
 
 export const StoryModal: React.FC<StoryModalProps> = ({
@@ -79,6 +69,67 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
   if (!isOpen && !isAnimating) return null;
 
+  const ContentRenderer = ({ content }: { content?: ContentItem[] }) => {
+    if (!content) return null;
+
+    return (
+      <div className="flex flex-col gap-space-xl">
+        {content.map((item, index) => {
+          if (item.type === 'text') {
+            return (
+              <div key={index} className="flex flex-col gap-[18px]">
+                <h4 className="text-black/80 font-genei-gothic text-[20px] leading-[28px]">
+                  {item.subtitle}
+                </h4>
+                <p 
+                  className="text-black/50 font-genei-gothic text-[14px] leading-[32px]"
+                  dangerouslySetInnerHTML={{ __html: item.body }}
+                />
+                {item.images && (
+                  <div className="flex flex-col gap-4 mt-4">
+                    {item.images.map((image, imgIndex) => (
+                      <div key={imgIndex}>
+                        <div className="relative w-full h-[329px]">
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            className="rounded-[30px] object-cover"
+                          />
+                        </div>
+                        <div className="flex w-full mt-4">
+                           {/* ここは、item.captionがあったら、表示 */}
+                           {image.caption && <Caption children={image.caption} />}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          } else {
+            return (
+              <div key={index}>
+                <div className="relative w-full h-[329px]">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="rounded-[30px] object-cover"
+                  />
+                </div>
+                <div className="flex w-full mt-4">
+                  {/* ここは、item.captionがあったら、表示 */}
+                  {item.caption && <Caption children={item.caption} />}
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
+    );
+  };
+
   return (
     <div
       className={`
@@ -105,7 +156,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                 <div 
                   className="absolute inset-0 bg-black overflow-hidden rounded-tl-[40px] tb:rounded-none h-full" 
                 >
-                  <div className="hidden tb:absolute tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
+                  <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
                     <button
                       onClick={onClose}
                       className="hover:opacity-70 transition-opacity"
@@ -121,6 +172,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                       backgroundPosition: 'center'
                     }}
                   />
+                  <div className="absolute inset-0 bg-black/50" />
                   <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
                     <div className="space-y-5">
                       <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
@@ -130,9 +182,13 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                         <h2 className="text-white font-genei-gothic text-[32px] leading-[40px]">
                           {currentStory.title}
                         </h2>
-                        <p className="text-white/80 font-genei-gothic text-[15px] leading-8">
-                          {currentStory.content || ''}
-                        </p>
+                        {/* {Array.isArray(currentStory.content) && currentStory.content.map((item, index) => (
+                          item.type === 'text' && (
+                            <p key={index} className="text-white/80 font-genei-gothic text-[15px] leading-8">
+                              {item.body}
+                            </p>
+                          )
+                        ))} */}
                       </div>
                     </div>
 
@@ -199,22 +255,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
                 <div className="flex flex-col gap-[56px]">
                   <div className="flex flex-col gap-[18px]">
-                    <h2 className="text-black/80 font-genei-gothic text-[23px] leading-[30px]">
-                      {currentStory.title}
-                    </h2>
-                    <p className="text-black/50 font-genei-gothic text-[14px] leading-[32px]">
-                      {currentStory.content}
-                    </p>
-                    <Image
-                      src={currentStory.image}
-                      alt={currentStory.alt}
-                      width={600}
-                      height={329}
-                      className="rounded-[30px] object-cover w-full h-[329px]"
-                    />
-                    <Caption>
-                      {currentStory.description || currentStory.content}
-                    </Caption>
+                    <ContentRenderer content={currentStory.content} />
                   </div>
 
                   <div className="flex flex-col gap-[56px] items-center">
