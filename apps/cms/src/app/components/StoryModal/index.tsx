@@ -156,7 +156,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     >
       <div
         className={`
-          w-full h-[90vh] tb:h-[100vh] transition-transform duration-500
+          w-full h-[90vh] transition-transform duration-500
           ${isVisible ? 'translate-y-0' : 'translate-y-full'}
         `}
         onClick={e => e.stopPropagation()}
@@ -165,16 +165,29 @@ export const StoryModal: React.FC<StoryModalProps> = ({
           <div className="absolute inset-0 flex tb:flex-col">
             <div className="flex w-full h-full tb:flex-col">
               <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
+              <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
+                    <button
+                      onClick={onClose}
+                      className="hover:opacity-70 transition-opacity"
+                    >
+                      <Image src="/images/publications/modal_close_button.svg" alt="閉じる" width={32} height={32} />
+                    </button>
+                  </div>
+
                 <div className="absolute inset-0 overflow-hidden">
                   <div
                     className="absolute inset-0"
-                    style={{
-                      backgroundImage: `url(${currentStory.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      opacity: 0.8
-                    }}
-                  />
+                  >
+                    <Image
+                      src={currentStory.image}
+                      alt="Story background"
+                      fill
+                      priority={true}
+                      className="object-cover opacity-80"
+                      sizes="100vw"
+                      quality={100}
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/50" />
                   <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
                     <div 
@@ -188,7 +201,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                       </p>
                       <div className="space-y-2">
                         <h2 
-                          className="text-white font-genei-gothic text-[32px] leading-[40px]"
+                          className="text-white font-jp"
                           dangerouslySetInnerHTML={{ __html: currentStory.title }}
                         />
                       </div>
@@ -253,7 +266,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
               <div 
                 ref={contentRef}
-                className="w-1/2 p-12 overflow-y-auto bg-white tb:w-full"
+                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto bg-white tb:w-full"
               >
                 <div 
                   className={`
