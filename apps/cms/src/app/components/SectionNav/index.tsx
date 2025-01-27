@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 type Section = {
   id: string;
@@ -24,19 +24,19 @@ type Section = {
 // ];
 
 const sections: Section[] = [
-  { id: 'about', title: '私たちについて' },
-  { id: 'summary', title: 'プロジェクト概要' },
-  { id: 'story', title: 'ストーリー' },
-  { id: 'benefits', title: '参加者特典' },
-  { id: 'roles', title: '参加者の役割' },
-  { id: 'roadmap', title: 'ロードマップ' },
-  { id: 'members', title: 'メンバー/サポート' },
-  { id: 'ratio', title: '参加者構成比' },
-  { id: 'faq', title: 'FAQ' },
+  { id: "about", title: "私たちについて" },
+  { id: "summary", title: "プロジェクト概要" },
+  { id: "story", title: "ストーリー" },
+  { id: "benefits", title: "参加特典案" },
+  { id: "roles", title: "参加者の役割" },
+  { id: "roadmap", title: "ロードマップ" },
+  { id: "members", title: "メンバー/サポート" },
+  { id: "ratio", title: "参加者構成比" },
+  { id: "faq", title: "FAQ" },
 ];
 
 export const SectionNav = () => {
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState("about");
   const [paddingSide, setPaddingSide] = useState(36); // デフォルト値
   const navRef = useRef<HTMLDivElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
@@ -45,18 +45,21 @@ export const SectionNav = () => {
   useEffect(() => {
     const updatePaddingSide = () => {
       const width = window.innerWidth;
-      if (width >= 1024) { // PC
+      if (width >= 1024) {
+        // PC
         setPaddingSide(36);
-      } else if (width >= 768) { // TB
+      } else if (width >= 768) {
+        // TB
         setPaddingSide(28);
-      } else { // SP
+      } else {
+        // SP
         setPaddingSide(28);
       }
     };
 
     updatePaddingSide();
-    window.addEventListener('resize', updatePaddingSide);
-    return () => window.removeEventListener('resize', updatePaddingSide);
+    window.addEventListener("resize", updatePaddingSide);
+    return () => window.removeEventListener("resize", updatePaddingSide);
   }, []);
 
   useEffect(() => {
@@ -65,20 +68,23 @@ export const SectionNav = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            const activeButton = document.querySelector(`[data-section="${entry.target.id}"]`);
+            const activeButton = document.querySelector(
+              `[data-section="${entry.target.id}"]`
+            );
             if (activeButton && navRef.current && lastButtonRef.current) {
-              const scrollPosition = (activeButton as HTMLElement).offsetLeft - paddingSide;
+              const scrollPosition =
+                (activeButton as HTMLElement).offsetLeft - paddingSide;
 
               navRef.current.scrollTo({
                 left: scrollPosition,
-                behavior: 'smooth'
+                behavior: "smooth",
               });
             }
           }
         });
       },
       {
-        rootMargin: '-50% 0px',
+        rootMargin: "-50% 0px",
         threshold: 0,
       }
     );
@@ -97,11 +103,12 @@ export const SectionNav = () => {
     if (element) {
       const headerOffset = 112;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -109,7 +116,10 @@ export const SectionNav = () => {
   return (
     <nav className="sticky top-[51px] z-40">
       <div className="mx-auto padding-top-xs padding-bottom-xs bg-white">
-        <div ref={navRef} className="flex gap-2 overflow-x-auto scrollbar-hide padding-x-side">
+        <div
+          ref={navRef}
+          className="flex gap-2 overflow-x-auto scrollbar-hide padding-x-side"
+        >
           <div ref={buttonsRef} className="flex gap-2">
             {sections.map(({ id, title }, index) => (
               <Link
@@ -121,9 +131,10 @@ export const SectionNav = () => {
                 className={`
                   px-4 py-2 rounded-full subhead3 whitespace-nowrap
                   transition-all duration-300 ease-in-out
-                  ${activeSection === id 
-                    ? 'bg-black text-white' 
-                    : 'bg-[#E5E5E5] text-black hover:bg-gray-100'
+                  ${
+                    activeSection === id
+                      ? "bg-black text-white"
+                      : "bg-[#E5E5E5] text-black hover:bg-gray-100"
                   }
                 `}
               >
@@ -131,30 +142,32 @@ export const SectionNav = () => {
               </Link>
             ))}
             {/* 右側の余白用の要素 - 動的に計算 */}
-            <div 
-              className="min-w-[calc(100vw-36px)]" 
-              style={{ 
-                marginRight: lastButtonRef.current 
-                  ? -lastButtonRef.current.offsetWidth 
-                  : 0 
+            <div
+              className="min-w-[calc(100vw-36px)]"
+              style={{
+                marginRight: lastButtonRef.current
+                  ? -lastButtonRef.current.offsetWidth
+                  : 0,
               }}
-              aria-hidden="true" 
+              aria-hidden="true"
             />
           </div>
         </div>
       </div>
-      
+
       {/* グラデーション部分 */}
       <div className="h-6 relative mt-[-1px]">
-        <div 
+        <div
           className="absolute inset-0"
-          style={{ 
-            background: 'linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 100%)',
-            maskImage: 'linear-gradient(to bottom, white 0%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, white 0%, transparent 100%)'
-          }} 
+          style={{
+            background:
+              "linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 100%)",
+            maskImage: "linear-gradient(to bottom, white 0%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, white 0%, transparent 100%)",
+          }}
         />
       </div>
     </nav>
   );
-}; 
+};
