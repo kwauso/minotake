@@ -21,8 +21,9 @@ import { Footer } from '@/app/components/Footer';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
+      <div className="min-h-screen bg-white">
+        <Header />
 
       <div className="w-full overflow-x-hidden margin-bottom-l">
         <KeyVisual />
@@ -64,9 +65,10 @@ export default function HomePage() {
       </div>
 
       <WaitlistFooter />
-      <DaoEasterEgg />
-      {/* <DesignOverlay /> */}
-      <Footer />
-    </div>
+        <DaoEasterEgg />
+        {/* <DesignOverlay /> */}
+        <Footer />
+      </div>
+    </>
   );
 }
