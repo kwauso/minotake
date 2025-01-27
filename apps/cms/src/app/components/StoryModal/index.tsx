@@ -166,14 +166,14 @@ export const StoryModal: React.FC<StoryModalProps> = ({
   return (
     <div
       className={`
-        fixed inset-0 z-[100] flex items-end
+        fixed inset-0 z-[100] flex items-start
         ${isVisible ? "bg-black/50" : "bg-transparent pointer-events-none"}
       `}
       onClick={onClose}
     >
       <div
         className={`
-          w-full h-full tb:h-[90vh] transition-transform duration-500
+          w-full h-full transition-transform duration-500
           ${isVisible ? "translate-y-0" : "translate-y-full"}
         `}
         onClick={(e) => e.stopPropagation()}
@@ -291,7 +291,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
               <div
                 ref={contentRef}
-                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-clip bg-white tb:w-full"
+                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-scroll bg-white tb:w-full"
               >
                 <div
                   className={`

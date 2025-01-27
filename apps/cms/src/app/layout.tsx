@@ -56,12 +56,14 @@ export default function RootLayout({
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           />
-          <title>ぐんま山育DAO | 群馬の山地を産地に</title>
+          <title>
+            群馬の山から、世界が認める自然派ワインを。| ぐんま山育DAO powerd by
+            DAOX
+          </title>
           <meta
             name="description"
-            content="私たちは、前橋の豊かな山々を舞台に、リジェネラティブ（再生型）の農業とワイン醸造を実践しながら、ソーシャルグッドな価値を生み出す新たな挑戦を始めます。"
+            content="自然派ワインとの親和性が高い日本という土地で、新しいワイン用ブドウ品種を開発し、世界に通用するワインをDAOという組織形態でつくります。メンバーには育種家・林慎悟や栽培醸造家・大岡弘武に加え、サポーターとして群馬県庁も参画し、地方創生の新しいモデルを目指します。"
           />
-
           {/* OGP基本設定 */}
           <meta
             property="og:title"
