@@ -291,7 +291,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
 
               <div
                 ref={contentRef}
-                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-clip bg-white tb:w-full"
+                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-scroll bg-white tb:w-full"
               >
                 <div
                   className={`
