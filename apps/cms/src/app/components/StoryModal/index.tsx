@@ -79,6 +79,15 @@ export const StoryModal: React.FC<StoryModalProps> = ({
   const isLastStory = !nextStory;
 
   const handlePageChange = (changeFunction: () => void) => {
+    // TB/SP版のスクロール要素を取得
+    const modalElement = document.querySelector(".tb\\:overflow-y-auto");
+    if (modalElement) {
+      modalElement.scrollTop = 0;
+    }
+    // PC版のスクロール要素
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
     changeFunction();
   };
 
@@ -163,7 +172,10 @@ export const StoryModal: React.FC<StoryModalProps> = ({
         `}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none">
+        <div
+          id="modal-content"
+          className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none"
+        >
           <div className="absolute inset-0 flex tb:flex-col">
             <div className="flex w-full h-full tb:overflow-y-auto tb:flex-col">
               <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
@@ -305,7 +317,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                         <StoryNavigation
                           type="NEXT"
                           title={nextStory.title}
-                          onClick={onNext}
+                          onClick={() => handlePageChange(onNext)}
                         />
                       )}
                       <button
