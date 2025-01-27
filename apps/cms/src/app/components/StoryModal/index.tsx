@@ -198,7 +198,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                 </button>
               </div>
               {/* PC版コンテンツ */}
-              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
+              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[300px] tb:min-h-[336px]">
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="absolute inset-0">
                     <Image
