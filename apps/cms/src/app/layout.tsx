@@ -1,30 +1,29 @@
-'use client';
+"use client";
 
-import { Header } from '@/app/components/Header';
-import { ScrollHeader } from '@/app/components/ScrollHeader';
-import localFont from 'next/font/local';
-import './globals.css';
-import { useEffect } from 'react';
+import { ScrollHeader } from "@/app/components/ScrollHeader";
+import localFont from "next/font/local";
+import "./globals.css";
+import { useEffect } from "react";
+import { HelmetProvider, Helmet } from "react-helmet-async";
+import { LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
+import { Inter } from "next/font/google";
 
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
-
+const inter = Inter({ subsets: ["latin"] });
 
 const genEiGothic = localFont({
   src: [
     {
-      path: './fonts/GenEiGothicM-Regular.ttf',
-      weight: '400',
-      style: 'normal',
+      path: "./fonts/GenEiGothicM-Regular.ttf",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: './fonts/GenEiGothicM-SemiLight.ttf',
-      weight: '350',
-      style: 'normal',
-    }
+      path: "./fonts/GenEiGothicM-SemiLight.ttf",
+      weight: "350",
+      style: "normal",
+    },
   ],
-  variable: '--font-genei-gothic'
+  variable: "--font-genei-gothic",
 });
 
 export default function RootLayout({
@@ -39,22 +38,68 @@ export default function RootLayout({
       }
     };
 
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
-      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yamaiku-dao.com";
+  const ogpImageUrl = `${baseUrl}/ogp_01.png`;
+
   return (
     <html lang="ja">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-      </head>
-      <body className={`${inter.className} ${genEiGothic.variable} font-genei-gothic`}>
-        <ScrollHeader />
-        {children}
-      </body>
+      <HelmetProvider>
+        <Helmet>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+          <title>ぐんま山育DAO | 群馬の山地を産地に</title>
+          <meta
+            name="description"
+            content="私たちは、前橋の豊かな山々を舞台に、リジェネラティブ（再生型）の農業とワイン醸造を実践しながら、ソーシャルグッドな価値を生み出す新たな挑戦を始めます。"
+          />
+
+          {/* OGP基本設定 */}
+          <meta
+            property="og:title"
+            content="ぐんま山育DAO | 群馬の山地を産地に"
+          />
+          <meta
+            property="og:description"
+            content="群馬の山から、世界が認める自然派ワインを。一緒に新しい価値を創り出しませんか？"
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={baseUrl} />
+          <meta property="og:image" content={ogpImageUrl} />
+          <meta property="og:site_name" content="ぐんま山育DAO" />
+          <meta property="og:locale" content="ja_JP" />
+
+          {/* Twitter Card設定 */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content="ぐんま山育DAO | 群馬の山地を産地に"
+          />
+          <meta
+            name="twitter:description"
+            content="群馬の山から、世界が認める自然派ワインを。一緒に新しい価値を創り出しませんか？"
+          />
+          <meta name="twitter:image" content={ogpImageUrl} />
+        </Helmet>
+        <body
+          className={`${inter.className} ${genEiGothic.variable} font-genei-gothic`}
+        >
+          <LazyMotion features={domAnimation}>
+            <AnimatePresence mode="sync">
+              <ScrollHeader key="scroll-header" />
+              <div key="main-content">{children}</div>
+            </AnimatePresence>
+          </LazyMotion>
+        </body>
+      </HelmetProvider>
     </html>
   );
 }

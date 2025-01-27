@@ -1,26 +1,22 @@
-type ImageContent = {
-  src: string;
-  alt: string;
-  caption?: string;
-};
-
-export type ContentItem = {
-  type: 'text';
-  subtitle: string;
-  body: string;
-  images?: ImageContent[];
-} | {
-  type: 'image';
-  src: string;
-  alt: string;
-  caption?: string;
-};
-
-export type Story = {
+export interface Story {
   category: string;
   title: string;
   description: string;
   image: string;
   alt: string;
-  content?: ContentItem[];
-}; 
+  content?: ContentItem[] | string;
+}
+
+export interface ContentItem {
+  type: "text" | "image";
+  subtitle?: string;
+  body?: string;
+  src?: string;
+  alt?: string;
+  caption?: string;
+  images?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  }[];
+}

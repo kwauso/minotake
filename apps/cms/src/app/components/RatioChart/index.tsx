@@ -167,9 +167,9 @@ export const RatioChart = () => {
                   fill="none"
                   stroke={`url(#gradient-${index})`}
                   strokeWidth={currentStrokeWidth}
-                  initial={{ pathLength: 0 }}
-                  animate={inView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 1, delay: index * 0.1 }}
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={inView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+                  transition={{ duration: 1, delay: index * 0.1, type: "spring", stiffness: 100 }}
                 />
               ))}
             </svg>
@@ -186,9 +186,9 @@ export const RatioChart = () => {
                     top: `${pos.y}px`,
                     transform: 'translate(-50%, -50%)'
                   }}
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : {}}
-                  transition={{ delay: 0.5 + index * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 1 + index * 0.1, type: "spring", stiffness: 100 }}
                 >
                   {`${participant.label} / ${participant.percentage}%`}
                 </motion.div>
