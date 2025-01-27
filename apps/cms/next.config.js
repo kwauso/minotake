@@ -1,50 +1,49 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: "standalone",
   images: {
-    domains: ['localhost'],
+    domains: ["localhost"],
     unoptimized: true,
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: "https",
+        hostname: "**",
       },
     ],
   },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: [{
-        loader: '@svgr/webpack',
-        options: {
-          typescript: true,
-          dimensions: false,
-        }
-      }]
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            typescript: true,
+            dimensions: false,
+          },
+        },
+      ],
     });
     return config;
   },
   async headers() {
     return [
       {
-        source: '/_next/static/:path*',
+        source: "/_next/static/:path*",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
     ];
   },
   reactStrictMode: false,
-  experimental: {
-    appDir: true,
-  },
-  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  pageExtensions: ["tsx", "ts", "jsx", "js"],
   compiler: {
     styledComponents: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
