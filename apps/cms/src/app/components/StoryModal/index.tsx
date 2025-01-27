@@ -173,7 +173,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     >
       <div
         className={`
-          w-full h-[100dvh] transition-transform duration-500
+          w-full h-full transition-transform duration-500
           ${isVisible ? "translate-y-0" : "translate-y-full"}
         `}
         onClick={(e) => e.stopPropagation()}
@@ -183,156 +183,155 @@ export const StoryModal: React.FC<StoryModalProps> = ({
           className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none"
         >
           <div className="absolute inset-0 flex tb:flex-col">
-            <div className="flex w-full h-full tb:h-[100dvh] tb:flex-col">
-              <div className="w-full h-full tb:flex-1 tb:overflow-y-auto tb:overscroll-y-none">
-                <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
-                  <button
-                    onClick={onClose}
-                    className="hover:opacity-70 transition-opacity"
-                  >
+            <div className="flex w-full h-full tb:overflow-y-auto tb:flex-col">
+              <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
+                <button
+                  onClick={onClose}
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  <Image
+                    src="/images/publications/modal_close_button.svg"
+                    alt="閉じる"
+                    width={32}
+                    height={32}
+                  />
+                </button>
+              </div>
+              {/* PC版コンテンツ */}
+              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute inset-0">
                     <Image
-                      src="/images/publications/modal_close_button.svg"
-                      alt="閉じる"
-                      width={32}
-                      height={32}
+                      src={currentStory.image}
+                      alt="Story background"
+                      fill
+                      priority={true}
+                      className="object-cover opacity-80"
+                      sizes="100vw"
+                      quality={100}
                     />
-                  </button>
-                </div>
-                <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[400px] tb:min-h-[400px]">
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute inset-0">
-                      <Image
-                        src={currentStory.image}
-                        alt="Story background"
-                        fill
-                        priority={true}
-                        className="object-cover opacity-80"
-                        sizes="100vw"
-                        quality={100}
-                      />
+                  </div>
+                  <div className="absolute inset-0 bg-black/50" />
+                  <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
+                    <div
+                      className={`
+                        space-y-5 transition-opacity duration-300
+                        ${isLeftContentVisible ? "opacity-100" : "opacity-0"}
+                      `}
+                    >
+                      <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
+                        {currentStory.category}
+                      </p>
+                      <div className="space-y-2">
+                        <h2
+                          className="text-white font-jp"
+                          dangerouslySetInnerHTML={{
+                            __html: currentStory.title,
+                          }}
+                        />
+                      </div>
                     </div>
-                    <div className="absolute inset-0 bg-black/50" />
-                    <div className="relative h-full flex flex-col justify-between padding-x-side padding-y-xl tb:padding-top-[100px]">
-                      <div
-                        className={`
-                          space-y-5 transition-opacity duration-300
-                          ${isLeftContentVisible ? "opacity-100" : "opacity-0"}
-                        `}
-                      >
-                        <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
-                          {currentStory.category}
-                        </p>
-                        <div className="space-y-2">
-                          <h2
-                            className="text-white font-jp"
-                            dangerouslySetInnerHTML={{
-                              __html: currentStory.title,
-                            }}
+
+                    <div
+                      className={`
+                        ${!isFirstStory && !isLastStory ? "grid grid-cols-2" : "flex"} 
+                        gap-5 w-full transition-opacity duration-300
+                        ${isLeftContentVisible ? "opacity-100" : "opacity-0"}
+                      `}
+                    >
+                      {!isFirstStory && (
+                        <button
+                          onClick={() => handlePageChange(onPrev)}
+                          className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
+                        >
+                          <Image
+                            src="/images/publications/left_arrow_white.svg"
+                            alt="前へ"
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0 opacity-60 absolute left-3"
                           />
-                        </div>
-                      </div>
+                          <div className="flex flex-col gap-space-2xs overflow-hidden pl-10 flex-1">
+                            <p className="text-white/50 subhead3 font-light text-left">
+                              PREV
+                            </p>
+                            <h6 className="text-white font-jp truncate text-left">
+                              {prevStory?.title.replace(/<br\s*\/?>/g, "")}
+                            </h6>
+                          </div>
+                        </button>
+                      )}
 
-                      <div
-                        className={`
-                          ${!isFirstStory && !isLastStory ? "grid grid-cols-2" : "flex"} 
-                          gap-5 w-full transition-opacity duration-300
-                          ${isLeftContentVisible ? "opacity-100" : "opacity-0"}
-                        `}
-                      >
-                        {!isFirstStory && (
-                          <button
-                            onClick={() => handlePageChange(onPrev)}
-                            className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
-                          >
-                            <Image
-                              src="/images/publications/left_arrow_white.svg"
-                              alt="前へ"
-                              width={16}
-                              height={16}
-                              className="flex-shrink-0 opacity-60 absolute left-3"
-                            />
-                            <div className="flex flex-col gap-space-2xs overflow-hidden pl-10 flex-1">
-                              <p className="text-white/50 subhead3 font-light text-left">
-                                PREV
-                              </p>
-                              <h6 className="text-white font-jp truncate text-left">
-                                {prevStory?.title.replace(/<br\s*\/?>/g, "")}
-                              </h6>
-                            </div>
-                          </button>
-                        )}
-
-                        {!isLastStory && (
-                          <button
-                            onClick={() => handlePageChange(onNext)}
-                            className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
-                          >
-                            <div className="flex flex-col gap-space-2xs overflow-hidden pr-10 flex-1">
-                              <p className="text-white/50 subhead3 font-light text-left">
-                                NEXT
-                              </p>
-                              <h6 className="text-white font-jp truncate text-left">
-                                {nextStory?.title.replace(/<br\s*\/?>/g, "")}
-                              </h6>
-                            </div>
-                            <Image
-                              src="/images/publications/right_arrow_white.svg"
-                              alt="次へ"
-                              width={16}
-                              height={16}
-                              className="flex-shrink-0 opacity-60 absolute right-3"
-                            />
-                          </button>
-                        )}
-                      </div>
+                      {!isLastStory && (
+                        <button
+                          onClick={() => handlePageChange(onNext)}
+                          className="flex items-center gap-space-xs padding-xs rounded-[20px] backdrop-blur-[10px] bg-black/30 w-full relative"
+                        >
+                          <div className="flex flex-col gap-space-2xs overflow-hidden pr-10 flex-1">
+                            <p className="text-white/50 subhead3 font-light text-left">
+                              NEXT
+                            </p>
+                            <h6 className="text-white font-jp truncate text-left">
+                              {nextStory?.title.replace(/<br\s*\/?>/g, "")}
+                            </h6>
+                          </div>
+                          <Image
+                            src="/images/publications/right_arrow_white.svg"
+                            alt="次へ"
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0 opacity-60 absolute right-3"
+                          />
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
+              </div>
 
+              <div
+                ref={contentRef}
+                className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-clip bg-white tb:w-full"
+              >
                 <div
-                  ref={contentRef}
-                  className="w-1/2 padding-x-side padding-y-xl overflow-y-auto tb:overflow-y-visible bg-white tb:w-full"
+                  className={`
+                    transition-opacity duration-300
+                    ${isContentVisible ? "opacity-100" : "opacity-0"}
+                  `}
                 >
-                  <div
-                    className={`
-                      transition-opacity duration-300
-                      ${isContentVisible ? "opacity-100" : "opacity-0"}
-                    `}
-                  >
-                    <div className="fixed top-8 right-8 z-50 tb:hidden">
-                      <button
-                        onClick={onClose}
-                        className="hover:opacity-70 transition-opacity"
-                      >
-                        <Image
-                          src="/images/publications/modal_close_button.svg"
-                          alt="閉じる"
-                          width={24}
-                          height={24}
-                        />
-                      </button>
+                  <div className="fixed top-8 right-8 z-50 tb:hidden">
+                    <button
+                      onClick={onClose}
+                      className="hover:opacity-70 transition-opacity"
+                    >
+                      <Image
+                        src="/images/publications/modal_close_button.svg"
+                        alt="閉じる"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
+                  </div>
+
+                  <div className="flex flex-col gap-[56px]">
+                    <div className="flex flex-col gap-[18px]">
+                      <ContentRenderer content={currentStory.content} />
                     </div>
 
-                    <div className="flex flex-col gap-[56px]">
-                      <div className="flex flex-col gap-[18px]">
-                        <ContentRenderer content={currentStory.content} />
-                      </div>
-
-                      <div className="flex flex-col gap-[56px] items-center">
-                        {nextStory && (
-                          <StoryNavigation
-                            type="NEXT"
-                            title={nextStory.title}
-                            onClick={() => handlePageChange(onNext)}
-                          />
-                        )}
-                        <button
-                          onClick={onClose}
-                          className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
-                        >
-                          閉じる
-                        </button>
-                      </div>
+                    <div className="flex flex-col gap-[56px] items-center">
+                      {nextStory && (
+                        <StoryNavigation
+                          type="NEXT"
+                          title={nextStory.title}
+                          onClick={() => handlePageChange(onNext)}
+                        />
+                      )}
+                      <button
+                        onClick={onClose}
+                        className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
+                      >
+                        閉じる
+                      </button>
                     </div>
                   </div>
                 </div>
