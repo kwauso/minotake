@@ -1,12 +1,12 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 export const KeyVisual = () => {
   return (
-    <div 
+    <div
       className="relative flex flex-col items-center justify-between px-4 md:px-9 padding-y-xl mt-[] w-full sp:h-[680px] h-[calc(100vh-100px)] max-h-[680px]"
       style={{
-        background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/photo/1.kv/img_kv_1@2x.jpg') center/cover no-repeat`
+        background: `linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/publications/photo/1.kv/img_kv_1@2x.jpg') center/cover no-repeat`,
       }}
     >
       {/* 上部テキスト */}
@@ -48,34 +48,24 @@ export const KeyVisual = () => {
           }
         />
         <Divider /> */}
-        <StatusItem
-          label="参加者数"
-          value="12"
-        />
+        <StatusItem label="参加者数" value="12" />
         <Divider />
-        <StatusItem
-          label="設立"
-          value="2025.01.27"
-        />
+        <StatusItem label="設立" value="2025.01.27" />
         <Divider />
-        <StatusItem
-          label="スポンサー"
-          value="群馬県庁"
-          isJP
-        />
+        <StatusItem label="サポーター" value="群馬県庁" isJP />
       </div>
     </div>
   );
 };
 
-const StatusItem = ({ 
-  label, 
-  value, 
+const StatusItem = ({
+  label,
+  value,
   subValue,
   customValue,
   isJP,
-  className
-}: { 
+  className,
+}: {
   label: string;
   value?: string;
   subValue?: string;
@@ -84,20 +74,18 @@ const StatusItem = ({
   className?: string;
 }) => (
   <div className="flex flex-col items-center">
-    <p className="text-[11px] leading-[15px] text-white/50 font-jp">
-      {label}
-    </p>
+    <p className="text-[11px] leading-[15px] text-white/50 font-jp">{label}</p>
     {customValue || (
       <div className="flex items-center gap-2">
-        <span className={`${isJP ? 'font-jp subhead2' : 'font-en font-light text-base leading-5'} text-white`}>
+        <span
+          className={`${isJP ? "font-jp subhead2" : "font-en font-light text-base leading-5"} text-white`}
+        >
           {value}
         </span>
         {subValue && (
           <>
             <span className="text-xs text-white/70">/</span>
-            <span className="text-xs text-white/70 font-en">
-              {subValue}
-            </span>
+            <span className="text-xs text-white/70 font-en">{subValue}</span>
           </>
         )}
       </div>
@@ -105,6 +93,4 @@ const StatusItem = ({
   </div>
 );
 
-const Divider = () => (
-  <div className="w-px h-[38px] bg-white/50" />
-);
+const Divider = () => <div className="w-px h-[38px] bg-white/50" />;
