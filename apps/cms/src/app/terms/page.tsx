@@ -19,9 +19,7 @@ export default function TermsPage() {
         <div className="min-h-screen bg-white">
           <Header />
           <div className="max-w-[800px] mx-auto padding-x-side padding-y-xl">
-            <h1 className="text-[32px] leading-[40px] font-genei-gothic mb-8">
-              利用規約
-            </h1>
+            <h1 className="text-[32px] leading-[40px] mb-8">利用規約</h1>
 
             <div className="space-y-8">
               <section>
@@ -31,18 +29,14 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  1. 適用
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">1. 適用</h2>
                 <p className="text-[15px] leading-8 text-black/80">
                   本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。当社は本サービスに関し、本規約のほか、ご利用にあたってのルール等、各種の定め（以下「個別規定」といいます）をすることがあります。これら個別規定はその名称のいかんに関わらず、本規約の一部を構成するものとします。
                 </p>
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  2. 利用登録
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">2. 利用登録</h2>
                 <ul className="list-disc pl-6 mt-4 text-[15px] leading-8 text-black/80">
                   <li>
                     本サービスの利用を希望する方は、本規約に同意の上、当社の定める方法によって利用登録を申請するものとします。
@@ -60,7 +54,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   3. アカウント管理
                 </h2>
                 <ul className="list-disc pl-6 mt-4 text-[15px] leading-8 text-black/80">
@@ -77,9 +71,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  4. 禁止事項
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">4. 禁止事項</h2>
                 <p className="text-[15px] leading-8 text-black/80">
                   ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません：
                 </p>
@@ -102,7 +94,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   5. 本サービスの提供の停止等
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -121,9 +113,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  6. 免責事項
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">6. 免責事項</h2>
                 <ul className="list-disc pl-6 mt-4 text-[15px] leading-8 text-black/80">
                   <li>
                     当社は、本サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、連絡または紛争等について一切責任を負いません。
@@ -138,7 +128,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   7. サービス内容の変更等
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -147,7 +137,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   8. 利用規約の変更
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -156,7 +146,7 @@ export default function TermsPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   9. 準拠法・裁判管轄
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">

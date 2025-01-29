@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         <div className="min-h-screen bg-white">
           <Header />
           <div className="max-w-[800px] mx-auto padding-x-side padding-y-xl">
-            <h1 className="text-[32px] leading-[40px] font-genei-gothic mb-8">
+            <h1 className="text-[32px] leading-[40px] mb-8">
               プライバシーポリシー
             </h1>
 
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   1. 個人情報の取得方法
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   2. 取得する個人情報の項目
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -69,9 +69,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  3. 利用目的
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">3. 利用目的</h2>
                 <p className="text-[15px] leading-8 text-black/80">
                   当社は、取得した個人情報を以下の目的で利用いたします：
                 </p>
@@ -87,7 +85,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   4. 個人情報の第三者提供
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -106,7 +104,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   5. 開示請求等の手続き
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -115,7 +113,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+                <h2 className="text-[24px] leading-[32px] mb-4">
                   6. お問い合わせ窓口
                 </h2>
                 <p className="text-[15px] leading-8 text-black/80">
@@ -126,9 +124,7 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
-                  7. 改定
-                </h2>
+                <h2 className="text-[24px] leading-[32px] mb-4">7. 改定</h2>
                 <p className="text-[15px] leading-8 text-black/80">
                   当社は、必要に応じて本ポリシーを改定することがあります。改定した場合には、本ウェブサイト上でお知らせいたします。
                 </p>

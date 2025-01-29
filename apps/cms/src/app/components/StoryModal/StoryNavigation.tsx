@@ -1,12 +1,16 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 type StoryNavigationProps = {
-  type: 'PREV' | 'NEXT';
+  type: "PREV" | "NEXT";
   title: string;
   onClick: () => void;
 };
 
-export const StoryNavigation = ({ type, title, onClick }: StoryNavigationProps) => {
+export const StoryNavigation = ({
+  type,
+  title,
+  onClick,
+}: StoryNavigationProps) => {
   return (
     <button
       onClick={onClick}
@@ -16,17 +20,17 @@ export const StoryNavigation = ({ type, title, onClick }: StoryNavigationProps) 
         <p className="text-black/50 font-helvetica-neue-light text-[14px] leading-[17px] font-light">
           {type}
         </p>
-        <p className="text-black font-genei-gothic text-[14px] leading-[18px] truncate">
-          {title.replace(/<br\s*\/?>/g, '')}
+        <p className="text-black text-[14px] leading-[18px] truncate">
+          {title.replace(/<br\s*\/?>/g, "")}
         </p>
       </div>
-      <Image 
-        src={`/images/publications/${type === 'PREV' ? 'left' : 'right'}_arrow_black.svg`}
-        alt={type === 'PREV' ? '前へ' : '次へ'}
+      <Image
+        src={`/images/publications/${type === "PREV" ? "left" : "right"}_arrow_black.svg`}
+        alt={type === "PREV" ? "前へ" : "次へ"}
         width={16}
         height={16}
         className="opacity-70"
       />
     </button>
   );
-}; 
+};

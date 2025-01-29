@@ -91,9 +91,7 @@ export default function RootLayout({
           />
           <meta name="twitter:image" content={ogpImageUrl} />
         </Helmet>
-        <body
-          className={`${inter.className} ${genEiGothic.variable} font-genei-gothic`}
-        >
+        <body className={`${genEiGothic.variable} font-sans`}>
           <LazyMotion features={domAnimation}>
             <AnimatePresence mode="sync">
               <ScrollHeader key="scroll-header" />

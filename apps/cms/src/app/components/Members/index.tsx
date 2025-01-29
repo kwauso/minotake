@@ -49,7 +49,7 @@ const members: Member[] = [
   },
   {
     role: "園芸家",
-    name: "星野学",
+    name: "星野 学",
     description:
       "草花苗の生産の仕事をしている両親に憧れて花卉園芸業界を目指す。母校テクノ・ホルティ園芸専門学校で3年間勤務の後、群馬県甘楽町の庭師加藤造園のもとで庭造りを学び、2002年より群馬県北部地域へ移住。花の生産からマルシェでの販売や花壇植栽、庭木の剪定などに加え、園芸の楽しさを伝える講座を年間100回以上開催するなど多岐にわたる仕事を行う｡",
     image: "/images/publications/photo/8.member/img_member_06@2x.jpg",
@@ -254,7 +254,7 @@ export const Members = () => {
               height={18.5}
             />
           </button>
-          <div className="font-en font-light text-[15px] leading-[18px]">
+          <div className=" font-light text-[15px] leading-[18px]">
             <span>{String(currentSlide + 1).padStart(2, "0")}</span>
             <span className="text-black/30">
               {" "}

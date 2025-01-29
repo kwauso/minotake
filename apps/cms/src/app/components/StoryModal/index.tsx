@@ -31,13 +31,13 @@ const ContentRenderer = ({ content }: { content?: ContentItem[] | string }) => {
           return (
             <div key={index} className="flex flex-col gap-[18px]">
               <h4
-                className="font-jp"
+                className=""
                 dangerouslySetInnerHTML={{
                   __html: item.subtitle || "",
                 }}
               />
               <p
-                className="text-black/50 font-genei-gothic text-[14px] leading-[32px]"
+                className="text-black/50 text-[14px] leading-[32px]"
                 dangerouslySetInnerHTML={{
                   __html: item.body || "",
                 }}
@@ -219,12 +219,12 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                         ${isLeftContentVisible ? "opacity-100" : "opacity-0"}
                       `}
                     >
-                      <p className="text-white/50 font-genei-gothic text-[13px] leading-[17px]">
+                      <p className="text-white/50 text-[13px] leading-[17px]">
                         {currentStory.category}
                       </p>
                       <div className="space-y-2">
                         <h2
-                          className="text-white font-jp"
+                          className="text-white "
                           dangerouslySetInnerHTML={{
                             __html: currentStory.title,
                           }}
@@ -255,7 +255,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                             <p className="text-white/50 subhead3 font-light text-left">
                               PREV
                             </p>
-                            <h6 className="text-white font-jp truncate text-left">
+                            <h6 className="text-white  truncate text-left">
                               {prevStory?.title.replace(/<br\s*\/?>/g, "")}
                             </h6>
                           </div>
@@ -271,7 +271,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                             <p className="text-white/50 subhead3 font-light text-left">
                               NEXT
                             </p>
-                            <h6 className="text-white font-jp truncate text-left">
+                            <h6 className="text-white  truncate text-left">
                               {nextStory?.title.replace(/<br\s*\/?>/g, "")}
                             </h6>
                           </div>
@@ -328,7 +328,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                       )}
                       <button
                         onClick={onClose}
-                        className="text-black/50 font-genei-gothic text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
+                        className="text-black/50 text-[14px] leading-[19px] hover:opacity-70 transition-opacity"
                       >
                         閉じる
                       </button>

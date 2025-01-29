@@ -270,9 +270,9 @@ export const AboutSection = () => {
       </div>
 
       <div className="text-center max-w-3xl mx-auto">
-        <h2 className="font-jp mb-12">群馬の山地を産地に。</h2>
+        <h2 className=" mb-12">群馬の山地を産地に。</h2>
         <div className="gap-space-xl body1">
-          <p className="font-jp body1">
+          <p className=" body1">
             私たちは、前橋の豊かな山々を舞台に、
             <br />
             リジェネラティブ（再生型）の農業と
@@ -304,8 +304,8 @@ export const AboutSection = () => {
             <br />
             築いていきたいと考えています｡{" "}
           </p>
-          <p className="subhead4 text-black/50 font-jp mt-12">
-            ぐんま山育<span className="font-en">DAO</span> 一同
+          <p className="subhead4 text-black/50  mt-12">
+            ぐんま山育<span className="">DAO</span> 一同
           </p>
         </div>
       </div>

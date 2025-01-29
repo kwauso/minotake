@@ -11,17 +11,17 @@ export const KeyVisual = () => {
     >
       {/* 上部テキスト */}
       <div className="flex flex-col items-center gap-space-m w-full md:w-[820px]">
-        <p className="text-white/70 font-jp subhead4 text-center">
+        <p className="text-white/70  subhead4 text-center">
           ぐんま山育
-          <span className="font-en">DAO</span>
+          <span className="">DAO</span>
         </p>
-        <h1 className="text-white font-jp text-center sp:px-6">
+        <h1 className="text-white  text-center sp:px-6">
           群馬の山から、世界が認める自然派ワインを｡
         </h1>
         {/* <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
           <p className="text-xs leading-[14px] text-black/70">
-            <span className="font-jp subhead4">募集期限</span>
-            <span className="font-en subhead4"> : 2024.01.31</span>
+            <span className=" subhead4">募集期限</span>
+            <span className=" subhead4"> : 2024.01.31</span>
           </p>
         </div> */}
       </div>
@@ -39,11 +39,11 @@ export const KeyVisual = () => {
           className="tb: flex-basis"
           customValue={
             <div className="flex items-center gap-2 text-white">
-              <span className="text-[11px] leading-[15px] font-jp">個人</span>
-              <span className="text-base leading-5 font-en font-light">¥10,000</span>
+              <span className="text-[11px] leading-[15px] ">個人</span>
+              <span className="text-base leading-5  font-light">¥10,000</span>
               <span className="text-xs opacity-70">/</span>
-              <span className="text-[11px] leading-[15px] font-jp">法人</span>
-              <span className="text-base leading-5 font-en font-light">¥1,000,000</span>
+              <span className="text-[11px] leading-[15px] ">法人</span>
+              <span className="text-base leading-5  font-light">¥1,000,000</span>
             </div>
           }
         />
@@ -74,18 +74,18 @@ const StatusItem = ({
   className?: string;
 }) => (
   <div className="flex flex-col items-center">
-    <p className="text-[11px] leading-[15px] text-white/50 font-jp">{label}</p>
+    <p className="text-[11px] leading-[15px] text-white/50 ">{label}</p>
     {customValue || (
       <div className="flex items-center gap-2">
         <span
-          className={`${isJP ? "font-jp subhead2" : "font-en font-light text-base leading-5"} text-white`}
+          className={`${isJP ? " subhead2" : " font-light text-base leading-5"} text-white`}
         >
           {value}
         </span>
         {subValue && (
           <>
             <span className="text-xs text-white/70">/</span>
-            <span className="text-xs text-white/70 font-en">{subValue}</span>
+            <span className="text-xs text-white/70 ">{subValue}</span>
           </>
         )}
       </div>
