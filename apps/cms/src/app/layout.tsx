@@ -1,12 +1,9 @@
-"use client";
-
 import { ScrollHeader } from "@/app/components/ScrollHeader";
-import { TouchEventHandler } from "@/app/components/TouchEventHandler.client";
 import localFont from "next/font/local";
 import "./globals.css";
-import { LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
 import { Inter } from "next/font/google";
 import { Metadata } from 'next';
+import { ClientLayout } from '@/app/client-layout';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +23,7 @@ const genEiGothic = localFont({
   variable: "--font-genei-gothic",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'ぐんま山育DAO | 群馬の山地を産地に',
   description: '群馬の山から、世界が認める自然派ワインを。一緒に新しい価値を創り出しませんか？',
   openGraph: {
@@ -51,21 +48,6 @@ export const metadata = {
     description: '群馬の山から、世界が認める自然派ワインを。一緒に新しい価値を創り出しませんか？',
     images: ['/ogp_01.png'],
   },
-};
-
-// ClientLayoutをクライアントコンポーネントとして分離
-const ClientLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <TouchEventHandler />
-      <LazyMotion features={domAnimation}>
-        <AnimatePresence mode="sync">
-          <ScrollHeader key="scroll-header" />
-          <div key="main-content">{children}</div>
-        </AnimatePresence>
-      </LazyMotion>
-    </>
-  );
 };
 
 export default function RootLayout({
