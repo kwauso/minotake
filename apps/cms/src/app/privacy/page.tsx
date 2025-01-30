@@ -1,13 +1,12 @@
-"use client";
-
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "プライバシーポリシー | ぐんま山育DAO powerd by DAO",
   description: "株式会社ぐんま山育DAOのプライバシーポリシーについてご確認いただけます。個人情報の取り扱い、利用目的、第三者提供などについて定めています。",
 };
+
+"use client";
 
 export default function PrivacyPage() {
   return (

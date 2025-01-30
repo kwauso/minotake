@@ -26,7 +26,7 @@ const genEiGothic = localFont({
   variable: "--font-genei-gothic",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'ぐんま山育DAO | 群馬の山地を産地に',
   description: '群馬の山から、世界が認める自然派ワインを。一緒に新しい価値を創り出しませんか？',
   openGraph: {

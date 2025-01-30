@@ -2,9 +2,8 @@
 
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "利用規約 | ぐんま山育DAO powerd by DAO",
   description: "株式会社ぐんま山育DAOの利用規約についてご確認いただけます。サービスの利用条件、禁止事項、免責事項などについて定めています。",
 };
