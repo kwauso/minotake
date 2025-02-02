@@ -91,7 +91,7 @@ export const FAQ = () => {
               onClick={() => toggleItem(index)}
               className="w-full flex justify-between items-center gap-10"
             >
-              <h5 className="text-left font-jp">{item.question}</h5>
+              <h5 className="text-left ">{item.question}</h5>
               <motion.div
                 animate={{ rotate: openItems.includes(index) ? 180 : 0 }}
                 transition={{ duration: 0.3 }}

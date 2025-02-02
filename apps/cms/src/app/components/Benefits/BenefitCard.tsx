@@ -25,7 +25,7 @@ export const BenefitCard = ({
           {type}
         </span>
         <div className="flex flex-col gap-space-s">
-          <h3 className="font-jp">{title}</h3>
+          <h3 className="whitespace-pre-wrap">{title}</h3>
           <p className="body3 whitespace-pre-line">{description}</p>
         </div>
         {note && (
