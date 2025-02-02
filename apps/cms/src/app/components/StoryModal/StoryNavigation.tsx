@@ -17,10 +17,10 @@ export const StoryNavigation = ({
       className="w-full flex items-center gap-4 px-[18px] py-[14px] rounded-[20px] bg-white shadow-lg hover:opacity-70 transition-opacity"
     >
       <div className="flex flex-col gap-2 flex-1 min-w-0">
-        <p className="text-black/50 font-helvetica-neue-light text-[14px] leading-[17px] font-light">
+        <p className="text-black/50 font-helvetica-neue-light text-[14px] leading-[17px] font-light text-left">
           {type}
         </p>
-        <p className="text-black text-[14px] leading-[18px] truncate">
+        <p className="text-black text-[14px] leading-[18px] truncate text-left">
           {title.replace(/<br\s*\/?>/g, "")}
         </p>
       </div>
