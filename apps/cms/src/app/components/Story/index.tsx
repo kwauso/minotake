@@ -81,7 +81,7 @@ export const StorySection = () => {
                       {story.category}
                     </p>
                     <h4
-                      className="text-white  leading-relaxed"
+                      className="text-white"
                       dangerouslySetInnerHTML={{ __html: story.title }}
                     />
                   </div>
