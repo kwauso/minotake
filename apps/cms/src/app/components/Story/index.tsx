@@ -87,11 +87,11 @@ export const StorySection = () => {
                   </div>
                   <div className="flex flex-col mt-auto">
                     <div className="transition-all duration-300">
-                      <p className="text-white/70  body5 line-clamp-2 group-hover/card:opacity-0">
+                      <p className="text-white/70 body5 line-clamp-2 group-hover/card:opacity-0">
                         {story.description}
                       </p>
-                      <div className="absolute h-[160px] overflow-y-hidden inset-x-s bottom-[60px] opacity-0 group-hover/card:opacity-100 transition-all duration-300 transform translate-y-full group-hover/card:translate-y-0">
-                        <p className="text-white/70  body5 line-clamp-6">
+                      <div className="absolute h-[180px] overflow-y-hidden inset-x-s bottom-[60px] opacity-0 group-hover/card:opacity-100 transition-all duration-300 transform translate-y-full group-hover/card:translate-y-0">
+                        <p className="text-white/70 body5 line-clamp-8">
                           {story.description}
                         </p>
                       </div>
@@ -101,8 +101,8 @@ export const StorySection = () => {
                         <Image
                           src="/images/publications/right_arrow_white_50.svg"
                           alt="arrow_right_white"
-                          width={28}
-                          height={26}
+                          width={22}
+                          height={20}
                         />
                       </div>
                     </div>
