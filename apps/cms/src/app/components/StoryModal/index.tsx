@@ -307,8 +307,8 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                       <Image
                         src="/images/publications/modal_close_button.svg"
                         alt="閉じる"
-                        width={24}
-                        height={24}
+                        width={32}
+                        height={32}
                       />
                     </button>
                   </div>
