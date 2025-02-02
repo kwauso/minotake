@@ -115,7 +115,7 @@ export const SectionNav = () => {
 
   return (
     <nav className="sticky top-[51px] z-40">
-      <div className="mx-auto padding-top-xs padding-bottom-xs bg-white">
+      <div className="mx-auto padding-top-4xs padding-bottom-xs bg-white">
         <div
           ref={navRef}
           className="flex gap-2 overflow-x-auto scrollbar-hide padding-x-side"
