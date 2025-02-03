@@ -103,6 +103,7 @@ export const StorySection = () => {
                           alt="arrow_right_white"
                           width={22}
                           height={20}
+                          priority={true}
                         />
                       </div>
                     </div>
