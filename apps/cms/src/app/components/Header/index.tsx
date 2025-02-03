@@ -53,6 +53,7 @@ export const Header = () => {
               alt=""
               width={18}
               height={18}
+              priority
             />
             <span className="text-xs leading-[13px] text-black/50 ">
               検索する

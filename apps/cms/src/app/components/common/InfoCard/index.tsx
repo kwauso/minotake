@@ -40,6 +40,7 @@ export const InfoCard = ({
             alt=""
             width={16}
             height={16}
+            priority={true}
           />
         </Link>
       );
@@ -54,6 +55,7 @@ export const InfoCard = ({
             alt=""
             width={16}
             height={16}
+            priority={true}
           />
         </button>
       );
@@ -67,7 +69,13 @@ export const InfoCard = ({
       className={`${baseStyles} rounded-[30px] p-5 flex flex-row gap-5 items-stretch`}
     >
       <div className="relative w-[200px] min-h-[120px] sp:w-[110px] sp:max-h-[140px] rounded-[15px] overflow-hidden flex-shrink-0">
-        <Image src={image} alt={title} fill className="object-cover" />
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          priority={true}
+        />
       </div>
       <div className="flex flex-col gap-2 flex-1 px-5 py-2">
         <h4 className="text-[20px] leading-[28px]">{title}</h4>

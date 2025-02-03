@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useSetAtom } from 'jotai';
-import { currentSectionAtom } from '@/app/store/navigation';
-import { ContentSection } from './ContentSection';
-import { overviewData } from './data';
+import Image from "next/image";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useSetAtom } from "jotai";
+import { currentSectionAtom } from "@/app/store/navigation";
+import { ContentSection } from "./ContentSection";
+import { overviewData } from "./data";
 
 export const Overview = () => {
   const setCurrentSection = useSetAtom(currentSectionAtom);
@@ -14,7 +14,7 @@ export const Overview = () => {
 
   useEffect(() => {
     if (inView) {
-      setCurrentSection('overview');
+      setCurrentSection("overview");
     }
   }, [inView, setCurrentSection]);
 
@@ -27,6 +27,7 @@ export const Overview = () => {
             alt={overviewData.mainImage.alt}
             fill
             className="object-cover"
+            priority
           />
         </div>
 
@@ -41,4 +42,4 @@ export const Overview = () => {
       </div>
     </section>
   );
-}; 
+};

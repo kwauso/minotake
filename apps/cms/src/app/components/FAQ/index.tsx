@@ -102,6 +102,7 @@ export const FAQ = () => {
                   width={16}
                   height={17}
                   className="opacity-50"
+                  priority={true}
                 />
               </motion.div>
             </button>

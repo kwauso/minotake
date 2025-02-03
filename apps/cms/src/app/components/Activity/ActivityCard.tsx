@@ -26,7 +26,13 @@ export const ActivityCard = ({
         )}
       </div>
       <div className="relative w-[452px] h-[248px] sp:w-full sp:h-[248px] tb:w-[40vw] rounded-[20px] sp:order-1 overflow-hidden">
-        <Image src={image} alt={title} fill className="object-cover" />
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          priority={true}
+        />
       </div>
     </div>
   );

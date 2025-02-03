@@ -149,6 +149,7 @@ export const ProjectFooter = () => {
               width={12}
               height={7}
               className={`transition-transform duration-300 ${isDetailsVisible ? "rotate-180" : "rotate-0"}`}
+              priority
             />
             <p className="flex items-center subhead4 opacity-50">
               {isDetailsVisible ? "詳細を隠す" : "詳細を表示"}
@@ -165,6 +166,7 @@ export const ProjectFooter = () => {
                   alt="シェア"
                   width={15}
                   height={15}
+                  priority
                 />
               </button>
               <button

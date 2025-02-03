@@ -73,6 +73,7 @@ export const StorySection = () => {
                   alt={story.alt}
                   fill
                   className="object-cover opacity-95 group-hover/card:blur-sm transition-all duration-300"
+                  priority
                 />
                 <div className="absolute inset-0 bg-black/50 group-hover/card:bg-black/70 transition-all duration-300" />
                 <div className="absolute inset-0 p-s flex flex-col">
