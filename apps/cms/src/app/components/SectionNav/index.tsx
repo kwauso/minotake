@@ -143,13 +143,12 @@ export const SectionNav = () => {
             ))}
             {/* 右側の余白用の要素 - 動的に計算 */}
             <div
-              className="min-w-[calc(100vw-36px)]"
-              style={{
-                marginRight: lastButtonRef.current
-                  ? -lastButtonRef.current.offsetWidth
-                  : 0,
-              }}
               aria-hidden="true"
+              style={{
+                width: lastButtonRef.current
+                  ? `calc(100vw - ${paddingSide * 2}px - ${lastButtonRef.current.offsetWidth}px - 0.5rem)`
+                  : `calc(100vw - ${paddingSide * 2}px - 0.5rem)`,
+              }}
             />
           </div>
         </div>
