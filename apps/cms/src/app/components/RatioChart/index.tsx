@@ -101,7 +101,7 @@ export const RatioChart = () => {
   }, [inView, setCurrentSection]);
 
   if (!mounted) {
-    return <div className="py-32" />;
+    return <div />;
   }
 
   // サイズの設定を画面サイズに応じて変更
@@ -130,12 +130,12 @@ export const RatioChart = () => {
 
     if (isSpSize && label === "農家・専門家") {
       return {
-        x: Math.round((center + 100) * 100) / 100,
+        x: Math.round((center + 55) * 100) / 100,
         y: Math.round((center - 130) * 100) / 100,
       };
     }
 
-    const labelDistance = isSpSize ? { x: 25, y: 25 } : { x: 40, y: 40 };
+    const labelDistance = isSpSize ? { x: 30, y: 35 } : { x: 80, y: 35 };
 
     const distance =
       radius +
