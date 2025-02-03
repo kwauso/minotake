@@ -122,7 +122,6 @@ export const Members = () => {
           className="relative w-[1080px] tb:w-full flex items-center justify-center"
           style={{ height: `${containerHeight}px` }}
         >
-          {/* @ts-ignore */}
           <AnimatePresence initial={false}>
             {[-2, -1, 0, 1, 2].map((offset) => {
               const index =
@@ -163,6 +162,18 @@ export const Members = () => {
                   ref={(node) => {
                     if (node) updateHeight(position, node);
                   }}
+                  drag={position === "current" ? "x" : false}
+                  dragElastic={0.5}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, info) => {
+                    if (position === "current") {
+                      if (info.offset.x < -100) {
+                        nextSlide();
+                      } else if (info.offset.x > 100) {
+                        prevSlide();
+                      }
+                    }
+                  }}
                   initial={{
                     x: direction > 0 ? 520 : -520,
                     scale: position === "current" ? 1 : 0.8,
@@ -180,7 +191,11 @@ export const Members = () => {
                   transition={{
                     duration: 0.7,
                     ease: "easeInOut",
-                    scale: {
+                    width: {
+                      duration: 0.7,
+                      ease: "easeInOut",
+                    },
+                    height: {
                       duration: 0.7,
                       ease: "easeInOut",
                     },
