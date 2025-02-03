@@ -29,12 +29,18 @@ export const AboutSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isSP, setIsSP] = useState(() => {
-    // SSRの場合はデフォルト値を返す
     if (typeof window === "undefined") return false;
     return window.innerWidth <= 767;
   });
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const checkViewport = () => {
       setIsSP(window.innerWidth <= 767);
     };
@@ -45,7 +51,9 @@ export const AboutSection = () => {
     return () => {
       window.removeEventListener("resize", checkViewport);
     };
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   const nextSlide = () => {
     setDirection(1);
@@ -122,8 +130,12 @@ export const AboutSection = () => {
 
     return {
       x: xOffset[position as keyof typeof xOffset],
-      opacity: position === "current" ? 1 : 1,
+      opacity: 1,
       zIndex: getZIndex(),
+      WebkitTouchCallout: "none",
+      WebkitUserSelect: "none",
+      userSelect: "none",
+      touchAction: "pan-y",
     };
   };
 
@@ -135,7 +147,7 @@ export const AboutSection = () => {
       width: size.width,
       height: size.height,
       x: slidePosition.x,
-      opacity: slidePosition.opacity,
+      opacity: 1,
       zIndex: slidePosition.zIndex,
     };
   };
@@ -209,6 +221,12 @@ export const AboutSection = () => {
                     },
                   }}
                   className="absolute overflow-hidden rounded-[20px]"
+                  style={{
+                    WebkitTouchCallout: "none",
+                    WebkitUserSelect: "none",
+                    userSelect: "none",
+                    touchAction: "pan-y",
+                  }}
                   onClick={() => {
                     if (position === "prev") prevSlide();
                     if (position === "next") nextSlide();
@@ -226,10 +244,11 @@ export const AboutSection = () => {
           </AnimatePresence>
 
           <div
-            className="absolute sp:hidden top-1/2 -translate-y-1/2 z-10"
+            className="absolute sp:hidden top-1/2 -translate-y-1/2"
             style={{
               left: "50%",
               transform: `translateX(${getButtonPosition().prev.x}px) translateY(-50%)`,
+              zIndex: 10,
             }}
           >
             <button
@@ -247,10 +266,11 @@ export const AboutSection = () => {
           </div>
 
           <div
-            className="absolute sp:hidden top-1/2 -translate-y-1/2 z-10"
+            className="absolute sp:hidden top-1/2 -translate-y-1/2"
             style={{
               left: "50%",
               transform: `translateX(${getButtonPosition().next.x}px) translateY(-50%)`,
+              zIndex: 10,
             }}
           >
             <button

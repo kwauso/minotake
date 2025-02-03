@@ -62,7 +62,7 @@ export const WaitlistFooter = () => {
                 href={LINE_OPENCHAT_URL}
                 className="h-[44px] px-[18px] bg-white rounded-[5px] flex items-center justify-center gap-1.5"
               >
-                <span className="text-[14px] leading-[19px] text-black whitespace-nowrap">
+                <span className="text-[14px] sp:text-[12px] leading-[19px] text-black whitespace-nowrap">
                   今後の情報を受け取る（DAOへの参加はこちら）
                 </span>
                 <Image
