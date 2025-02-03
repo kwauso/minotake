@@ -13,37 +13,45 @@ type RoadmapItem = {
 
 const roadmapItems: RoadmapItem[] = [
   {
-    date: "2025 / 1Q",
-    title: "立ち上げ準備・資金調達・メンバー募集開始",
-    description: "ぐんま山育DAOを設立し、参加メンバーを募集します。",
+    date: "2025/1Q",
+    title: "立ち上げ準備",
+    description:
+      "立ち上げ準備\n資金調達・メンバー募集開始\n醸造所が付設した食文化の発信拠点創出（施設の立ち上げを自治体にドラフト型で声かけ）",
     image: "/images/publications/photo/7.roadmap/img_roadmap_01@2x.jpg",
   },
   {
-    date: "2025 / 2Q",
+    date: "2025/2Q",
     title: "事業開始",
     description:
-      "1.醸造所が付設した食文化の発信拠点の創出をいたします(施設の立ち上げを自治体へ声かけ）。\n2.酒類販売ライセンスの取得を目指します。\n3.産地化体験を行います。\n・ワイナリー整備体験\n・醸造家大岡氏のレクチャーワークショップ\n・苗植え体験",
+      "事業開始\n自然派のファンコミュニティづくり開始\n産地化プログラム\n└ブドウ畑（圃場）整備\n└醸造家大岡氏のレクチャー＆ワークショップ\n└苗植え体験",
     image: "/images/publications/photo/7.roadmap/img_roadmap_02@2x.jpg",
   },
   {
-    date: "2025 / 3Q - 4Q",
-    title: "商品制作開始",
+    date: "2025/3Q",
+    title: "事業開発開始",
     description:
-      "産地化体験を行います。\n・自然派ワインに合う食のマリアージュ体験",
+      "事業開発開始\n産地化プログラム\n└ブドウとワインのテイスティング（大岡氏提供）\n└自然派ワインに合う群馬県産自然派食材を探すワークショップ",
     image: "/images/publications/photo/7.roadmap/img_roadmap_03@2x.jpg",
   },
   {
-    date: "2026",
-    title: "テスト製造・初回収穫",
+    date: "2025/4Q",
+    title: "事業開発",
     description:
-      "1.栽培管理を行います。\n2.醸造設備の整備を行います。\n3.テストヴィンテージを製造いたします。\n4.初回の収穫・醸造を行います。",
+      "事業開発\n醸造施設整備開始\n産地化プログラム\n└自然派ワインに合うメニュー開発",
     image: "/images/publications/photo/7.roadmap/img_roadmap_04@2x.jpg",
   },
   {
-    date: "2027",
-    title: "醸造・販売",
+    date: "2026",
+    title: "栽培管理・設備整備",
     description:
-      "1.ふるさと納税返礼品の登録をします。\n2.第一回目の自然派ワインを販売開始します。",
+      "栽培管理\n醸造設備整備開始\n醸造免許の取得\n酒類販売免許取得\n自然派ワイン試験醸造（2024開始試験栽培分）",
+    image: "/images/publications/photo/7.roadmap/img_roadmap_04@2x.jpg",
+  },
+  {
+    date: "2027以降",
+    title: "醸造開始・販売開始",
+    description:
+      "初回本格収穫\n醸造開始\nふるさと納税返礼品登録\n自然派ワイン販売開始\n\n＼第二弾プロジェクト立ち上げ準備／",
     image: "/images/publications/photo/7.roadmap/img_roadmap_05@2x.jpg",
   },
 ];
