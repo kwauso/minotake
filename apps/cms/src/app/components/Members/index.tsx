@@ -209,6 +209,7 @@ export const Members = () => {
                       alt={members[index].name}
                       fill
                       className="rounded-[999px] object-cover"
+                      priority
                     />
                   </div>
                   <div className="flex flex-col gap-space-2xs items-center">
@@ -252,6 +253,7 @@ export const Members = () => {
               alt="前へ"
               width={8.98}
               height={18.5}
+              priority
             />
           </button>
           <div className=" font-light text-[15px] leading-[18px]">
@@ -270,6 +272,7 @@ export const Members = () => {
               alt="次へ"
               width={8.98}
               height={18.5}
+              priority
             />
           </button>
         </div>

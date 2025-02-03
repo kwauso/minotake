@@ -135,6 +135,7 @@ export const Roadmap = () => {
                       alt={roadmapItems[index].title}
                       fill
                       className="object-cover"
+                      priority
                     />
                   </div>
                   <div className="px-2 flex flex-col gap-2">

@@ -273,7 +273,7 @@ export const AboutSection = () => {
         <h2 className=" mb-12">群馬の山地を産地に。</h2>
         <div className="gap-space-xl body1">
           <p className=" body1">
-            私たちは、前橋の豊かな山々を舞台に、
+            私たちは、群馬の豊かな山々を舞台に、
             <br />
             リジェネラティブ（再生型）の農業と
             <br />

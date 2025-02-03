@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 type Document = {
   title: string;
@@ -8,35 +8,35 @@ type Document = {
 
 const documents: Document[] = [
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
   },
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
   },
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
   },
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
   },
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
   },
   {
-    title: 'ファイル・リンク名',
-    description: '説明文説明文',
-    url: '#'
-  }
+    title: "ファイル・リンク名",
+    description: "説明文説明文",
+    url: "#",
+  },
 ];
 
 export const Documents = () => {
@@ -44,7 +44,7 @@ export const Documents = () => {
     <section className="margin-y-3xl">
       <div className="flex flex-wrap gap-space-s max-w-[1080px] tb:max-w-[610px] mx-auto">
         {documents.map((doc, index) => (
-          <a 
+          <a
             key={index}
             href={doc.url}
             className="
@@ -58,16 +58,20 @@ export const Documents = () => {
             <div className="flex items-center gap-space-l">
               <div className="flex-1 padding-top-2xs">
                 <div className="flex flex-col gap-space-4xs">
-                  <h6 className="font-auto">
-                    {doc.title}
-                  </h6>
+                  <h6 className="font-auto">{doc.title}</h6>
                   <p className="font-auto body5 opacity-50">
                     {doc.description}
                   </p>
                 </div>
               </div>
               <div className="w-[17px] h-[17px] text-[#3333FF]">
-                <Image src="/images/common/attachment.svg" alt="attachmennt" width={17} height={17} />
+                <Image
+                  src="/images/common/attachment.svg"
+                  alt="attachmennt"
+                  width={17}
+                  height={17}
+                  priority={true}
+                />
               </div>
             </div>
           </a>
@@ -75,4 +79,4 @@ export const Documents = () => {
       </div>
     </section>
   );
-}; 
+};

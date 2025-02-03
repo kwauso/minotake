@@ -52,6 +52,7 @@ const ContentRenderer = ({ content }: { content?: ContentItem[] | string }) => {
                           alt={image.alt}
                           fill
                           className="rounded-[30px] object-cover"
+                          priority
                         />
                       </div>
                       <div className="flex w-full mt-4">
@@ -72,6 +73,7 @@ const ContentRenderer = ({ content }: { content?: ContentItem[] | string }) => {
                   alt={item.alt || ""}
                   fill
                   className="rounded-[30px] object-cover"
+                  priority
                 />
               </div>
               <div className="flex w-full mt-4">
