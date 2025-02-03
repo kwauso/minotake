@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -51,6 +51,11 @@ const roadmapItems: RoadmapItem[] = [
 export const Roadmap = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const nextSlide = () => {
     setDirection(1);
@@ -64,11 +69,39 @@ export const Roadmap = () => {
     );
   };
 
+  if (!isMounted) {
+    return (
+      <section className="py-32">
+        <div className="flex flex-col items-center gap-10">
+          <div className="relative w-[1080px] h-[400px] flex items-center justify-center gap-space-l">
+            <div className="absolute flex flex-col gap-4 w-[440px] sp:w-[316px]">
+              <div className="relative h-[248px] rounded-[20px] overflow-hidden">
+                <Image
+                  src={roadmapItems[0].image}
+                  alt={roadmapItems[0].title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="px-2 flex flex-col gap-2">
+                <p className="subhead1 font-light">{roadmapItems[0].date}</p>
+                <h5>{roadmapItems[0].title}</h5>
+                <p className="body6 whitespace-pre-wrap">
+                  {roadmapItems[0].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-32">
       <div className="flex flex-col items-center gap-10">
         <div className="relative w-[1080px] h-[400px] flex items-center justify-center gap-space-l">
-          {/* @ts-ignore */}
           <AnimatePresence initial={false}>
             {[-2, -1, 0, 1, 2].map((offset) => {
               const index =
@@ -99,10 +132,23 @@ export const Roadmap = () => {
               return (
                 <motion.div
                   key={index}
+                  drag={position === "current" ? "x" : false}
+                  dragElastic={position === "current" ? 0.5 : 0}
+                  onDragEnd={
+                    position === "current"
+                      ? (e, info) => {
+                          if (info.offset.x < -50) {
+                            nextSlide();
+                          } else if (info.offset.x > 50) {
+                            prevSlide();
+                          }
+                        }
+                      : undefined
+                  }
                   initial={{ x: direction > 0 ? 520 : -520 }}
                   animate={{
                     x: xPosition,
-                    scale: position === "current" ? 1 : 1,
+                    scale: 1,
                     opacity: position === "current" ? 1 : 0.5,
                     zIndex: position === "current" ? 1 : 0,
                   }}
@@ -124,41 +170,48 @@ export const Roadmap = () => {
                   }}
                 >
                   <div
-                    className={`relative overflow-hidden ${
-                      position === "current"
-                        ? "h-[248px] rounded-[20px]"
-                        : "h-[186px] rounded-[15px]"
-                    }`}
+                    className={`
+                      relative overflow-hidden ${
+                        position === "current"
+                          ? "h-[248px] rounded-[20px]"
+                          : "h-[186px] rounded-[15px]"
+                      }
+                    `}
                   >
-                    <Image
-                      src={roadmapItems[index].image}
-                      alt={roadmapItems[index].title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
+                    <div
+                      className={`
+                        w-full h-full transition-transform duration-700
+                        ${position === "current" ? "scale-100" : "scale-110"}
+                      `}
+                    >
+                      <Image
+                        src={roadmapItems[index].image}
+                        alt={roadmapItems[index].title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
                   </div>
                   <div className="px-2 flex flex-col gap-2">
                     <p
-                      className={` font-light ${
+                      className={`font-light ${
                         position === "current" ? "subhead1" : "subhead3"
                       }`}
                     >
                       {roadmapItems[index].date}
                     </p>
-                    {/* 下記は、currentの場合は、h5、それ以外の場合はh6タグを使用 */}
                     {position === "current" ? (
-                      <h5 className={``}>{roadmapItems[index].title}</h5>
+                      <h5>{roadmapItems[index].title}</h5>
                     ) : (
-                      <h6 className={``}>{roadmapItems[index].title}</h6>
+                      <h6>{roadmapItems[index].title}</h6>
                     )}
-                    {/* 下記は、currentの場合は、line-clampなし、それ以外の場合はline-clamp-1タグを使用 */}
                     {position === "current" ? (
-                      <p className=" body6 whitespace-pre-wrap">
+                      <p className="body6 whitespace-pre-wrap">
                         {roadmapItems[index].description}
                       </p>
                     ) : (
-                      <p className=" body6 line-clamp-1">
+                      <p className="body6 line-clamp-1">
                         {roadmapItems[index].description}
                       </p>
                     )}
@@ -181,7 +234,7 @@ export const Roadmap = () => {
               height={18.5}
             />
           </button>
-          <div className=" font-light text-[15px] leading-[18px]">
+          <div className="font-light text-[15px] leading-[18px]">
             <span>{String(currentSlide + 1).padStart(2, "0")}</span>
             <span className="text-black/30">
               {" "}
