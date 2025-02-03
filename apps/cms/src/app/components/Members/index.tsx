@@ -115,183 +115,215 @@ export const Members = () => {
     setCurrentSlide((prev) => (prev - 1 + members.length) % members.length);
   };
 
-  return (
-    <section className="">
-      <div className="flex flex-col items-center gap-space-l">
-        <div
-          className="relative w-[1080px] tb:w-full flex items-center justify-center"
-          style={{ height: `${containerHeight}px` }}
-        >
-          <AnimatePresence initial={false}>
-            {[-2, -1, 0, 1, 2].map((offset) => {
-              const index =
-                (currentSlide + offset + members.length) % members.length;
-              const position =
-                offset === -2
-                  ? "farPrev"
-                  : offset === -1
-                    ? "prev"
-                    : offset === 0
-                      ? "current"
-                      : offset === 1
-                        ? "next"
-                        : "farNext";
+  // SP版のスライダーコンポーネント
+  const MobileSlider = () => (
+    <div className="flex flex-col items-center gap-space-l">
+      <div
+        className="relative w-full flex items-center justify-center"
+        style={{ height: `${containerHeight}px` }}
+      >
+        <AnimatePresence initial={false}>
+          {[-2, -1, 0, 1, 2].map((offset) => {
+            const index =
+              (currentSlide + offset + members.length) % members.length;
+            const position =
+              offset === -2
+                ? "farPrev"
+                : offset === -1
+                  ? "prev"
+                  : offset === 0
+                    ? "current"
+                    : offset === 1
+                      ? "next"
+                      : "farNext";
 
-              const xPosition =
-                offset === -2
+            const xPosition =
+              offset === -2
+                ? isSP
+                  ? -320
+                  : -520
+                : offset === -1
                   ? isSP
-                    ? -320
-                    : -520
-                  : offset === -1
-                    ? isSP
-                      ? -200
-                      : -280
-                    : offset === 0
-                      ? 0
-                      : offset === 1
-                        ? isSP
-                          ? 200
-                          : 280
-                        : isSP
-                          ? 320
-                          : 520;
+                    ? -200
+                    : -280
+                  : offset === 0
+                    ? 0
+                    : offset === 1
+                      ? isSP
+                        ? 200
+                        : 280
+                      : isSP
+                        ? 320
+                        : 520;
 
-              return (
-                <motion.div
-                  key={index}
-                  ref={(node) => {
-                    if (node) updateHeight(position, node);
-                  }}
-                  drag={position === "current" ? "x" : false}
-                  dragElastic={0.5}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(e, info) => {
-                    if (position === "current") {
-                      if (info.offset.x < -100) {
-                        nextSlide();
-                      } else if (info.offset.x > 100) {
-                        prevSlide();
-                      }
+            return (
+              <motion.div
+                key={index}
+                ref={(node) => {
+                  if (node) updateHeight(position, node);
+                }}
+                drag={position === "current" ? "x" : false}
+                dragElastic={0.5}
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={(e, info) => {
+                  if (position === "current") {
+                    if (info.offset.x < -100) {
+                      nextSlide();
+                    } else if (info.offset.x > 100) {
+                      prevSlide();
                     }
-                  }}
-                  initial={{
-                    x: direction > 0 ? 520 : -520,
-                    scale: position === "current" ? 1 : 0.8,
-                  }}
-                  animate={{
-                    x: xPosition,
-                    scale: position === "current" ? 1 : 0.8,
-                    opacity: position === "current" ? 1 : 0.8,
-                    zIndex: position === "current" ? 1 : 0,
-                  }}
-                  exit={{
-                    x: direction > 0 ? -520 : 520,
-                    scale: position === "current" ? 1 : 0.8,
-                  }}
-                  transition={{
+                  }
+                }}
+                initial={{
+                  x: direction > 0 ? 520 : -520,
+                  scale: position === "current" ? 1 : 0.8,
+                }}
+                animate={{
+                  x: xPosition,
+                  scale: position === "current" ? 1 : 0.8,
+                  opacity: position === "current" ? 1 : 0.8,
+                  zIndex: position === "current" ? 1 : 0,
+                }}
+                exit={{
+                  x: direction > 0 ? -520 : 520,
+                  scale: position === "current" ? 1 : 0.8,
+                }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeInOut",
+                  width: {
                     duration: 0.7,
                     ease: "easeInOut",
-                    width: {
-                      duration: 0.7,
-                      ease: "easeInOut",
-                    },
-                    height: {
-                      duration: 0.7,
-                      ease: "easeInOut",
-                    },
-                  }}
-                  className={`absolute flex flex-col gap-space-xs items-center ${
+                  },
+                  height: {
+                    duration: 0.7,
+                    ease: "easeInOut",
+                  },
+                }}
+                className={`absolute flex flex-col gap-space-xs items-center ${
+                  position === "current"
+                    ? "w-[280px] sp:w-[248px]"
+                    : "w-[200px] sp:w-[112px] cursor-pointer"
+                }`}
+                onClick={() => {
+                  if (position === "prev" || position === "farPrev")
+                    prevSlide();
+                  if (position === "next" || position === "farNext")
+                    nextSlide();
+                }}
+              >
+                <div
+                  className={`relative ${
                     position === "current"
-                      ? "w-[280px] sp:w-[248px]"
-                      : "w-[200px] sp:w-[112px] cursor-pointer"
+                      ? "w-[200px] h-[200px]"
+                      : "w-[150px] h-[150px] sp:w-[100px] sp:h-[100px]"
                   }`}
-                  onClick={() => {
-                    if (position === "prev" || position === "farPrev")
-                      prevSlide();
-                    if (position === "next" || position === "farNext")
-                      nextSlide();
-                  }}
                 >
-                  <div
-                    className={`relative ${
+                  <Image
+                    src={members[index].image}
+                    alt={members[index].name}
+                    fill
+                    className="rounded-[999px] object-cover"
+                    priority
+                  />
+                </div>
+                <div className="flex flex-col gap-space-2xs items-center">
+                  <p
+                    className={`font-auto opacity-70 ${
                       position === "current"
-                        ? "w-[200px] h-[200px]"
-                        : "w-[150px] h-[150px] sp:w-[100px] sp:h-[100px]"
+                        ? "subhead2 leading-[20px]"
+                        : "subhead4 leading-[16px]"
                     }`}
                   >
-                    <Image
-                      src={members[index].image}
-                      alt={members[index].name}
-                      fill
-                      className="rounded-[999px] object-cover"
-                      priority
-                    />
-                  </div>
-                  <div className="flex flex-col gap-space-2xs items-center">
-                    <p
-                      className={`font-auto opacity-70 ${
-                        position === "current"
-                          ? "subhead2 leading-[20px]"
-                          : "subhead4 leading-[16px]"
-                      }`}
-                    >
-                      {members[index].role}
-                    </p>
-                    <h5
-                      className={`font-auto ${
-                        position === "current" ? "h5" : "subhead3"
-                      }`}
-                    >
-                      {members[index].name}
-                    </h5>
-                    <p
-                      className={`font-auto body5 opacity-50 text-center whitespace-pre-line ${
-                        position === "current" ? "" : "line-clamp-3"
-                      }`}
-                    >
-                      {members[index].description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-
-        <div className="flex items-center tb:padding-top-s gap-[30px]">
-          <button
-            onClick={prevSlide}
-            className="hover:opacity-70 transition-opacity"
-          >
-            <Image
-              src="/images/publications/prev.svg"
-              alt="前へ"
-              width={8.98}
-              height={18.5}
-              priority
-            />
-          </button>
-          <div className=" font-light text-[15px] leading-[18px]">
-            <span>{String(currentSlide + 1).padStart(2, "0")}</span>
-            <span className="text-black/30">
-              {" "}
-              / {String(members.length).padStart(2, "0")}
-            </span>
-          </div>
-          <button
-            onClick={nextSlide}
-            className="hover:opacity-70 transition-opacity"
-          >
-            <Image
-              src="/images/publications/next.svg"
-              alt="次へ"
-              width={8.98}
-              height={18.5}
-              priority
-            />
-          </button>
-        </div>
+                    {members[index].role}
+                  </p>
+                  <h5
+                    className={`font-auto ${
+                      position === "current" ? "h5" : "subhead3"
+                    }`}
+                  >
+                    {members[index].name}
+                  </h5>
+                  <p
+                    className={`font-auto body5 opacity-50 text-center whitespace-pre-line ${
+                      position === "current" ? "" : "line-clamp-3"
+                    }`}
+                  >
+                    {members[index].description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
       </div>
-    </section>
+
+      <div className="flex items-center tb:padding-top-s gap-[30px]">
+        <button
+          onClick={prevSlide}
+          className="hover:opacity-70 transition-opacity"
+        >
+          <Image
+            src="/images/publications/prev.svg"
+            alt="前へ"
+            width={8.98}
+            height={18.5}
+            priority
+          />
+        </button>
+        <div className=" font-light text-[15px] leading-[18px]">
+          <span>{String(currentSlide + 1).padStart(2, "0")}</span>
+          <span className="text-black/30">
+            {" "}
+            / {String(members.length).padStart(2, "0")}
+          </span>
+        </div>
+        <button
+          onClick={nextSlide}
+          className="hover:opacity-70 transition-opacity"
+        >
+          <Image
+            src="/images/publications/next.svg"
+            alt="次へ"
+            width={8.98}
+            height={18.5}
+            priority
+          />
+        </button>
+      </div>
+    </div>
   );
+
+  // PC/TB版のグリッドレイアウトコンポーネント
+  const DesktopGrid = () => (
+    <div className="flex flex-wrap justify-center gap-space-l max-w-[1080px] padding-x-side mx-auto">
+      {members.map((member, index) => (
+        <div
+          key={index}
+          className="w-[280px] flex flex-col gap-space-xs items-center"
+        >
+          <div className="relative w-[200px] h-[200px]">
+            <Image
+              src={member.image}
+              alt={member.name}
+              fill
+              className="rounded-[999px] object-cover"
+              priority
+            />
+          </div>
+          <div className="flex flex-col gap-space-2xs items-center">
+            <p className="font-auto opacity-70 subhead2 leading-[20px]">
+              {member.role}
+            </p>
+            <h5 className="font-auto h5">{member.name}</h5>
+            <p className="font-auto body5 opacity-50 text-center whitespace-pre-line">
+              {member.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  return <section>{isSP ? <MobileSlider /> : <DesktopGrid />}</section>;
 };
