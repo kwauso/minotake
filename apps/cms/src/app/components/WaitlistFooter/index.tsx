@@ -63,7 +63,7 @@ export const WaitlistFooter = () => {
                 className="h-[44px] px-[18px] bg-white rounded-[5px] flex items-center justify-center gap-1.5"
               >
                 <span className="text-[14px] leading-[19px] text-black whitespace-nowrap">
-                  今後の情報を受け取る
+                  今後の情報を受け取る（DAOへの参加はこちら）
                 </span>
                 <Image
                   src="/images/publications/right_arrow_black.svg"
