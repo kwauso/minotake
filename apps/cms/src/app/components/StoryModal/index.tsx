@@ -147,6 +147,21 @@ export const StoryModal: React.FC<StoryModalProps> = ({
     }
   }, [currentStory]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+
+      if (e.key === "ArrowRight" && nextStory) {
+        handlePageChange(onNext);
+      } else if (e.key === "ArrowLeft" && prevStory) {
+        handlePageChange(onPrev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, nextStory, prevStory, onNext, onPrev]);
+
   const isFirstStory = !prevStory;
   const isLastStory = !nextStory;
 
