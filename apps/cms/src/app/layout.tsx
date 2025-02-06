@@ -4,6 +4,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import { ClientLayout } from "@/app/client-layout";
+// 変更分
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,6 +65,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+      <GoogleTagManager gtmId="GTM-KG4725WW" />
       <head>
         <meta
           name="viewport"
