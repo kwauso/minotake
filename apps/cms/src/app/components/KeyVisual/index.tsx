@@ -50,7 +50,7 @@ export const KeyVisual = () => {
         <Divider /> */}
         <StatusItem label="参加者数" value="12" />
         <Divider />
-        <StatusItem label="設立" value="2025.01.27" />
+        <StatusItem label="設立" value="2025.01.17" />
         <Divider />
         <StatusItem label="サポーター" value="群馬県庁" isJP />
       </div>

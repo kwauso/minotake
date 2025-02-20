@@ -22,6 +22,7 @@ export const Header = () => {
               width={120}
               height={15}
               priority
+              loading="eager"
             />
             <Image
               src="/images/common/powered_by_daox.svg"
@@ -29,6 +30,7 @@ export const Header = () => {
               width={140}
               height={28}
               priority
+              loading="eager"
             />
           </Link>
         </div>
