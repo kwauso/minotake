@@ -1,0 +1,8 @@
+google analytics のリンク：
+https://tagmanager.google.com/#/container/accounts/6267868467/containers/205635115/workspaces/2
+
+変更点：
+　ターミナルで実行：
+    npm install @next/third-parties@latest next@lates
+ 　コードベース：
+    apps/cms/src/app/layout.tsx
