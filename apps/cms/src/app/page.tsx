@@ -12,12 +12,14 @@ import { Activity } from "@/app/components/Activity";
 import { DaoEasterEgg } from "@/app/components/DaoEasterEgg";
 import { DesignOverlay } from "@/app/components/DesignOverlay";
 import { Roadmap } from "@/app/components/Roadmap";
+import { JoinFlow } from "@/app/components/JoinFlow";
 import { RatioChart } from "@/app/components/RatioChart";
 import { FAQ } from "@/app/components/FAQ";
 import { Members } from "@/app/components/Members";
 import { Documents } from "@/app/components/Documents";
 import { OpenChat } from "@/app/components/OpenChat";
 import { Footer } from "@/app/components/Footer";
+import { ProjectFooter } from "./components/ProjectFooter";
 
 export default function HomePage() {
   return (
@@ -50,6 +52,9 @@ export default function HomePage() {
           <div id="roadmap">
             <Roadmap />
           </div>
+          <div id="join-flow">
+            <JoinFlow />
+          </div>
           <div id="members">
             <Members />
           </div>
@@ -59,12 +64,16 @@ export default function HomePage() {
           <div id="faq">
             <FAQ />
           </div>
+          <div id="documents">
+            <Documents />
+          </div>
           <div id="openchat">
             <OpenChat />
           </div>
         </div>
 
-        <WaitlistFooter />
+        {/* <WaitlistFooter /> */}
+        <ProjectFooter />
         <DaoEasterEgg />
         {/* <DesignOverlay /> */}
         <Footer />

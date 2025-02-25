@@ -8,7 +8,27 @@ import { Fragment } from "react";
 const SHAREHOLDER_TYPES = {
   ALL: {
     id: "all",
-    title: "全員",
+    title: "株主全員（共通特典）",
+  },
+  THREE: {
+    id: "three",
+    title: "3口以上",
+  },
+  TEN: {
+    id: "ten",
+    title: "10口以上",
+  },
+  FIFTY: {
+    id: "fifty",
+    title: "50口以上",
+  },
+  HUNDRED: {
+    id: "hundred",
+    title: "100口以上",
+  },
+  THOUSAND: {
+    id: "thousand",
+    title: "1000口以上",
   },
 } as const;
 
@@ -36,7 +56,7 @@ const benefitsData: Record<string, BenefitData> = {
   [SHAREHOLDER_TYPES.ALL.id]: {
     benefits: [
       {
-        type: "案１：オーナー権",
+        type: "",
         title: "ブドウ畑の区画オーナー権",
         description:
           "参加者は出資時にブドウ畑の区画を指定し、その区画から収穫したワインのオーナー権(※)を得⁨⁩ます。",
@@ -44,28 +64,21 @@ const benefitsData: Record<string, BenefitData> = {
         image: "/images/publications/photo/5.benefits/img_benefits_01@3x.jpg",
       },
       {
-        type: "案２：利益分配",
+        type: "",
         title: "利益剰余金を分配",
         description:
           "ワインの販売等を事業化した際に発生する利益剰余金を分配いたします。",
         image: "/images/publications/photo/5.benefits/img_benefits_02@3x.jpg",
       },
       {
-        type: "案３：優先購入権利",
-        title: "醸造したワインを\n優先的に原価で購入可能",
+        type: "",
+        title: "醸造したワインを優先的に原価で購入可能",
         description: "自分たちで作ったワインを自分たちで購入ができます。",
         note: "※ワインを製品化した際に購入ができるようになります。",
         image: "/images/publications/photo/5.benefits/img_benefits_03@3x.jpg",
       },
       {
-        type: "案４：製品贈呈",
-        title: "醸造したワインを1本プレゼント",
-        description: "自分たちで作ったワインを自分たちに贈ります。",
-        note: "※ワインを製品化した際にプレゼントいたします。",
-        image: "/images/publications/photo/5.benefits/img_benefits_04@3x.jpg",
-      },
-      {
-        type: "案５：イベント",
+        type: "",
         title: "自然派ワインに合う食を体験する",
         description:
           "山菜をとる、素材を育てる、シェフと共に味わう、そういった非日常的な体験を提供します。",
@@ -73,42 +86,69 @@ const benefitsData: Record<string, BenefitData> = {
         image: "/images/publications/photo/5.benefits/img_benefits_05@3x.jpg",
       },
       {
-        type: "案６：イベント",
+        type: "",
         title: "プロフェッショナルによる勉強会",
         description:
           "日本を代表する醸造家の大岡さんらによる定期的な勉強会に参加できます。",
         image: "/images/publications/photo/5.benefits/img_benefits_06@3x.jpg",
       },
       {
-        type: "案７：イベント",
-        title: "収穫祭への優先招待",
-        description:
-          "ブドウとワインの収穫祭を行います。\nご家族やご友人たちと一緒にグラスを片手に食の交流を楽しみましょう。",
-        image: "/images/publications/photo/5.benefits/img_benefits_07@3x.jpg",
-      },
-      {
-        type: "案８：イベント",
+        type: "",
         title: "醸造家との試飲会参加権",
         description:
           "ワインができたら試飲会に参加できます。\nできたばかりの新鮮なワインを楽しんでください。",
         image: "/images/publications/photo/5.benefits/img_benefits_08@3x.jpg",
       },
+    ],
+  },
+  [SHAREHOLDER_TYPES.THREE.id]: {
+    benefits: [
       {
-        type: "案９：名入れ",
+        type: "",
+        title: "醸造したワインを1本プレゼント",
+        description: "自分たちで作ったワインを自分たちに贈ります。",
+        note: "※ワインを製品化した際にプレゼントいたします。",
+        image: "/images/publications/photo/5.benefits/img_benefits_04@3x.jpg",
+      },
+    ],
+  },
+  [SHAREHOLDER_TYPES.FIFTY.id]: {
+    benefits: [
+      {
+        type: "",
         title: "ワイナリー施設への名入れ",
         description:
           "畑横に作られるワイナリー施設に飾るボードに名前が連なります。",
         image: "/images/publications/photo/5.benefits/img_benefits_09@3x.jpg",
       },
+    ],
+  },
+  [SHAREHOLDER_TYPES.TEN.id]: {
+    benefits: [
       {
-        type: "案１０：名入れ",
+        type: "",
+        title: "収穫祭への優先招待",
+        description:
+          "ブドウとワインの収穫祭を行います。\nご家族やご友人たちと一緒にグラスを片手に食の交流を楽しみましょう。",
+        image: "/images/publications/photo/5.benefits/img_benefits_07@3x.jpg",
+      },
+    ],
+  },
+  [SHAREHOLDER_TYPES.HUNDRED.id]: {
+    benefits: [
+      {
+        type: "",
         title: "ボトルラベルへの名入れ",
         description:
           "本プロジェクトで作成したワインに名前を入れさせていただきます。",
         image: "/images/publications/photo/5.benefits/img_benefits_10@3x.jpg",
       },
+    ],
+  },
+  [SHAREHOLDER_TYPES.THOUSAND.id]: {
+    benefits: [
       {
-        type: "案１１：名入れ",
+        type: "",
         title: "オリジナルブランドの作成権",
         description:
           "ボトルデザインや名称など、本プロジェクトとは別の自分だけのオリジナルブランドを作成できます。",

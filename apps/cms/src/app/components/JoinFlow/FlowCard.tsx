@@ -1,7 +1,7 @@
-import { StepItem } from './StepItem';
+import { StepItem } from "./StepItem";
 
 type FlowCardProps = {
-  type: '個人' | '法人';
+  type: "個人" | "法人";
   steps: {
     title: string;
     description?: string;
@@ -30,4 +30,4 @@ export const FlowCard = ({ type, steps }: FlowCardProps) => {
       </div>
     </div>
   );
-}; 
+};

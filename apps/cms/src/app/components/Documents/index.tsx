@@ -3,39 +3,30 @@ import Image from "next/image";
 type Document = {
   title: string;
   description: string;
-  url: string;
+  link?: string;
 };
 
-const documents: Document[] = [
+export const documents: Document[] = [
   {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
+    title: "利用規約(投資契約書)",
+    description:
+      "株式会社ぐんま山育DAOの出資する際の取り決めを記載しております。",
+    link: "./terms",
   },
   {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
+    title: "ぐんま山育DAO_規定",
+    description: "DAOXを利用する際の規約が記載されています。",
+    link: "./",
   },
   {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
+    title: "ぐんま山育DAO_定款",
+    description: "ぐんま山育DAOの定款が記載されています。",
+    link: "./",
   },
   {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
-  },
-  {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
-  },
-  {
-    title: "ファイル・リンク名",
-    description: "説明文説明文",
-    url: "#",
+    title: "シェアガイドライン",
+    description: "DAOXを利用する際の規約が記載されています。",
+    link: "#",
   },
 ];
 
@@ -46,7 +37,7 @@ export const Documents = () => {
         {documents.map((doc, index) => (
           <a
             key={index}
-            href={doc.url}
+            href={doc.link}
             className="
               w-[346.66px] tb:w-full sp:w-full
               bg-white rounded-[20px]

@@ -63,6 +63,9 @@ export const ProjectFooter = () => {
     setIsDetailsVisible(!isDetailsVisible);
   };
 
+  const LINE_OPENCHAT_URL =
+    "https://line.me/ti/g2/UELskVwp_yNNxCpC7Tv1KK30Lt5nb341cUaIZQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"; // 実際のLINE OpenChatのURL
+
   return (
     <>
       <footer
@@ -82,15 +85,34 @@ export const ProjectFooter = () => {
               className="overflow-x-auto tb:max-w-[337px] sp:max-w-full scrollbar-hide"
             >
               <div className="flex items-center gap-space-xs sp:gap-x-3 min-w-max">
-                <StatusItem
+                {/* <StatusItem
                   label="累計調達額 / 目標金額"
                   value="¥4,620,000"
                   subValue="¥50,000,000"
                   valueClassName="sp:text-base"
                   subValueClassName="subhead4 sp:opacity-70"
+                /> */}
+                <StatusItem
+                  label="目標金額"
+                  value="¥50,000,000"
+                  valueClassName="sp:text-base"
+                  subValueClassName="subhead4 sp:opacity-70"
                 />
                 <div className="w-px h-8 bg-white/20" />
                 <StatusItem
+                  label="1口当たり金額"
+                  customValue={
+                    <div className="flex items-center gap-2 sp:gap-2">
+                      <span className="text-[11px] leading-[15px] ">
+                        個人/法人
+                      </span>
+                      <span className="text-base leading-5  font-light">
+                        ¥10,000
+                      </span>
+                    </div>
+                  }
+                />
+                {/* <StatusItem
                   label="1口当たり金額"
                   customValue={
                     <div className="flex items-center gap-2 sp:gap-2">
@@ -105,11 +127,11 @@ export const ProjectFooter = () => {
                       </span>
                     </div>
                   }
-                />
+                /> */}
                 <div className="w-px h-8 bg-white/20" />
                 <StatusItem
                   label="参加者数"
-                  value="8"
+                  value="12"
                   valueClassName="sp:text-base"
                 />
               </div>
@@ -129,7 +151,7 @@ export const ProjectFooter = () => {
           >
             <div>
               <p className="subhead5 opacity-50">募集期限</p>
-              <h5 className=" font-light">2025.01.31</h5>
+              <h5 className=" font-light">2025.03.09</h5>
             </div>
             {/* <span 
               onClick={toggleDetails}
@@ -170,11 +192,11 @@ export const ProjectFooter = () => {
                 />
               </button>
               <button
-                onClick={() => setIsScheduleModalOpen(true)}
+                onClick={() => window.open(LINE_OPENCHAT_URL, "_blank")}
                 className="h-[44px] sp:flex-1 px-[18px] border border-white/50 rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
                 <span className=" subhead4 whitespace-nowrap">
-                  説明会日程へ
+                  LINEオープンチャットへ
                 </span>
                 <Image
                   src="/images/publications/right_arrow_white.svg"
