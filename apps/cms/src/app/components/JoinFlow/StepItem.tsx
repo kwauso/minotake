@@ -3,7 +3,7 @@ type StepItemProps = {
   description?: string;
   note?: {
     title?: string;
-    items: string[];
+    items?: string[];
     footer?: string;
   };
   notes?: {
@@ -12,12 +12,12 @@ type StepItemProps = {
   }[];
 };
 
-export const StepItem = ({
+export const StepItem: React.FC<StepItemProps> = ({
   title,
   description,
   note,
   notes,
-}: StepItemProps) => {
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <h5 className="font-auto">{title}</h5>

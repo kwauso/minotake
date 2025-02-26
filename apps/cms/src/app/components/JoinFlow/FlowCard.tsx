@@ -1,5 +1,19 @@
 import { StepItem } from "./StepItem";
 
+type StepItemProps = {
+  title: string;
+  description?: string;
+  note?: {
+    title?: string;
+    items?: string[];
+    footer?: string;
+  };
+  notes?: {
+    title: string;
+    items: string[];
+  }[];
+};
+
 type FlowCardProps = {
   type: string;
   steps: {
