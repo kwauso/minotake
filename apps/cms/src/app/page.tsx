@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/app/components/Header";
 import { KeyVisual } from "@/app/components/KeyVisual";
 import { SectionNav } from "@/app/components/SectionNav";
@@ -12,14 +13,19 @@ import { Activity } from "@/app/components/Activity";
 import { DaoEasterEgg } from "@/app/components/DaoEasterEgg";
 import { DesignOverlay } from "@/app/components/DesignOverlay";
 import { Roadmap } from "@/app/components/Roadmap";
+import { JoinFlow } from "@/app/components/JoinFlow";
 import { RatioChart } from "@/app/components/RatioChart";
 import { FAQ } from "@/app/components/FAQ";
 import { Members } from "@/app/components/Members";
 import { Documents } from "@/app/components/Documents";
 import { OpenChat } from "@/app/components/OpenChat";
 import { Footer } from "@/app/components/Footer";
+import { ProjectFooter } from "./components/ProjectFooter";
+import { ShareGuidelineModal } from "@/app/components/ShareGuidelineModal";
 
 export default function HomePage() {
+  const [isGuidelineOpen, setIsGuidelineOpen] = useState(false);
+
   return (
     <>
       <div className="min-h-screen bg-white">
@@ -50,6 +56,9 @@ export default function HomePage() {
           <div id="roadmap">
             <Roadmap />
           </div>
+          <div id="join-flow">
+            <JoinFlow />
+          </div>
           <div id="members">
             <Members />
           </div>
@@ -59,16 +68,25 @@ export default function HomePage() {
           <div id="faq">
             <FAQ />
           </div>
+          <div id="documents">
+            <Documents onGuidelineOpen={() => setIsGuidelineOpen(true)} />
+          </div>
           <div id="openchat">
             <OpenChat />
           </div>
         </div>
 
-        <WaitlistFooter />
+        {/* <WaitlistFooter /> */}
+        <ProjectFooter />
         <DaoEasterEgg />
         {/* <DesignOverlay /> */}
         <Footer />
       </div>
+
+      <ShareGuidelineModal
+        isOpen={isGuidelineOpen}
+        onClose={() => setIsGuidelineOpen(false)}
+      />
     </>
   );
 }

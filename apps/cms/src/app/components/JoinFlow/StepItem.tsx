@@ -3,7 +3,7 @@ type StepItemProps = {
   description?: string;
   note?: {
     title?: string;
-    items: string[];
+    items?: string[];
     footer?: string;
   };
   notes?: {
@@ -12,12 +12,12 @@ type StepItemProps = {
   }[];
 };
 
-export const StepItem = ({
+export const StepItem: React.FC<StepItemProps> = ({
   title,
   description,
   note,
   notes,
-}: StepItemProps) => {
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <h5 className="font-auto">{title}</h5>
@@ -27,11 +27,13 @@ export const StepItem = ({
       {note && (
         <div className="text-[11px] leading-[22px] opacity-50 ">
           {note.title && <p className="mb-1">{note.title}</p>}
-          <ul className="list-disc pl-4">
-            {note.items.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
+          {note.items && (
+            <ul className="list-disc pl-4">
+              {note.items.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          )}
           {note.footer && <p className="mt-2">{note.footer}</p>}
         </div>
       )}

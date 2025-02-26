@@ -11,6 +11,7 @@ const LINE_OPENCHAT_URL =
 export const WaitlistFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isGuidelineModalOpen, setIsGuidelineModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,6 +82,7 @@ export const WaitlistFooter = () => {
       <ShareModal
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}
+        onGuidelineOpen={() => setIsGuidelineModalOpen(true)}
       />
     </>
   );

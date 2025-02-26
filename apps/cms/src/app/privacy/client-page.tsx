@@ -30,9 +30,7 @@ export default function PrivacyClientPage() {
               <li>本サービスへの会員登録時にご入力いただく情報</li>
               <li>本サービスの利用時に自動的に収集される情報</li>
               <li>お問い合わせフォームなどでご入力いただく情報</li>
-              <li>
-                イベントやセミナーなどへの参加申込時にご提供いただく情報
-              </li>
+              <li>イベントやセミナーなどへの参加申込時にご提供いただく情報</li>
             </ul>
           </section>
 
@@ -51,9 +49,7 @@ export default function PrivacyClientPage() {
               <li>生年月日</li>
               <li>本人確認書類に記載の情報</li>
               <li>銀行口座情報</li>
-              <li>
-                その他当社が定める入力フォームにユーザーが入力する情報
-              </li>
+              <li>その他当社が定める入力フォームにユーザーが入力する情報</li>
             </ul>
           </section>
 
@@ -121,6 +117,26 @@ export default function PrivacyClientPage() {
             <p className="text-[15px] leading-8 text-black/80">
               当社は、必要に応じて本ポリシーを改定することがあります。改定した場合には、本ウェブサイト上でお知らせいたします。
             </p>
+          </section>
+
+          <section>
+            <h2 className="text-[24px] leading-[32px] font-genei-gothic mb-4">
+              8. DAOXにおけるデータの取り扱いについて
+            </h2>
+            <p className="text-[15px] leading-8 text-black/80">
+              当社が提供するDAO参加者向けコミュニケーションプラットフォーム「DAOX」における個人情報を含むデータの管理は、開発元である株式会社ガイアックスが行います。DAOXで取り扱われる個人情報については、株式会社ガイアックスのプライバシーポリシーが適用されます。
+            </p>
+            <ul className="list-disc pl-6 mt-4 text-[15px] leading-8 text-black/80">
+              <li>
+                DAOXにおけるデータは、株式会社ガイアックスのセキュアな環境で管理されます
+              </li>
+              <li>
+                DAOXで収集された個人情報は、株式会社ガイアックスのプライバシーポリシーに基づいて取り扱われます
+              </li>
+              <li>
+                DAOXに関するお問い合わせは、株式会社ガイアックスの窓口にて承ります
+              </li>
+            </ul>
           </section>
         </div>
       </div>

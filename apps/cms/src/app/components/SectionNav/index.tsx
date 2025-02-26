@@ -8,32 +8,32 @@ type Section = {
   title: string;
 };
 
-// const sections: Section[] = [
-//   { id: 'about', title: '私たちについて' },
-//   { id: 'summary', title: 'プロジェクト概要' },
-//   { id: 'story', title: 'ストーリー' },
-//   { id: 'benefits', title: '投資特典' },
-//   { id: 'roles', title: '参加者の役割' },
-//   { id: 'roadmap', title: 'ロードマップ' },
-//   { id: 'join-flow', title: '参加方法・流れ' },
-//   { id: 'usage', title: '本募集の資金使途' },
-//   { id: 'members', title: 'メンバー/サポート' },
-//   { id: 'ratio', title: '参加者構成比' },
-//   { id: 'faq', title: 'FAQ' },
-//   { id: 'documents', title: '資料' },
-// ];
-
 const sections: Section[] = [
   { id: "about", title: "私たちについて" },
   { id: "summary", title: "プロジェクト概要" },
   { id: "story", title: "ストーリー" },
-  { id: "benefits", title: "参加特典案" },
+  { id: "benefits", title: "投資特典" },
   { id: "roles", title: "参加者の役割" },
   { id: "roadmap", title: "ロードマップ" },
+  { id: "join-flow", title: "参加方法・流れ" },
+  { id: "usage", title: "本募集の資金使途" },
   { id: "members", title: "メンバー/サポート" },
   { id: "ratio", title: "参加者構成比" },
   { id: "faq", title: "FAQ" },
+  { id: "documents", title: "資料" },
 ];
+
+// const sections: Section[] = [
+//   { id: "about", title: "私たちについて" },
+//   { id: "summary", title: "プロジェクト概要" },
+//   { id: "story", title: "ストーリー" },
+//   { id: "benefits", title: "参加特典案" },
+//   { id: "roles", title: "参加者の役割" },
+//   { id: "roadmap", title: "ロードマップ" },
+//   { id: "members", title: "メンバー/サポート" },
+//   { id: "ratio", title: "参加者構成比" },
+//   { id: "faq", title: "FAQ" },
+// ];
 
 export const SectionNav = () => {
   const [activeSection, setActiveSection] = useState("about");
