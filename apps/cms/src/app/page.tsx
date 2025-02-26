@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/app/components/Header";
 import { KeyVisual } from "@/app/components/KeyVisual";
 import { SectionNav } from "@/app/components/SectionNav";
@@ -20,8 +21,11 @@ import { Documents } from "@/app/components/Documents";
 import { OpenChat } from "@/app/components/OpenChat";
 import { Footer } from "@/app/components/Footer";
 import { ProjectFooter } from "./components/ProjectFooter";
+import { ShareGuidelineModal } from "@/app/components/ShareGuidelineModal";
 
 export default function HomePage() {
+  const [isGuidelineOpen, setIsGuidelineOpen] = useState(false);
+
   return (
     <>
       <div className="min-h-screen bg-white">
@@ -65,7 +69,7 @@ export default function HomePage() {
             <FAQ />
           </div>
           <div id="documents">
-            <Documents />
+            <Documents onGuidelineOpen={() => setIsGuidelineOpen(true)} />
           </div>
           <div id="openchat">
             <OpenChat />
@@ -78,6 +82,11 @@ export default function HomePage() {
         {/* <DesignOverlay /> */}
         <Footer />
       </div>
+
+      <ShareGuidelineModal
+        isOpen={isGuidelineOpen}
+        onClose={() => setIsGuidelineOpen(false)}
+      />
     </>
   );
 }

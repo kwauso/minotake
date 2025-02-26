@@ -6,12 +6,14 @@ import Image from "next/image";
 import { ScheduleModal } from "../ScheduleModal";
 import { ShareModal } from "../ShareModal";
 import { StatusItem } from "../StatusItem";
+import { ShareGuidelineModal } from "../ShareGuidelineModal";
 
 export const ProjectFooter = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false); // Changed to false
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isGuidelineOpen, setIsGuidelineOpen] = useState(false);
   const [showGradient, setShowGradient] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -94,12 +96,12 @@ export const ProjectFooter = () => {
                 /> */}
                 <StatusItem
                   label="目標金額"
-                  value="¥50,000,000"
+                  value="¥5,000,000"
                   valueClassName="sp:text-base"
                   subValueClassName="subhead4 sp:opacity-70"
                 />
                 <div className="w-px h-8 bg-white/20" />
-                <StatusItem
+                {/* <StatusItem
                   label="1口当たり金額"
                   customValue={
                     <div className="flex items-center gap-2 sp:gap-2">
@@ -111,8 +113,8 @@ export const ProjectFooter = () => {
                       </span>
                     </div>
                   }
-                />
-                {/* <StatusItem
+                /> */}
+                <StatusItem
                   label="1口当たり金額"
                   customValue={
                     <div className="flex items-center gap-2 sp:gap-2">
@@ -127,7 +129,7 @@ export const ProjectFooter = () => {
                       </span>
                     </div>
                   }
-                /> */}
+                />
                 <div className="w-px h-8 bg-white/20" />
                 <StatusItem
                   label="参加者数"
@@ -196,7 +198,7 @@ export const ProjectFooter = () => {
                 className="h-[44px] sp:flex-1 px-[18px] border border-white/50 rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
                 <span className=" subhead4 whitespace-nowrap">
-                  LINEオープンチャットへ
+                  情報を受け取る
                 </span>
                 <Image
                   src="/images/publications/right_arrow_white.svg"
@@ -207,10 +209,12 @@ export const ProjectFooter = () => {
                 />
               </button>
               <Link
-                href="https://daox-app.vercel.app"
+                href="https://dao7682.zendesk.com/hc/ja/requests/new"
                 className="h-[44px] sp:flex-1 px-[18px] bg-white text-black rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
-                <span className=" subhead4 whitespace-nowrap">参加する</span>
+                <span className="subhead4 whitespace-nowrap">
+                  出資して参加する
+                </span>
                 <Image
                   src="/images/publications/right_arrow_black.svg"
                   alt=""
@@ -227,10 +231,15 @@ export const ProjectFooter = () => {
       <ShareModal
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}
+        onGuidelineOpen={() => setIsGuidelineOpen(true)}
       />
       <ScheduleModal
         isOpen={isScheduleModalOpen}
         onClose={() => setIsScheduleModalOpen(false)}
+      />
+      <ShareGuidelineModal
+        isOpen={isGuidelineOpen}
+        onClose={() => setIsGuidelineOpen(false)}
       />
     </>
   );

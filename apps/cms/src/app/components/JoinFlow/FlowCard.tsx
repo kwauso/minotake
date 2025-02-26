@@ -1,13 +1,13 @@
 import { StepItem } from "./StepItem";
 
 type FlowCardProps = {
-  type: "個人" | "法人";
+  type: string;
   steps: {
     title: string;
     description?: string;
     note?: {
       title?: string;
-      items: string[];
+      items?: string[];
       footer?: string;
     };
     notes?: {

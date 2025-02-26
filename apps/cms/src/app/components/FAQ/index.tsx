@@ -31,7 +31,8 @@ const faqItems: FAQItem[] = [
   {
     question: "メンバーとの交流はどのように行いますか？",
     answer:
-      "専用の管理画面上でチャットや投票機能を使って交流することができます。",
+      "交流はLINEオープンチャットで行います。\n" +
+      "議論したい内容や、重要な意思決定の決議投票に関しては株式会社ガイアックスが提供するDAOXというツールで行います。",
   },
   {
     question: "メンバーになった後、群馬に行く必要などはありますか？",
@@ -79,6 +80,18 @@ export const FAQ = () => {
     );
   };
 
+  const formatAnswer = (answer: string | React.ReactNode) => {
+    if (typeof answer === "string") {
+      return answer.split("\n").map((text, index, array) => (
+        <span key={index}>
+          {text}
+          {index < array.length - 1 && <br />}
+        </span>
+      ));
+    }
+    return answer;
+  };
+
   return (
     <section ref={ref} id="faq">
       <div className="max-w-[600px] sp:w-full mx-auto flex flex-col gap-4">
@@ -116,7 +129,7 @@ export const FAQ = () => {
               className="font-auto text-sm leading-6 overflow-hidden"
             >
               <br />
-              {item.answer}
+              {formatAnswer(item.answer)}
             </motion.div>
           </div>
         ))}

@@ -58,9 +58,8 @@ const benefitsData: Record<string, BenefitData> = {
       {
         type: "",
         title: "ブドウ畑の区画オーナー権",
-        description:
-          "参加者は出資時にブドウ畑の区画を指定し、その区画から収穫したワインのオーナー権(※)を得⁨⁩ます。",
-        note: "※オーナー権とは、自身が選択した区画から収穫されたブドウから、製造されたワインの収益の一部を受け取る権利のことを示します。直接的に、ブドウ苗の所有権や区画の不動産登記の権利を有する訳ではありません。",
+        description: "参加者は出資時にブドウ畑の共同運営権利を得ます。",
+        note: "※オーナー権とは、ブドウ畑運営の意思決定に関与する権利を有することを示します。直接的に、ブドウ苗の所有権や区画の不動産登記の権利を有する訳ではありません。",
         image: "/images/publications/photo/5.benefits/img_benefits_01@3x.jpg",
       },
       {
@@ -99,16 +98,24 @@ const benefitsData: Record<string, BenefitData> = {
           "ワインができたら試飲会に参加できます。\nできたばかりの新鮮なワインを楽しんでください。",
         image: "/images/publications/photo/5.benefits/img_benefits_08@3x.jpg",
       },
-    ],
-  },
-  [SHAREHOLDER_TYPES.THREE.id]: {
-    benefits: [
       {
         type: "",
         title: "醸造したワインを1本プレゼント",
         description: "自分たちで作ったワインを自分たちに贈ります。",
         note: "※ワインを製品化した際にプレゼントいたします。",
         image: "/images/publications/photo/5.benefits/img_benefits_04@3x.jpg",
+      },
+    ],
+  },
+  [SHAREHOLDER_TYPES.THREE.id]: {
+    benefits: [
+      {
+        type: "",
+        title: "大岡さんが制作した自然派ワインをプレゼント",
+        description:
+          "出資してくださった先着50名様に、大岡さんが制作した小公子(サンスフル)[2023]ラ・グランド・コリーヌ・ジャポンを1本プレゼントいたします。",
+        note: "※数量には限りがございます。ワインの状態によっては50本に満たない可能性がございますのでご了承くださいませ。また贈呈時期に関しては現在調整中でございます。ご自宅への配送を予定しております。",
+        image: "/images/publications/photo/5.benefits/img_benefits_99@3x.jpg",
       },
     ],
   },

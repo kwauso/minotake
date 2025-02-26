@@ -35,7 +35,7 @@ export const KeyVisual = () => {
           subValue="¥5,000,000"
         /> */}
         <Divider />
-        <StatusItem
+        {/* <StatusItem
           label="1口当たり金額"
           className="tb: flex-basis"
           customValue={
@@ -43,8 +43,8 @@ export const KeyVisual = () => {
               <span className="text-base leading-5  font-light">¥10,000</span>
             </div>
           }
-        />
-        {/* <StatusItem
+        /> */}
+        <StatusItem
           label="1口当たり金額"
           className="tb: flex-basis"
           customValue={
@@ -58,7 +58,7 @@ export const KeyVisual = () => {
               </span>
             </div>
           }
-        /> */}
+        />
         <Divider />
         <StatusItem label="参加者数" value="12" />
         <Divider />
