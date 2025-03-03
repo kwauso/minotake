@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ScheduleModal } from "../ScheduleModal";
 import { ShareModal } from "../ShareModal";
 import { StatusItem } from "../StatusItem";
 import { ShareGuidelineModal } from "../ShareGuidelineModal";
+import { projectData, statusItems } from "@/app/data/projectData";
 
 export const ProjectFooter = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -87,55 +88,35 @@ export const ProjectFooter = () => {
               className="overflow-x-auto tb:max-w-[337px] sp:max-w-full scrollbar-hide"
             >
               <div className="flex items-center gap-space-xs sp:gap-x-3 min-w-max">
-                {/* <StatusItem
-                  label="累計調達額 / 目標金額"
-                  value="¥4,620,000"
-                  subValue="¥50,000,000"
-                  valueClassName="sp:text-base"
-                  subValueClassName="subhead4 sp:opacity-70"
-                /> */}
-                <StatusItem
-                  label="目標金額"
-                  value="¥5,000,000"
-                  valueClassName="sp:text-base"
-                  subValueClassName="subhead4 sp:opacity-70"
-                />
-                <div className="w-px h-8 bg-white/20" />
-                {/* <StatusItem
-                  label="1口当たり金額"
-                  customValue={
-                    <div className="flex items-center gap-2 sp:gap-2">
-                      <span className="text-[11px] leading-[15px] ">
-                        個人/法人
-                      </span>
-                      <span className="text-base leading-5  font-light">
-                        ¥10,000
-                      </span>
-                    </div>
-                  }
-                /> */}
-                <StatusItem
-                  label="1口当たり金額"
-                  customValue={
-                    <div className="flex items-center gap-2 sp:gap-2">
-                      <span className="text-[11px] leading-[15px] ">個人</span>
-                      <span className="text-base leading-5  font-light">
-                        ¥10,000
-                      </span>
-                      <span className="text-xs opacity-70">/</span>
-                      <span className="text-[11px] leading-[15px] ">法人</span>
-                      <span className="text-base leading-5  font-light">
-                        ¥1,000,000
-                      </span>
-                    </div>
-                  }
-                />
-                <div className="w-px h-8 bg-white/20" />
-                <StatusItem
-                  label="参加者数"
-                  value="12"
-                  valueClassName="sp:text-base"
-                />
+                {statusItems.slice(0, 3).map((item, index) => (
+                  <React.Fragment key={item.label}>
+                    <StatusItem
+                      label={item.label}
+                      value={item.value}
+                      valueClassName="sp:text-base"
+                      customValue={
+                        item.type === "unit" ? (
+                          <div className="flex items-center gap-2 sp:gap-2">
+                            <span className="text-[11px] leading-[15px]">
+                              個人
+                            </span>
+                            <span className="text-base leading-5 font-light">
+                              {item.individual}
+                            </span>
+                            <span className="text-xs opacity-70">/</span>
+                            <span className="text-[11px] leading-[15px]">
+                              法人
+                            </span>
+                            <span className="text-base leading-5 font-light">
+                              {item.corporate}
+                            </span>
+                          </div>
+                        ) : undefined
+                      }
+                    />
+                    {index < 2 && <div className="w-px h-8 bg-white/20" />}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
             <div

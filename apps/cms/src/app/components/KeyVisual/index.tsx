@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { projectData, statusItems } from "@/app/data/projectData";
 
 export const KeyVisual = () => {
   return (
@@ -21,50 +22,38 @@ export const KeyVisual = () => {
         <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
           <p className="text-xs leading-[14px] text-black/70">
             <span className=" subhead4">募集期限</span>
-            <span className=" subhead4"> : 2025.03.09</span>
+            <span className=" subhead4"> : {projectData.deadline}</span>
           </p>
         </div>
       </div>
 
       {/* 下部ステータス 横並びで、画面をはみ出したときは折り返し */}
       <div className="flex flex-wrap items-center justify-center gap-space-l w-full padding-x-side">
-        <StatusItem label="目標金額" value="¥5,000,000" />
-        {/* <StatusItem
-          label="累計調達額 / 目標金額"
-          value="¥0"
-          subValue="¥5,000,000"
-        /> */}
-        <Divider />
-        {/* <StatusItem
-          label="1口当たり金額"
-          className="tb: flex-basis"
-          customValue={
-            <div className="flex items-center gap-2 text-white">
-              <span className="text-base leading-5  font-light">¥10,000</span>
-            </div>
-          }
-        /> */}
-        <StatusItem
-          label="1口当たり金額"
-          className="tb: flex-basis"
-          customValue={
-            <div className="flex items-center gap-2 text-white">
-              <span className="text-[11px] leading-[15px] ">個人</span>
-              <span className="text-base leading-5  font-light">¥10,000</span>
-              <span className="text-xs opacity-70">/</span>
-              <span className="text-[11px] leading-[15px] ">法人</span>
-              <span className="text-base leading-5  font-light">
-                ¥1,000,000
-              </span>
-            </div>
-          }
-        />
-        <Divider />
-        <StatusItem label="参加者数" value="12" />
-        <Divider />
-        <StatusItem label="設立" value="2025.01.17" />
-        <Divider />
-        <StatusItem label="サポーター" value="群馬県庁" isJP />
+        {statusItems.map((item, index) => (
+          <React.Fragment key={item.label}>
+            <StatusItem
+              label={item.label}
+              value={item.value}
+              isJP={item.isJP}
+              customValue={
+                item.type === "unit" ? (
+                  <div className="flex items-center gap-2 text-white">
+                    <span className="text-[11px] leading-[15px]">個人</span>
+                    <span className="text-base leading-5 font-light">
+                      {item.individual}
+                    </span>
+                    <span className="text-xs opacity-70">/</span>
+                    <span className="text-[11px] leading-[15px]">法人</span>
+                    <span className="text-base leading-5 font-light">
+                      {item.corporate}
+                    </span>
+                  </div>
+                ) : undefined
+              }
+            />
+            {index < statusItems.length - 1 && <Divider />}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
