@@ -98,14 +98,18 @@ export const StorySection = () => {
                       </div>
                     </div>
                     <div className="flex justify-end mt-4">
-                      <div className="relative transform group-hover/card:-translate-x-2 transition-transform duration-300">
-                        <Image
-                          src="/images/publications/right_arrow_white_50.svg"
-                          alt="arrow_right_white"
-                          width={22}
-                          height={20}
-                          priority={true}
-                        />
+                      <div className="bg-white rounded-[5px] p-3 flex flex-row gap-[6px] items-center justify-center flex-shrink-0 relative">
+                        <span className="text-black text-left font-['GenEiGothicM-Regular',sans-serif] text-[12px] leading-[14px] font-normal flex items-center justify-start overflow-hidden whitespace-nowrap text-ellipsis">
+                          詳細を見る
+                        </span>
+                        <div className="text-black text-left font-['SfPro-Regular',sans-serif] text-[12px] font-normal flex items-center justify-start">
+                          <Image
+                            src="/images/publications/right_arrow_black.svg"
+                            alt="arrow_right"
+                            width={12}
+                            height={12}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
