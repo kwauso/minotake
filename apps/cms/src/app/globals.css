@@ -786,3 +786,52 @@ body {
     @apply gap-y-side tb:gap-y-side-tb sp:gap-y-side-sp;
   }
 }
+
+@layer components {
+  .button,
+  .button * {
+    box-sizing: border-box;
+  }
+  .button {
+    background: var(--system-background-onaccent-main, #ffffff);
+    border-radius: var(--round-5, 5px);
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .button2 {
+    color: var(--system-textandicon-onmain-main, #000000);
+    text-align: left;
+    font-family: var(
+      --button-small-jp-font-family,
+      "GenEiGothicM-Regular",
+      sans-serif
+    );
+    font-size: var(--button-small-jp-font-size, 12px);
+    line-height: var(--button-small-jp-line-height, 14px);
+    font-weight: var(--button-small-jp-font-weight, 400);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .icon {
+    color: var(--system-textandicon-onmain-main, #000000);
+    text-align: left;
+    font-family: "SfPro-Regular", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
