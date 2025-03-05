@@ -197,11 +197,11 @@ export const StoryModal: React.FC<StoryModalProps> = ({
       >
         <div
           id="modal-content"
-          className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none"
+          className="h-full relative bg-white overflow-hidden rounded-t-[40px] tb:rounded-none will-change-transform"
         >
-          <div className="absolute inset-0 flex tb:flex-col">
-            <div className="flex w-full h-full tb:overflow-y-auto tb:flex-col">
-              <div className="hidden tb:absolute tb:block tb:z-[100] tb:top-8 tb:right-8 tb:justify-end">
+          <div className="absolute inset-0 flex tb:block tb:overflow-y-auto">
+            <div className="flex w-full h-full tb:block">
+              <div className="hidden tb:block tb:sticky tb:top-0 tb:z-[100] tb:text-right tb:pr-8 tb:pt-8 bg-white">
                 <button
                   onClick={onClose}
                   className="hover:opacity-70 transition-opacity"
@@ -215,7 +215,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({
                 </button>
               </div>
               {/* PC版コンテンツ */}
-              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[300px] tb:min-h-[336px]">
+              <div className="w-1/2 relative overflow-hidden tb:w-full tb:h-[300px] tb:min-h-[336px] will-change-transform">
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="absolute inset-0">
                     <Image
