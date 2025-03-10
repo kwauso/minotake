@@ -93,6 +93,7 @@ export const ProjectFooter = () => {
                     <StatusItem
                       label={item.label}
                       value={item.value}
+                      subValue={item.subValue}
                       valueClassName="sp:text-base"
                       customValue={
                         item.type === "unit" ? (
@@ -134,7 +135,7 @@ export const ProjectFooter = () => {
           >
             <div>
               <p className="subhead5 opacity-50">募集期限</p>
-              <h5 className=" font-light">2025.03.09</h5>
+              <h5 className=" font-light">{projectData.deadline}</h5>
             </div>
             {/* <span 
               onClick={toggleDetails}
