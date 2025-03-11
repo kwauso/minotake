@@ -29,7 +29,7 @@ export const StatusItem = ({
         {subValue && (
           <>
             <span className="subhead5 text-white/70">/</span>
-            <span className="text-xs font-weight-400 text-white/70 ">
+            <span className={`text-xs text-white ${subValueClassName || ""}`}>
               {subValue}
             </span>
           </>

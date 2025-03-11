@@ -34,6 +34,7 @@ export const KeyVisual = () => {
             <StatusItem
               label={item.label}
               value={item.value}
+              subValue={item.subValue}
               isJP={item.isJP}
               customValue={
                 item.type === "unit" ? (

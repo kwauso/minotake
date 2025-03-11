@@ -14,7 +14,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as WaitinglistImport } from './routes/waitinglist'
-import { Route as ThanksImport } from './routes/thanks'
 import { Route as SignupImport } from './routes/signup'
 import { Route as LoginImport } from './routes/login'
 import { Route as ComingsoonImport } from './routes/comingsoon'
@@ -77,12 +76,6 @@ const AuthenticatedSettingsAccountLazyImport = createFileRoute(
 const WaitinglistRoute = WaitinglistImport.update({
   id: '/waitinglist',
   path: '/waitinglist',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ThanksRoute = ThanksImport.update({
-  id: '/thanks',
-  path: '/thanks',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -360,13 +353,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupImport
       parentRoute: typeof rootRoute
     }
-    '/thanks': {
-      id: '/thanks'
-      path: '/thanks'
-      fullPath: '/thanks'
-      preLoaderRoute: typeof ThanksImport
-      parentRoute: typeof rootRoute
-    }
     '/waitinglist': {
       id: '/waitinglist'
       path: '/waitinglist'
@@ -605,7 +591,6 @@ export interface FileRoutesByFullPath {
   '/comingsoon': typeof ComingsoonRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/thanks': typeof ThanksRoute
   '/waitinglist': typeof WaitinglistRoute
   '/500': typeof errors500LazyRoute
   '/otp': typeof authOtpRoute
@@ -638,7 +623,6 @@ export interface FileRoutesByTo {
   '/comingsoon': typeof ComingsoonRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/thanks': typeof ThanksRoute
   '/waitinglist': typeof WaitinglistRoute
   '/500': typeof errors500LazyRoute
   '/otp': typeof authOtpRoute
@@ -671,7 +655,6 @@ export interface FileRoutesById {
   '/comingsoon': typeof ComingsoonRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/thanks': typeof ThanksRoute
   '/waitinglist': typeof WaitinglistRoute
   '/(auth)/500': typeof auth500Route
   '/(auth)/otp': typeof authOtpRoute
@@ -707,7 +690,6 @@ export interface FileRouteTypes {
     | '/comingsoon'
     | '/login'
     | '/signup'
-    | '/thanks'
     | '/waitinglist'
     | '/500'
     | '/otp'
@@ -739,7 +721,6 @@ export interface FileRouteTypes {
     | '/comingsoon'
     | '/login'
     | '/signup'
-    | '/thanks'
     | '/waitinglist'
     | '/500'
     | '/otp'
@@ -770,7 +751,6 @@ export interface FileRouteTypes {
     | '/comingsoon'
     | '/login'
     | '/signup'
-    | '/thanks'
     | '/waitinglist'
     | '/(auth)/500'
     | '/(auth)/otp'
@@ -805,7 +785,6 @@ export interface RootRouteChildren {
   ComingsoonRoute: typeof ComingsoonRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
-  ThanksRoute: typeof ThanksRoute
   WaitinglistRoute: typeof WaitinglistRoute
   auth500Route: typeof auth500Route
   authOtpRoute: typeof authOtpRoute
@@ -826,7 +805,6 @@ const rootRouteChildren: RootRouteChildren = {
   ComingsoonRoute: ComingsoonRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
-  ThanksRoute: ThanksRoute,
   WaitinglistRoute: WaitinglistRoute,
   auth500Route: auth500Route,
   authOtpRoute: authOtpRoute,
@@ -856,7 +834,6 @@ export const routeTree = rootRoute
         "/comingsoon",
         "/login",
         "/signup",
-        "/thanks",
         "/waitinglist",
         "/(auth)/500",
         "/(auth)/otp",
@@ -895,9 +872,6 @@ export const routeTree = rootRoute
     },
     "/signup": {
       "filePath": "signup.tsx"
-    },
-    "/thanks": {
-      "filePath": "thanks.tsx"
     },
     "/waitinglist": {
       "filePath": "waitinglist.tsx"
