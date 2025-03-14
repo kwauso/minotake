@@ -58,7 +58,7 @@ export const StorySection = () => {
       : undefined;
 
   return (
-    <section ref={ref} className="py-32 sp:w-[100vw] sp:ml-[-28px]">
+    <section ref={ref} className="sp:w-[100vw] sp:ml-[-28px]">
       <div className="w-fit mx-auto tb:px-8 sp:w-full sp:px-0">
         <div className="relative sp:overflow-hidden">
           <div className="grid grid-cols-3 sp:padding-x-l gap-space-l tb:grid-cols-2 sp:flex sp:overflow-x-auto sp:scrollbar-hide sp:gap-4 sp:w-full">

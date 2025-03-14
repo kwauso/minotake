@@ -120,7 +120,7 @@ const benefitsData: Record<string, BenefitData> = {
 
 export const Benefits = () => {
   return (
-    <section className="py-32 px-0">
+    <section className="px-0">
       <div className="flex flex-col max-w-[760px] tb:max-w-[610px] sp:max-w-[100vw] mx-auto">
         {Object.values(SHAREHOLDER_TYPES).map((shareholderType, index) => (
           <Fragment key={shareholderType.id}>

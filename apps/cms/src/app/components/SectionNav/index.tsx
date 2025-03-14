@@ -101,7 +101,7 @@ export const SectionNav = () => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 112;
+      const headerOffset = 150;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
