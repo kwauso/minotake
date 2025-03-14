@@ -107,7 +107,7 @@ export const Roadmap = () => {
   }
 
   return (
-    <section className="py-32">
+    <section>
       <div className="flex flex-col items-center gap-10">
         <div className="relative w-[1080px] h-[400px] flex items-center justify-center gap-space-l">
           <AnimatePresence initial={false}>
