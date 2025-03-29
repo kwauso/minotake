@@ -1,14 +1,14 @@
 export const projectData = {
   targetAmount: "¥5,000,000",
-  raisedAmount: "¥2,950,000",
+  raisedAmount: "¥3,800,000",
   investmentUnit: {
     individual: "¥10,000",
     corporate: "¥1,000,000",
   },
-  participants: "53",
+  participants: "81",
   establishment: "2025.01.17",
   supporter: "群馬県庁",
-  deadline: "2025.03.27",
+  deadline: "終了",
   openchatUrl:
     "https://line.me/ti/g2/UELskVwp_yNNxCpC7Tv1KK30Lt5nb341cUaIZQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default",
   investmentFormUrl: "https://dao7682.zendesk.com/hc/ja/requests/new",
