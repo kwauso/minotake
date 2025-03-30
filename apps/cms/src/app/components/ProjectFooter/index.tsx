@@ -180,7 +180,7 @@ export const ProjectFooter = () => {
                 className="h-[44px] sp:flex-1 px-[18px] border border-white/50 rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
               >
                 <span className=" subhead4 whitespace-nowrap">
-                  情報を受け取る
+                  今後の情報を受け取る
                 </span>
                 <Image
                   src="/images/publications/right_arrow_white.svg"
