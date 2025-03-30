@@ -190,7 +190,7 @@ export const ProjectFooter = () => {
                   className="sp:w-[11px] sp:h-[11px]"
                 />
               </button>
-              {/* 出資して参加するボタンをコメントアウト
+              {/* 出資して参加するボタンをコメントアウト.
               <Link
                 href="https://dao7682.zendesk.com/hc/ja/requests/new"
                 className="h-[44px] sp:flex-1 px-[18px] bg-white text-black rounded-[5px] backdrop-blur-[10px] flex items-center justify-center gap-1.5 sp:w-auto"
