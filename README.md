@@ -1,4 +1,5 @@
 # DaoX Applications
+# ※これはDAOXアプリケーション「身の丈ストリート」です。
 
 - CMSアプリケーション (apps/cms)
   - プロジェクト一覧
