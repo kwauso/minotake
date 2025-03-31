@@ -13,11 +13,11 @@ export const KeyVisual = () => {
       {/* 上部テキスト */}
       <div className="flex flex-col items-center gap-space-m w-full md:w-[820px]">
         <p className="text-white/70  subhead4 text-center">
-          ぐんま山育
+          仁尾・身の丈ストリートプロジェクト
           <span className="">DAO</span>
         </p>
         <h1 className="text-white  text-center sp:px-6">
-          群馬の山から、世界が認める自然派ワインを｡だそうです。わーいよかったね動いた動いた
+        新しい資本主義の提案。<br/> 共助・近助が生み出すDAO型商店街をみんなで作る！
         </h1>
         <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
           <p className="text-xs leading-[14px] text-black/70">
@@ -39,14 +39,9 @@ export const KeyVisual = () => {
               customValue={
                 item.type === "unit" ? (
                   <div className="flex items-center gap-2 text-white">
-                    <span className="text-[11px] leading-[15px]">個人</span>
+                    <span className="text-[11px] leading-[15px]">個人・法人問わず</span>
                     <span className="text-base leading-5 font-light">
                       {item.individual}
-                    </span>
-                    <span className="text-xs opacity-70">/</span>
-                    <span className="text-[11px] leading-[15px]">法人</span>
-                    <span className="text-base leading-5 font-light">
-                      {item.corporate}
                     </span>
                   </div>
                 ) : undefined
