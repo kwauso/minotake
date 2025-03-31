@@ -29,6 +29,8 @@ $npm run dev
 $yarn dev
 ```
 
+ホットリロードなので、開発サーバを立ち上げたまま手元でコードを変更するとブラウザに変更が反映されます。ただし**ハイドレーションエラー**が往々にして起きるので、apps/cms以下の.nextファイルとnode_moduleを削除し、ブラウザのキャッシュも削除した後apps/cms以下でnpm install →　npm run devを打つと動きます（動きました）。
+
 ## Turborepo kitchen sink starter
 
 This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.

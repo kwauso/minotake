@@ -17,7 +17,7 @@ export const KeyVisual = () => {
           <span className="">DAO</span>
         </p>
         <h1 className="text-white  text-center sp:px-6">
-          群馬の山から、世界が認める自然派ワインを｡
+          群馬の山から、世界が認める自然派ワインを｡だそうです。
         </h1>
         <div className="bg-white/80 backdrop-blur-[10px] px-2 py-1.5 rounded-[5px]">
           <p className="text-xs leading-[14px] text-black/70">
