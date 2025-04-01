@@ -8,27 +8,7 @@ import { Fragment } from "react";
 const SHAREHOLDER_TYPES = {
   ALL: {
     id: "all",
-    title: "株主全員（共通特典）",
-  },
-  THREE: {
-    id: "three",
-    title: "3口以上",
-  },
-  TEN: {
-    id: "ten",
-    title: "10口以上",
-  },
-  FIFTY: {
-    id: "fifty",
-    title: "50口以上",
-  },
-  HUNDRED: {
-    id: "hundred",
-    title: "100口以上",
-  },
-  THOUSAND: {
-    id: "thousand",
-    title: "1000口以上",
+    title: "参加特典",
   },
 } as const;
 
@@ -57,109 +37,37 @@ const benefitsData: Record<string, BenefitData> = {
     benefits: [
       {
         type: "",
-        title: "ブドウ畑の区画オーナー権",
-        description: "参加者は出資時にブドウ畑の共同運営権利を得ます。",
-        note: "※オーナー権とは、ブドウ畑運営の意思決定に関与する権利を有することを示します。直接的に、ブドウ苗の所有権や区画の不動産登記の権利を有する訳ではありません。",
+        title: "身の丈ストリートプロジェクト参画権",
+        description: '我々が一番共有したいのは、この三豊の日常の”暮らし”です。\n皆で、いつも集まり、飲みながら、未来を語り、そして具体的に形にしていく。\nそんな三豊の”日常の暮らし”をメンバーで共有できるように投資特典を作りました。',
         image: "/images/publications/photo/5.benefits/img_benefits_01@3x.jpg",
       },
       {
         type: "",
-        title: "利益剰余金を分配",
+        title: "①暮らす日常",
         description:
-          "ワインの販売等を事業化した際に発生する利益剰余金を分配いたします。",
+          'ベーシックインフラを提供 (年間 1人5泊, DAOメンバー限定の家を用意・一般には貸し出しません)。\n1口あたり年間5回まで泊まれる (シーツ代で1,000円 / 掃除をするとタスクでポイントが付与され、サービス券に交換可能)',
         image: "/images/publications/photo/5.benefits/img_benefits_02@3x.jpg",
       },
       {
         type: "",
-        title: "醸造したワインを優先的に原価で購入可能",
-        description: "自分たちで作ったワインを自分たちで購入ができます。",
-        note: "※ワインを製品化した際に購入ができるようになります。",
+        title: "②みんなで未来を作る日常",
+        description: '身の丈ストリート会議へ参加できます。\nリアルな現地に2度以上来た方は参加権をもらえます（オンラインで参加もOK）。',
+        note: '現地に2度以上来ていただくまでは、会議で決まった議題への投票権があります。三豊の日常を理解したうえで参加してもらうことを目的としています。',
         image: "/images/publications/photo/5.benefits/img_benefits_03@3x.jpg",
       },
       {
         type: "",
-        title: "自然派ワインに合う食を体験する",
+        title: "③みんなで飲み語らう日常",
         description:
-          "山菜をとる、素材を育てる、シェフと共に味わう、そういった非日常的な体験を提供します。",
-        note: "※イベント等は不定期で行います。また皆さんで企画し開催していただくようなこともDAOならではの醍醐味となります。",
+          'スナックニュー新橋で、毎回1杯目のハイボールが無料になります。',
         image: "/images/publications/photo/5.benefits/img_benefits_05@3x.jpg",
       },
       {
         type: "",
-        title: "プロフェッショナルによる勉強会",
+        title: "④身の丈の経済",
         description:
-          "日本を代表する醸造家の大岡さんらによる定期的な勉強会に参加できます。",
+          '収益からの一定の配当（年間１％を想定しています）が受け取れます。',
         image: "/images/publications/photo/5.benefits/img_benefits_06@3x.jpg",
-      },
-      {
-        type: "",
-        title: "醸造家との試飲会参加権",
-        description:
-          "ワインができたら試飲会に参加できます。\nできたばかりの新鮮なワインを楽しんでください。",
-        image: "/images/publications/photo/5.benefits/img_benefits_08@3x.jpg",
-      },
-      {
-        type: "",
-        title: "醸造したワインを1本プレゼント",
-        description: "自分たちで作ったワインを自分たちに贈ります。",
-        note: "※ワインを製品化した際にプレゼントいたします。",
-        image: "/images/publications/photo/5.benefits/img_benefits_04@3x.jpg",
-      },
-    ],
-  },
-  [SHAREHOLDER_TYPES.THREE.id]: {
-    benefits: [
-      {
-        type: "",
-        title: "大岡さんが制作した自然派ワインをプレゼント",
-        description:
-          "出資してくださった先着50名様に、大岡さんが制作した小公子(サンスフル)[2023]ラ・グランド・コリーヌ・ジャポンを1本プレゼントいたします。",
-        note: "※数量には限りがございます。ワインの状態によっては50本に満たない可能性がございますのでご了承くださいませ。また贈呈時期に関しては現在調整中でございます。ご自宅への配送を予定しております。",
-        image: "/images/publications/photo/5.benefits/img_benefits_99@3x.jpg",
-      },
-    ],
-  },
-  [SHAREHOLDER_TYPES.FIFTY.id]: {
-    benefits: [
-      {
-        type: "",
-        title: "ワイナリー施設への名入れ",
-        description:
-          "畑横に作られるワイナリー施設に飾るボードに名前が連なります。",
-        image: "/images/publications/photo/5.benefits/img_benefits_09@3x.jpg",
-      },
-    ],
-  },
-  [SHAREHOLDER_TYPES.TEN.id]: {
-    benefits: [
-      {
-        type: "",
-        title: "収穫祭への優先招待",
-        description:
-          "ブドウとワインの収穫祭を行います。\nご家族やご友人たちと一緒にグラスを片手に食の交流を楽しみましょう。",
-        image: "/images/publications/photo/5.benefits/img_benefits_07@3x.jpg",
-      },
-    ],
-  },
-  [SHAREHOLDER_TYPES.HUNDRED.id]: {
-    benefits: [
-      {
-        type: "",
-        title: "ボトルラベルへの名入れ",
-        description:
-          "本プロジェクトで作成したワインに名前を入れさせていただきます。",
-        image: "/images/publications/photo/5.benefits/img_benefits_10@3x.jpg",
-      },
-    ],
-  },
-  [SHAREHOLDER_TYPES.THOUSAND.id]: {
-    benefits: [
-      {
-        type: "",
-        title: "オリジナルブランドの作成権",
-        description:
-          "ボトルデザインや名称など、本プロジェクトとは別の自分だけのオリジナルブランドを作成できます。",
-        image: "/images/publications/photo/5.benefits/img_benefits_11@3x.jpg",
       },
     ],
   },
