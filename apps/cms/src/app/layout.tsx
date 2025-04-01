@@ -27,7 +27,7 @@ const genEiGothic = localFont({
 
 export const metadata: Metadata = {
   title:
-    "やたー。| ぐんま山育DAO powerd by DAOX",
+    "身の丈ストリート| 身の丈ストリートプロジェクトDAO powerd by DAOX",
   description:
     "自然派ワインとの親和性が高い日本という土地で、新しいワイン用ブドウ品種を開発し、世界に通用するワインをDAOという組織形態でつくります。メンバーには育種家・林慎悟や栽培醸造家・大岡弘武に加え、サポーターとして群馬県庁も参画し、地方創生の新しいモデルを目指します。",
   keywords: [
